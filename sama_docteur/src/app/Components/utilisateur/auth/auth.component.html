@@ -1,0 +1,292 @@
+<div class="mainContent d-flex justify-content-center align-items-center" style="height: 100vh; width: 100vw">
+    <div class="card formContainer" style="height: 70%; width: 70%"  *ngIf="switchFormValue && changForm">
+        <div class="formContainerLeft"></div>
+        <div class="formContainerRight">
+            <div class="h-100 loginForm">
+                <div class="container shadow py-3 h-100 d-flex justify-content-center align-items-center">
+                    <div class="col-8">
+                        <h1 class="text-center fw-bold mb-5">Connectez-vous</h1>
+                        <form action="">
+                            <div class="mb-3">
+                                <label for="emailInput" class="form-label">Adresse email:</label>
+                                <input type="email" name="email" class="form-control" id="emailInput"
+                                    [(ngModel)]="email" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="passwordInput" class="form-label">Mot de passe :
+                                </label>
+                                <input type="password" name="password" class="form-control" id="passwordInput"
+                                    [(ngModel)]="password" />
+                            </div>
+                            <div class="btn-auth text-center">
+
+                                <button type="submit" class="btn me-3 text-white" style="background-color: #0E918C"
+                                    (click)="login()">
+                                    Se connecter
+                                </button>
+                                <button type="submit" class="btn me-3" (click)="switchForm()"
+                                    style="color: var(--color-primary); border: solid thin">
+                                    S'inscrire
+                                </button>
+                                <p class="mb-2 mt-5 ml-5" ><a routerLink="/inscription">S'Inscrire en tant que Docteur </a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card formContainer" style="height: 70%; width: 70%" *ngIf="!switchFormValue">
+        <div class="formContainerLeft"></div>
+        <div class="formContainerRight">
+            <div class="h-100 registerForm">
+                <div class="container shadow py-3 h-100 d-flex justify-content-center align-items-center">
+                    <div class="col-10">
+                        <h1 class="text-center fw-bold mb-5">S'inscrire</h1>
+                        <form action="">
+                            <div class="col-12 d-flex justify-content-between">
+                                <div class="mb-3 col-6">
+                                    <label for="nom" class="form-label">Nom:</label>
+                                    <input type="text" name="nom" class="form-control" id="nom"
+                                        [(ngModel)]="nomRegister" />
+
+                                </div>
+                                <p>{{nomRegister}}</p>
+                                <div class="mb-3 col-6 ms-3">
+                                    <label for="prenom" class="form-label">Prenom : </label>
+                                    <input type="text" name="prenom" class="form-control" id="prenom"
+                                        [(ngModel)]="prenomRegister" />
+                                </div>
+                                <p>{{prenomRegister}}</p>
+
+                            </div>
+
+
+                            <div class="col-12 d-flex justify-content-between">
+
+                                <div class="mb-3 col-6 ms-3">
+                                    <label for="" class="form-label">Age: </label>
+                                    <input type="number" name="age" class="form-control" id="age"
+                                        [(ngModel)]="ageRegister" />
+                                </div>
+
+                                <p>{{ageRegister}}</p>
+
+
+                                <div class="mb-3 col-6 ms-3">
+                                    <label for="" class="form-label">Sexe:</label>
+                                    <select class="form-select" aria-label="Default select example" name="sexe"
+                                        [(ngModel)]="sexeRegister">
+                                        <option selected>Veuillez selectioner votre sexe</option>
+                                        <option value="homme" >homme</option>
+                                        <option value="femme">femme</option>
+                                        <p>{{sexeRegister}}</p>
+
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="col-12 d-flex justify-content-between">
+                                <div class="mb-3 col-6">
+                                    <label for="telephone" class="form-label">Telephone:</label>
+                                    <input type="tel" name="telephone" class="form-control" id="telephone"
+                                        [(ngModel)]="telephoneRegister" />
+                                </div>
+                                <p>{{telephoneRegister}}</p>
+                                <div class="mb-3 col-6 ms-3">
+                                    <label for="role" class="form-label">role : </label>
+                                    <select class="form-select" aria-label="Default select example" name="role_id"
+                                        [(ngModel)]="roleRegister">
+                                        <option selected>Veuillez selectionner votre statut</option>
+                                        <option value="1">Admin</option>
+                                        <option value="2">Clients</option>
+                                        <option value="3">Docteurs</option>
+
+                                    </select>
+                                    <p>{{roleRegister}}</p>
+                                </div>
+                            </div>
+
+                            <div class="col-12 d-flex justify-content-between">
+                                <div class="mb-3 col-6">
+                                    <label for="emailInput" class="form-label">Adresse email:</label>
+                                    <input type="email" name="email" class="form-control" id="email"
+                                        [(ngModel)]="emailRegister" />
+                                </div>
+                                <p>{{emailRegister}}</p>
+                                <div class="mb-3 col-6 ms-3">
+                                    <label for="password" class="form-label">Mot de passe :
+                                    </label>
+                                    <input type="password" name="password" class="form-control" id="password"
+                                        [(ngModel)]="passwordRegister" />
+                                </div>
+                                <p>{{passwordRegister}}</p>
+
+                            </div>
+
+                            
+
+                            <div class="col-12 d-flex justify-content-between">
+
+                                <div class="mb-3 col-6 ms-3">
+                                    <label for="passwordInput" class="form-label">Adresse :
+                                    </label>
+                                    <input type="text" name="adresse" class="form-control" id="adresse"
+                                        [(ngModel)]="adresseRegister" />
+                                </div>
+                                <p>{{adresseRegister}}</p>
+                                <div class="mb-3 col-6 ms-3">
+                                    <label for="photo_profil" class="form-label"
+                                        name="photo_profil">Photo_profil:</label>
+                                    
+                                    <input (change)="getFile($event)" class="form-control" type="file" id="photo_profil" name="photo_profil" accept="photo_profil/*">
+                                </div>
+                                <p>{{photo_profilRegister}}</p>
+                            </div>
+                            <div class="btn-auth text-center">
+
+                                <button type="submit" class="btn me-3 text-white" style="background-color: #0E918C"
+                                    (click)="register()">
+                                    S'inscrire 
+                                    
+                                </button>
+                                <button type="submit" class="btn me-3" (click)="switchForm()"
+                                    style="color: #0E918C; border: solid thin">
+                                    Se connecter
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="card formContainer" style="height: 70%; width: 70%" *ngIf="!changForm">
+        <div class="formContainerLeft"></div>
+        <div class="formContainerRight">
+            <div class="h-100 registerForm">
+                <div class="container shadow py-3 h-100 d-flex justify-content-center align-items-center">
+                    <div class="col-10">
+                        <h1 class="text-center fw-bold mb-5">S'inscrire</h1>
+                        <form action="">
+                            <div class="col-12 d-flex justify-content-between">
+                                <div class="mb-3 col-6">
+                                    <label for="nom" class="form-label">Nom:</label>
+                                    <input type="text" name="nom" class="form-control" id="nom" [(ngModel)]="nomRegister" />
+    
+                                </div>
+                                <p>{{nomRegister}}</p>
+                                <div class="mb-3 col-6 ms-3">
+                                    <label for="prenom" class="form-label">Prenom : </label>
+                                    <input type="text" name="prenom" class="form-control" id="prenom"
+                                        [(ngModel)]="prenomRegister" />
+                                </div>
+                                <p>{{prenomRegister}}</p>
+    
+                            </div>
+    
+    
+                            <div class="col-12 d-flex justify-content-between">
+    
+                                <div class="mb-3 col-6 ms-3">
+                                    <label for="" class="form-label">Age: </label>
+                                    <input type="number" name="age" class="form-control" id="age"
+                                        [(ngModel)]="ageRegister" />
+                                </div>
+    
+                                <p>{{ageRegister}}</p>
+    
+    
+                                <div class="mb-3 col-6 ms-3">
+                                    <label for="" class="form-label">Sexe:</label>
+                                    <select class="form-select" aria-label="Default select example" name="sexe"
+                                        [(ngModel)]="sexeRegister">
+                                        <option selected>Veuillez selectioner votre sexe</option>
+                                        <option value="homme">homme</option>
+                                        <option value="femme">femme</option>
+                                        <p>{{sexeRegister}}</p>
+    
+                                    </select>
+                                </div>
+    
+                            </div>
+    
+                            <div class="col-12 d-flex justify-content-between">
+                                <div class="mb-3 col-6">
+                                    <label for="telephone" class="form-label">Telephone:</label>
+                                    <input type="tel" name="telephone" class="form-control" id="telephone"
+                                        [(ngModel)]="telephoneRegister" />
+                                </div>
+                                <p>{{telephoneRegister}}</p>
+                                <div class="mb-3 col-6 ms-3">
+                                    <label for="role" class="form-label">role : </label>
+                                    <select class="form-select" aria-label="Default select example" name="role_id"
+                                        [(ngModel)]="roleRegister">
+                                        <option selected>Veuillez selectionner votre statut</option>
+                                        <option value="1">Admin</option>
+                                        <option value="2">Clients</option>
+                                        <option value="3">Docteurs</option>
+    
+                                    </select>
+                                    <p>{{roleRegister}}</p>
+                                </div>
+                            </div>
+    
+                            <div class="col-12 d-flex justify-content-between">
+                                <div class="mb-3 col-6">
+                                    <label for="emailInput" class="form-label">Adresse email:</label>
+                                    <input type="email" name="email" class="form-control" id="email"
+                                        [(ngModel)]="emailRegister" />
+                                </div>
+                                <p>{{emailRegister}}</p>
+                                <div class="mb-3 col-6 ms-3">
+                                    <label for="password" class="form-label">Mot de passe :
+                                    </label>
+                                    <input type="password" name="password" class="form-control" id="password"
+                                        [(ngModel)]="passwordRegister" />
+                                </div>
+                                <p>{{passwordRegister}}</p>
+    
+                            </div>
+    
+                            <div class="col-12 d-flex justify-content-between">
+    
+                                <div class="mb-3 col-6 ms-3">
+                                    <label for="passwordInput" class="form-label">Adresse :
+                                    </label>
+                                    <input type="text" name="adresse" class="form-control" id="adresse"
+                                        [(ngModel)]="adresseRegister" />
+                                </div>
+                                <p>{{adresseRegister}}</p>
+                                <div class="mb-3 col-6 ms-3">
+                                    <label for="photo_profil" class="form-label" name="photo_profil">Photo_profil:</label>
+    
+                                    <input (change)="getFile($event)" class="form-control" type="file" id="photo_profil"
+                                        name="photo_profil" accept="photo_profil/*">
+                                </div>
+                                <p>{{photo_profilRegister}}</p>
+                            </div>
+                            <div class="btn-auth text-center">
+    
+                                <button type="submit" class="btn me-3 text-white" style="background-color: #0E918C"
+                                    (click)="register()">
+                                    S'inscrire
+    
+                                </button>
+                                <button type="submit" class="btn me-3" (click)="switchForm()"
+                                    style="color: #0E918C; border: solid thin">
+                                    Se connecter
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

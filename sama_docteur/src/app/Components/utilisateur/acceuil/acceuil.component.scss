@@ -1,0 +1,78 @@
+
+//  #titre {
+//     color: red;
+//     text-align: center !important;
+//     background-color: red !important;
+// }
+
+.traitCard{
+    border-bottom: 5px solid blue !important;
+}
+
+#imagecarde img {
+    // border-right: 5px solid #26E88B;
+    // border-radius: 100%;
+    // width: 150px;
+
+    // height: 150px;
+
+    width: 132.068px;
+    height: 153.975px;
+    flex-shrink: 0;
+    // text-align: center ;
+    margin: 0 auto;
+    border-radius: 100px;
+    border: 2px solid #26235C;
+    stroke-width: 100px;
+    stroke: #26E88B;
+           
+
+}
+svg{
+    margin-right: 20px;
+    margin-bottom: -120px;
+    width: 110%;
+}
+
+#myBtn{
+    color: white;
+    border: 2px solid #26235C;
+    background-color:#26235C;
+    
+}
+
+.Section_Programme {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    flex-wrap: wrap;
+    padding: 3em;
+    line-height: 30px;
+}
+
+.programme_image img {
+    width: 490px;
+    height: 450px;
+}
+
+.Setion_programme_right button {
+    border: none;
+    background-color: #0E918C;
+    color: white;
+    width: 300px;
+    height: 45px;
+}
+
+.programme_titre {
+    width: 340px;
+    font-size: 20px;
+    font-weight: bold;
+}
+#besoin {
+    color: #26235C;
+}
+// .row {
+//     gap:20px ;
+//     justify-content: space-between;
+// }

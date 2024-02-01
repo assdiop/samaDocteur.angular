@@ -1,0 +1,62 @@
+<div class="sidebar-content h-100">
+    
+    
+    <div class="logoConnect m-auto ">
+        <a href="" routerLink="/admin">
+            <img src="../../../../assets/img/logo.svg" class="img-fluid w-75 h-25 m-auto" alt="">
+        </a>
+    </div>
+    <ul class="sidebarMenu">
+        <li class="" routerLinkActive="activeLink">
+            <a class="" href="" routerLink="accueilAdmin"><i class="fa-solid fa-house"></i>Dashboard</a>
+        </li>
+        <li class="collapsed" routerLinkActive="activeLink">
+            <a class="btn-toggle fw-bold" data-bs-toggle="collapse" data-bs-target="#utilisateurs" aria-expanded="false"
+                routerLink="gestiondocteur">
+            <i class="fa-solid fa-user-doctor"></i>
+            Gestion Docteur 
+            </a>
+            <!-- <div class="collapse" id="utilisateurs" class="p-0">
+                <ul class="btn-toggle-nav">
+                    <li>
+                        <a routerLink="utilisateurs/vendeurs" routerLinkActive="selected">Propriétaires</a>
+                    </li>
+                    <li>
+                        <a routerLink="utilisateurs/acheteurs" routerLinkActive="selected">Acheteurs</a>
+                    </li>
+                </ul>
+            </div> -->
+        </li>
+
+        <li class="collapsed" routerLinkActive="activeLink">
+            <a class="btn-toggle annoncesIcon" data-bs-toggle="collapse" data-bs-target="#gestionpatient"
+                aria-expanded="false" routerLink="gestionPatient">
+            <i class="fa-solid fa-hospital-user"></i>
+                Gestion Patients
+                
+            </a>
+           
+        </li>
+        <!-- <li class="" routerLinkActive="activeLink"><a href="" routerLink="annonces">Annonces</a></li> -->
+        <li class="" routerLinkActive="activeLink">
+            <a href="" routerLink="gestionhopitaux"><i class="fa-solid fa-hospital"></i>Gestion Hopitaux</a>
+        </li>
+        <li class="" routerLinkActive="activeLink">
+            <a href="" routerLink="contacts"><i class="fa-solid fa-comments"></i>Gestion Commentaires</a>
+        </li>
+        <li class="" routerLinkActive="activeLink">
+            <a href="" routerLink="gestioncomptesutilisateurs"><i class="fa-solid fa-users"></i>Gestion des Comptes </a>
+        </li>
+       
+    </ul>
+  
+
+    <div class="disconnect d-flex justify-content-start align-content-center mb-4">
+        <i class="fa-solid fs-4 fa-right-from-bracket "></i>
+        <app-logout-admin ></app-logout-admin> 
+    <a href="" routerLink="/admin"></a>
+    
+         
+    </div>
+
+</div>

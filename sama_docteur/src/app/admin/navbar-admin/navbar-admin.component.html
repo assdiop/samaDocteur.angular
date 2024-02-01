@@ -1,0 +1,40 @@
+<div class="Navbar d-flex justify-content-between">
+    <div class="navLeft d-flex">
+        <div class="imgLogo">
+           
+        </div>
+        <div class="burger" (click)="toggleSidebar()" >
+            <i class="fa fa-bars" ></i>
+            
+        </div>
+    </div>
+
+    <div class="rightNav">
+
+
+        <div class="dropdown-center">
+            <i class="fa-solid fa-bell mx-4 " type="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Centered dropdown
+            </button>
+            <ul class="dropdown-menu mt-4">
+                <li><a class="dropdown-item" href="#">Voir toutes</a></li>
+                <li><a class="dropdown-item" href="#">Récentes</a></li>
+            </ul>
+        </div>
+
+        <!-- Example single danger button -->
+        <div class="dropdown-center m-0 p-0">
+            <button type="button" class="btn m-0 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://img.freepik.com/photos-premium/heureux-homme-sourire-pleines-dents-avatar-emotion-positive_279525-26560.jpg?size=626&ext=jpg&ga=GA1.2.780285893.1697472738&semt=ais" class="" alt="">
+                Admin
+            </button>
+            <ul class="dropdown-menu mt-3">
+                <li><a class="dropdown-item" href="#">Mon profil</a></li>
+                <li><app-logout-admin></app-logout-admin>deconnexion</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+

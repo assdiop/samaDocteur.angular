@@ -1,0 +1,21 @@
+:root {
+    --color-primary: #0E918C;
+    /* Remplacez cette valeur par la nuance de vert souhaitée */
+}
+
+.formContainer {
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+
+.formContainer .formContainerLeft {
+    /* border: 1px solid; */
+    background-image: url("/assets/img/login.png");
+    background-position: center;
+    background-size: cover;
+}
+
+// .formContainer .formContainerRight {
+//     /* border: 1px solid; */
+
+// }
