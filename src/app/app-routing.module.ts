@@ -7,6 +7,9 @@ import { HopitauxComponent } from './Components/utilisateur/hopitaux/hopitaux.co
 import { ContactComponent } from './Components/utilisateur/contact/contact.component';
 import { AdminRoutingModule } from './admin/admin-routing.module';
 import { InscriptionComponent } from './utilisateur/inscription/inscription.component';
+import { MentionsLegalesComponent } from './Components/utilisateur/mentions-legales/mentions-legales.component';
+import { PolitiqueConfidentialitesComponent } from './Components/utilisateur/politique-confidentialites/politique-confidentialites.component';
+import { ConditionsUtlisationsComponent } from './Components/utilisateur/conditions-utlisations/conditions-utlisations.component';
 
 
 
@@ -28,6 +31,13 @@ const routes: Routes = [
   { path: 'Docteur', component: DocteurComponent },
   { path: 'hopitaux', component: HopitauxComponent },
   { path: 'Contact', component: ContactComponent },
+  { path: 'Mention', component: MentionsLegalesComponent },
+  { path: 'Politique', component: PolitiqueConfidentialitesComponent },
+  { path: 'Conditions', component: ConditionsUtlisationsComponent },
+
+
+
+
   { path: '', redirectTo: 'acceuil', pathMatch: 'full' },
 
   //admin
@@ -37,7 +47,7 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
-  },
+     },
   
   // { 
   //   path: 'dashboard-admin',

@@ -17,6 +17,9 @@ import { InscriptionComponent } from './utilisateur/inscription/inscription.comp
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormField } from '@angular/material/form-field';
 import { DataTablesModule } from 'angular-datatables';
+import { PolitiqueConfidentialitesComponent } from './Components/utilisateur/politique-confidentialites/politique-confidentialites.component';
+import { ConditionsUtlisationsComponent } from './Components/utilisateur/conditions-utlisations/conditions-utlisations.component';
+import { MentionsLegalesComponent } from './Components/utilisateur/mentions-legales/mentions-legales.component';
 
 
 
@@ -34,7 +37,11 @@ import { DataTablesModule } from 'angular-datatables';
     HeaderComponent,
     AuthComponent,
     FooterComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    PolitiqueConfidentialitesComponent,
+    ConditionsUtlisationsComponent,
+    MentionsLegalesComponent
+    
     
   ],
   imports: [

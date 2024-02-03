@@ -4,7 +4,7 @@
             <div class="col-lg-4 mr-auto col-sm-6">
                 <div class="widget mb-5 mb-lg-0">
                     <div class="logo mb-4">
-                        <h1>SamaDocteur</h1>
+                        <h1 class="text-white fw-bold">SamaDocteur</h1>
                     </div>
                     <p>Une plateforme pour les personnes âgées et les personnes à mobilité réduite pour fauciller leur soins médicaux</p>
 
@@ -26,9 +26,9 @@
                     <div class="divider mb-4"></div>
 
                     <ul class="list-unstyled footer-menu lh-35">
-                        <li><a href="#">Apropos</a></li>
-                        <li><a href="#">Hopitaux</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a [routerLink]="['/apropos']">Apropos</a></li>
+                        <li><a [routerLink]="['/hopitaux']">Hopitaux</a></li>
+                        <li><a [routerLink]="['/Contact']">Contact</a></li>
                      
                     </ul>
                 </div>
@@ -40,9 +40,9 @@
                     <div class="divider mb-4"></div>
 
                     <ul class="list-unstyled footer-menu lh-35">
-                        <li><a href="#">Mentions Légales</a></li>
-                        <li><a href="#">Politique de Confidentialités</a></li>
-                        <li><a href="#">Condition d ‘utilisation</a></li>
+                        <li><a [routerLink]="['/Mention']">Mentions Légales</a></li>
+                        <li><a [routerLink]="['/Politique']">Politique de Confidentialités</a></li>
+                        <li><a [routerLink]="['/Condition']">Condition d ‘utilisation</a></li>
                         
                     </ul>
                 </div>
@@ -71,12 +71,13 @@
                 </div>
             </div>
         </div>
+          
 
         <div class="footer-btm py-4 mt-5">
             <div class="row align-items-center justify-content-between">
                 <div class="col-lg-6">
                     <div class="copyright">
-                        &copy; Copyright Tout droit reservé à <span class="text-color">SamaDocteur</span> 
+                        &copy; Copyright Tout droit reservé à <span class="text-white">SamaDocteur</span> 
                     </div>
                 </div>
                 <div class="col-lg-6">
