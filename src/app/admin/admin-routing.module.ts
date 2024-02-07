@@ -10,6 +10,7 @@ import { GestionHopitauxComponent } from './gestion-hopitaux/gestion-hopitaux.co
 import { GestionComptesComponent } from './gestion-comptes/gestion-comptes.component';
 import { GestionCommentairesComponent } from './gestion-commentaires/gestion-commentaires.component';
 import { GestionPatientsComponent } from './gestion-patients/gestion-patients.component';
+import { GestionRegionComponent } from './gestion-region/gestion-region.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,9 @@ const routes: Routes = [
       { path: 'gestionhopitaux', component: GestionHopitauxComponent },
       { path: 'gestioncomptes', component: GestionComptesComponent },
       { path: 'gestioncommentaire', component: GestionCommentairesComponent },
-      // { path: '', redirectTo: 'accueilAdmin', pathMatch: 'full' },
+      { path: 'gestionregion', component: GestionRegionComponent},
+
+      { path: '', redirectTo: 'accueilAdmin', pathMatch: 'full' },
     ]
   }
 ];

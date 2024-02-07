@@ -10,10 +10,11 @@ export class Docteur {
     password!: string;
     adresse!: string;
    telephone!: string;
-    nombre_annee_experience!: string;
+    annee_experience!: string;
     sexe!: string ;
     photo_profil: any;
     age!: string;
     role_id!: string;
+  
 
 }

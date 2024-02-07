@@ -16,6 +16,7 @@ import { GestionComptesComponent } from './gestion-comptes/gestion-comptes.compo
 import { GestionCommentairesComponent } from './gestion-commentaires/gestion-commentaires.component';
 import { FormsModule } from '@angular/forms';
 import { DataTablesModule } from 'angular-datatables/src/angular-datatables.module';
+import { GestionRegionComponent } from './gestion-region/gestion-region.component';
 
 
 
@@ -32,7 +33,8 @@ import { DataTablesModule } from 'angular-datatables/src/angular-datatables.modu
     GestionPatientsComponent,
     GestionHopitauxComponent,
     GestionComptesComponent,
-    GestionCommentairesComponent 
+    GestionCommentairesComponent,
+    GestionRegionComponent 
   ],
   imports: [
     CommonModule,

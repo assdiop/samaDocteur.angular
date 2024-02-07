@@ -29,13 +29,13 @@
                         </div>
                         <div class="mb-3 col-6">
                             <label for="photo_profil_Mentor" class="form-label">Image</label>
-                            <input (change)="getFile($event)" class="form-control" type="file" id="photo_profil"
-                                name="photo_profil" accept="photo_profil/*">
+                            <!-- <input (change)="getFile($event)" class="form-control" type="file" id="photo_profil"
+                                name="photo_profil" accept="photo_profil/*"> -->
                         </div>
                     </div>
                     <div class="mb-3 col-6 ms-3">
                         <label for="role" class="form-label">localite_id: </label>
-                        <select class="form-select" aria-label="Default select example" name="role_id"
+                        <select class="form-select" aria-label="Default select example" name="localite_idHopitaux"
                             [(ngModel)]="localite_idHopitaux">
                             <option selected>Veuillez selectionner votre specialite</option>
                             <option value="1">Cardiologue</option>
@@ -49,8 +49,8 @@
                     </div>
                     <div class="mb-3 col-6 ms-3">
                         <label for="anneeExperience" class="form-label">horaire</label>
-                        <input type="text" class="form-control" id="anneeExperience" name="anneeExperience"
-                            [(ngModel)]="localite_idHopitaux" />
+                        <input type="text" class="form-control" id="anneeExperience" name="horaireHopitaux"
+                            [(ngModel)]="horaireHopitaux" />
 
                     </div>
 
@@ -58,13 +58,56 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ajouter</button>
+                <button type="button" class="btn btn-primary">Annuler</button>
             </div>
         </div>
     </div>
 </div>
 
+
+
+<!-- Modal ajout blog -->
+<div class="modal fade" id="ajoutBlog" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header shadow">
+                <h1 class="modal-title fs-5">Ajouter un blog</h1>
+                <span type="button" class="btnCloseModal" data-bs-dismiss="modal"><i
+                        class="fa-solid fa-circle-xmark"></i></span>
+            </div>
+            <div class="modal-body">
+                <form action="" > 
+                    <!-- (ngSubmit)="addBlog()" -->
+                    <div class="mb-3">
+                        <label for="titre" class="form-label">Titre du blog</label>
+                        <input type="text" class="form-control" name="titre" id="titre" [(ngModel)]="titre">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Image du blog</label>
+                        <!-- <input type="text" class="form-control" name="image" id="image" [(ngModel)]="image"> -->
+                        <!-- <input (change)="onFileChange($event)" class="form-control" type="file" id="image" name="image"
+                            accept="image/*"> -->
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description du blog</label>
+                        <input type="text" class="form-control" name="description" id="description"
+                            [(ngModel)]="description">
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btnAddBlog">Ajouter</button>
+                        <button type="button" class="btn btnFermer" data-bs-dismiss="modal">Fermer</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
 <table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table">
 
     <thead>

@@ -1,0 +1,111 @@
+<div class="buttonAjouter mt-2 mb-3">
+    <!-- Button modal Ajouter-->
+    <button type="button" class="btn text-white" data-bs-toggle="modal" data-bs-target="#ajouterDocteur"
+        style="background-color: green">
+        Ajouter
+    </button>
+
+</div>
+
+
+
+<!-- Modal ajouter -->
+<div class="modal fade modal-lg" id="ajouterDocteur" tabindex="-1" aria-labelledby="modifierMentor" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-4 fw-semibold text-center w-100" id="detailMentorLabel">
+                    Ajouter une region 
+
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+
+                <form action="">
+                    <div class="col-12 d-flex justify-content-between">
+                        <div class="mb-3 col-6">
+                            <label for="nom" class="form-label">Nom:</label>
+                        <input type="text" name="nom_region" class="form-control" id="nom" [(ngModel)]="nom_region" />
+
+                        </div>
+                        <p>{{nom_region}}</p>
+                     
+                        </div>
+                </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn text-white w-25" data-bs-dismiss="modal"
+                    style="background-color: green" (click)="addRegion()">
+                    Ajouter
+                </button>
+                <button type="button" class="btn w-25" data-bs-dismiss="modal" style="
+            
+            background-color: blue;
+            border: thin solid;
+          ">
+                    Annuler
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+
+<table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table" *ngIf="Regions.length>0">
+
+    <thead>
+        <tr>
+            <th class="tHead">ID</th>
+            <th class="tHead">Nom_Region</th>
+            <th class="tHead">Action</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let region of Regions">
+        <tr>
+            <td>{{region.id}} </td>
+            <td>{{region.nom_region}}</td>
+         
+            <td><span id="icon"> <p (click)="modifierRegion()" data-bs-toggle="modal" data-bs-target="#ajouterDocteur"> modifier</p><i class="fa-solid fa-eye"></i><i
+                        class="fa-solid fa-trash"></i></span></td>
+
+
+        </tr>
+     
+           
+    
+
+    </tbody>
+</table>
+
+
+<!-- <table class="table align-middle mb-0 bg-white">
+    <thead class="bg-light">
+        <tr>
+            <th>Id</th>
+            <th>nom_region </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let region of Regions; let index=index">
+        <tr >
+            <td>
+                {{index+1}}
+            </td>
+            <td>
+                <p class="text-muted mb-0">{{region.nom_region}}</p>
+            </td>
+
+
+            <td>
+                 <button type="button" class="btn btn-link btn-sm btn-rounded" (click)="supprimerDocteur(docteur.id)">
+                                        Supprimer
+                                    </button> -->
+
+            <!-- </td> -->
+        <!-- </tr> -->
+
+    <!-- </tbody>
+</table> --> 

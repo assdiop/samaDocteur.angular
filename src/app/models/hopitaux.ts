@@ -5,6 +5,7 @@ export class Hopitaux {
     longitude!:string;
     horaire!:string;
     image!:File;
-    localite_id!:string;
+    localite_id!: string;
+    
 
 }

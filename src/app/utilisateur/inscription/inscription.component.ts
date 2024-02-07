@@ -66,7 +66,7 @@ export class InscriptionComponent {
     const newClient = new User;
     
 
-    newClient.nom = this.nomRegister
+    newClient.nom = this.nomRegister;
     newClient.prenom = this.prenomRegister;
     newClient.email = this.emailRegister;
     newClient.password = this.passwordRegister;
