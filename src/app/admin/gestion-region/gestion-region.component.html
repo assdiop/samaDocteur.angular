@@ -68,7 +68,7 @@
             <td>{{region.id}} </td>
             <td>{{region.nom_region}}</td>
          
-            <td><span id="icon"> <p (click)="modifierRegion()" data-bs-toggle="modal" data-bs-target="#ajouterDocteur"> modifier</p><i class="fa-solid fa-eye"></i><i
+            <td><span id="icon"> <p data-bs-toggle="modal" data-bs-target="#ModifierDocteur"> modifier</p><i class="fa-solid fa-eye"></i><i
                         class="fa-solid fa-trash"></i></span></td>
 
 
@@ -81,6 +81,52 @@
 </table>
 
 
+ 
+<!-- Modal pour modifier  -->
+
+<div class="modal fade modal-lg" id="ModifierDocteur" tabindex="-1" aria-labelledby="modifierRegion" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-4 fw-semibold text-center w-100" id="detailMentorLabel">
+                    Modifier une Région
+
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+
+                <form action="">
+                    <div class="col-12 d-flex justify-content-between">
+                        <div class="mb-3 col-6">
+                            <label for="nom" class="form-label">Nom:</label>
+                            <input type="text" name="nom_region" class="form-control" id="nom"
+                                [(ngModel)]="nom_region" />
+
+                        </div>
+                        <p>{{nom_region}}</p>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn text-white w-25" data-bs-dismiss="modal"
+                    style="background-color: green" (click)="modifierRegion(1)">
+                    Modifier
+                </button>
+                <button type="button" class="btn w-25" data-bs-dismiss="modal" style="
+            
+            background-color: blue;
+            border: thin solid;
+          ">
+                    Annuler
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- <table class="table align-middle mb-0 bg-white">
     <thead class="bg-light">
         <tr>

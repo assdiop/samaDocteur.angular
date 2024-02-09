@@ -1,0 +1,425 @@
+ajout blog html
+
+<!-- Modal ajout blog -->
+<div class="modal fade" id="ajoutBlog" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header shadow">
+                <h1 class="modal-title fs-5" >Ajouter un blog</h1>
+                <span type="button" class="btnCloseModal" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i></span>
+            </div>
+            <div class="modal-body">
+               <form action="" (ngSubmit)="addBlog()">
+                <div class="mb-3">
+                    <label for="titre" class="form-label">Titre du blog</label>
+                    <input type="text" class="form-control" name="titre" id="titre" [(ngModel)]="titre">
+                </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image du blog</label>
+                    <!-- <input type="text" class="form-control" name="image" id="image" [(ngModel)]="image"> -->
+                    <input (change)="onFileChange($event)" class="form-control" type="file" id="image" name="image" accept="image/*">
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description du blog</label>
+                    <input type="text" class="form-control" name="description" id="description" [(ngModel)]="description">
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btnAddBlog">Ajouter</button>
+                    <button type="button" class="btn btnFermer" data-bs-dismiss="modal">Fermer</button>
+                </div>
+
+               </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+Ts ajout blog
+
+titre: string = '';
+  image!: File;
+  description: string = '';
+
+
+// Ajout d'un blog
+  addBlog() {
+  
+  console.log(titre)
+  
+  
+    if (this.titre == '') {
+      this.alertMessage(
+        'error',
+        'Oops',
+        'Merci de renseigner le titre du blog'
+      );
+      return; // Empêche la soumission si le champ est vide
+    } else if (this.description == '') {
+      this.alertMessage(
+        'error',
+        'Oops',
+        'Merci de renseigner la description du blog'
+      );
+      return;
+    } else {
+      let newBlog = new FormData();
+      newBlog.append('titre', this.titre);
+      newBlog.append('image', this.image as Blob);
+      newBlog.append('description', this.description);
+
+      this.listeBlogs.addblog(newBlog).subscribe(
+        (response) => {
+          // /Insérer le nouveau blog au début de la liste des blogs
+          this.Blogs.unshift(response);
+          console.log('blog ajouté avec succès.');
+          this.alertMessage('success', 'Cool', 'blog ajouté avec succés');
+          // Rafraîchir la liste des blogs après l'ajout
+          this.getBlogs();
+          // Réinitialiser le champ après l'ajout
+          this.viderChamps();
+        },
+        (error) => {
+          this.alertMessage('error', 'Oops', "Erreur lors de l'ajout du blog");
+          console.error(
+            "Une erreur s'est produite lors de l'ajout du blog: ",
+            error
+          );
+        }
+      );
+    }
+  }
+
+
+
+Model d'un user
+
+
+
+Service pour ajouter un blog
+
+// Ajout blog
+  addblog(newBlog: any): Observable<any[]> {
+    let headers = new HttpHeaders();
+    const token = localStorage.getItem('token');
+    if (token) {
+      headers = headers.set('Authorization', 'Bearer ' + token);
+    }
+    return this.http.post<any[]>(`${this.apiUrl}/blocStore`, newBlog, {
+      headers: headers,
+    });
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // articles: any;
+
+  // currentMentorElt: any;
+
+  // public AllmentorDataLength: number = 0 ;
+  prenomDocteur= ""
+  nomDocteur = "";
+  emailDocteur= "";
+  telephoneDocteur = "";
+  nombre_annee_experienceDocteur= 0;
+  photo_profil_Docteur= "";
+  diplomeDocteur ="" ;
+  passwordDocteur = "";
+  numero_licenceDocteur = "";
+  ageDocteur = "";
+  annnee_experience = "";
+  specialite = "";
+  photo_profilDocteur="";
+  sexeDocteur = "";
+  roleDocteur = "";
+  adresseDocteur = "";
+  specialiteDocteur = "";
+  numLicenceDocteur = "";
+  // adresseDocteur = "";
+
+  // pour la modication
+  // prenomMentorUpdate = ""
+  // nomMentorUpdate = "";
+  // emailMentorUpdate = "";
+  // telephoneMentorUpdate = "";
+  // nombre_annee_experienceMentorUpdate = 0;
+  // photo_profil_MentorUpdate = "";
+  // article_idMentorUpdate =1 ;
+  // passwordMentorUpdate = "";
+  // messageService: any;
+  // sexeDocteur="";
+  // photo_profilDocteur = "";
+  // adresse = "";
+
+
+  // descriptionMentor = "";
+
+
+  constructor(private docteurService: DocteurService , private messageService: MessageService) {
+  }
+
+  ngOnInit(): void {
+    // this.afficher();
+    // this.getAllArtilce()
+  }
+
+  // getAllArtilce(){
+  //   this.metierService.getAllArticle().subscribe(
+  //     (data) => {
+  //       this.AllArticle = data;
+  //      this.articles = this.AllArticle.article;
+
+  //     }
+  //   );
+  // }
+
+  // afficher() {
+  //   this.docteurService.getAllMentors().subscribe((data) => {
+  //     this.AllmentorData = data;
+  //     console.log(this.AllmentorData.Mentor.length);
+  //   });
+  // }
+
+  Docteur() {
+    console.log(this.nomDocteur);
+    console.log(this.prenomDocteur);
+    console.log(this.emailDocteur);
+    console.log(this.passwordDocteur);
+   
+    console.log(this.telephoneDocteur);
+    console.log(this.Docteur);
+    console.log(this.sexeDocteur);
+    console.log(this.adresseDocteur);
+    console.log(this.diplomeDocteur);
+    console.log(this.specialiteDocteur);
+    console.log(this.nombre_annee_experienceDocteur);
+    console.log(this.numLicenceDocteur);
+
+
+
+    const newDocteur = new Docteur;
+    
+
+    newDocteur.nom = this.nomDocteur
+    newDocteur.prenom = this.prenomDocteur;
+    newDocteur.email = this.emailDocteur;
+    newDocteur.password = this.passwordDocteur;
+    newDocteur.photo_profil = this.photo_profilDocteur;
+    newDocteur.telephone = this.telephoneDocteur;
+    newDocteur.age = this.ageDocteur;
+    newDocteur.sexe = this.sexeDocteur;
+    newDocteur.specialite_id = this.specialiteDocteur;
+    // newClient. specialite_id = this. specialiteDocteur;
+    newDocteur.numero_licence = this.numLicenceDocteur;
+    newDocteur.role_id = this.roleDocteur;
+
+    
+    // newClient.nombre_annee_experience= this.nombre_annee_experienceDocteur;
+    // newClient.adresse= this.adresseDocteur;
+
+
+   
+
+    if (this.emailDocteur == "" || this.passwordDocteur == "" || this.prenomDocteur == "" || this.nomDocteur == ""
+      || this.telephoneDocteur == "" || this.ageDocteur == "" || this.sexeDocteur == "") {
+      // this.message.showMessage("error", "Veuillez remplir tout les champs");
+      console.log("fdffdfd", newDocteur);
+
+    } else {
+
+
+
+      let formData = new FormData();
+      formData.append("photo_profil", this.photo_profilDocteur);
+      formData.append("nom ", this.nomDocteur);
+      formData.append("email", this.emailDocteur);
+      formData.append("password", this.passwordDocteur);
+      formData.append("role_id", this.roleDocteur);
+      formData.append("telephone", this.telephoneDocteur);
+      formData.append("age", this.ageDocteur);
+      formData.append("diplome", this.diplomeDocteur);
+      formData.append("annee_expereince", this.annnee_experience );
+      formData.append("specialite", this. specialiteDocteur );
+      formData.append("numero_licence", this. numLicenceDocteur);
+      formData.append("age", this.ageDocteur);
+   
+
+
+      
+
+      
+      //   this.docteurService.Docteur(newDocteur).subscribe((response) => {
+      //   console.log("voir inscription", response);
+      // })
+
+
+      
+      // this.docteurService.registerDocteur(newDocteur).subscribe(
+      //   (repose) => {console.log("voir inscription", repose);
+      // })
+      // this.docteurService.Docteur(newDocteur).subscribe((response: any) => {
+      //   console.log("voir inscription", response:any);
+      // })
+    
+       this.alertMessage(
+                'success',
+                'Super',
+                'Inscription réussie avec succés.'
+              );
+    }
+
+    
+
+    
+  }
+  
+
+
+
+  addUser() {
+    
+    if (this.nomDocteur == "" || this.emailDocteur == "" || this.passwordDocteur== "" || this.telephoneDocteur == "" || this.nombre_annee_experienceDocteur == null || this.numero_licenceDocteur == null) {
+      this.messageService.showMessage("error", "Veuillez remplir tout les champs")
+    } else {
+      this.docteurService.addUser(new Docteur, (reponse: any) => {
+        console.log(reponse);
+        if (reponse.status_code == 200) {
+          this.messageService.showMessage("success", "Ajout faite avec succès");
+
+          //vider les champs
+       
+          this.nomDocteur = "";
+          this.prenomDocteur="";
+         this.emailDocteur="";
+         this.passwordDocteur="";
+         this.telephoneDocteur="";
+          this.numero_licenceDocteur = "";
+          // this.descriptionMentor = "";
+          // console.log(reponse);
+        } else { 
+          // this.messageService.showMessage("error", "veuillez vérifiez ce que vous avez saisie");
+          // console.log(reponse);
+        }
+      });
+      }
+  }
+
+  // getMentorById(id: number){
+  //   this.docteurService.getMentorById(id).subscribe(
+  //     (data)=>{
+  //       this.currentMentorElt = data;
+  //       console.log(this.currentMentorElt, 'aze');
+
+  //       this.prenomMentorUpdate = this.currentMentorElt.mentor.nom;
+  //       this.nomMentorUpdate = "";
+  //       this.emailMentorUpdate = this.currentMentorElt.mentor.email;
+  //       this.telephoneMentorUpdate = this.currentMentorElt.mentor.telephone;
+  //       this.nombre_annee_experienceMentorUpdate = this.currentMentorElt.mentor.nombre_annee_experience;
+  //       this.photo_profil_MentorUpdate = this.currentMentorElt.mentor.photo_profil;
+  //       this.article_idMentorUpdate =this.currentMentorElt.mentor.articles_id ;
+  //       // this.passwordMentorUpdate = this.currentMentorElt.mentor.password ;
+  //     }
+  //   );
+  //   // alert(id)
+  // }
+
+
+
+  // updateMentor(id: number){
+  //   const mentorToUpdate = new Docteur;
+
+  //   mentorToUpdate.nom = this.prenomMentorUpdate + " " + this.nomMentorUpdate;
+  //   mentorToUpdate.email = this.emailMentorUpdate;
+  //   mentorToUpdate.photo_profil = this.photo_profil_MentorUpdate;
+  //   mentorToUpdate.password = this.passwordMentorUpdate;
+  //   mentorToUpdate.telephone = this.telephoneMentorUpdate;
+  //   mentorToUpdate.nombre_annee_experience = this.nombre_annee_experienceMentorUpdate;
+  //   mentorToUpdate.articles_id = this.article_idMentorUpdate;
+
+  //   if (this.emailMentorUpdate == "" || this.telephoneMentorUpdate == "" || this.nombre_annee_experienceMentorUpdate == null) {
+  //     this.messageService.showMessage("error", "Veuillez remplir tous les champs")
+  //   }else{
+
+  //     this.docteruService.updateMentor(mentorToUpdate, id).subscribe(
+  //       (data)=> {
+  //         console.log(data);
+
+  //       }
+  //     );
+  //   }
+
+  // }
+
+  // archiveMentorById(id: number) {
+  //   const mentor = new Mentor(); // Vous pouvez également récupérer les données du mentor si nécessaire
+
+  //   Swal.fire({
+  //     title: "Etes vous sûr?",
+  //     text: "de vouloir archiver",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#3085d6",
+  //     cancelButtonColor: "#d33",
+  //     confirmButtonText: "Oui, Je confirme"
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       Swal.fire({
+  //         title: "Archiver!",
+  //         text: "Ce mentor a été archiver avec succées ",
+  //         icon: "success"
+  //       });
+
+  //       this.docteruService.archiveMentor(id, mentor).subscribe(
+  //         (response) => {
+  //           this.AllmentorData;
+  //         },
+  //         (error) => {
+  //           console.error('Erreur lors de l\'archivage du mentor', error);
+
+  //         }
+  //       );
+  //     }
+  //   });
+
+
+  // }
+
+
+  
+
+
+    getFile(event: any) {
+    const file = event.target.files[0];
+    console.log(file);
+  }
+
+  alertMessage(icon: any, title: any, text: any) {
+    Swal.fire({
+      icon: icon,
+      title: title,
+      text: text,
+    });
+  }
+}
+
+
+
+
+

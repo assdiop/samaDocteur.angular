@@ -22,6 +22,7 @@ export class GestionRegionComponent {
 
   ngOnInit(): void {
 
+     this.addRegion() 
      this.getAllRegions();
 // dtoptions
     this.dtOptions = {
@@ -94,10 +95,10 @@ export class GestionRegionComponent {
   
   
     // Methode pour vider les champs 
-  viderChapmsRegion(){
-    this.nom_region = ""
+  // viderChapmsRegion(){
+  //   this.nom_region = ""
    
-  }
+  // }
   // Methode pour veirfier champs 
 
     verifierChamps(title:any, text:any, icon:any) {
@@ -114,7 +115,7 @@ export class GestionRegionComponent {
 
     
 
-     modifierRegion(){
+     modifierRegion(id:number){
     this.currentRegion.nomRegion = this.nom_region;
     
     
@@ -129,27 +130,26 @@ export class GestionRegionComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         this.hopitalService
-          .updateRegion(this.regionSelectionner,data)
+          .updateRegion(this.currentRegion,id)
           .subscribe((response) => {
             console.log('je suis response', response);
             this.hopitalService.verifierChamps(
               'modifie!',
-              'annonce modifie avec succès',
+              'region modifie avec succès',
               'success'
             );
             window.location.reload();
           });
         this.ngOnInit();
       }
-      console.log('je suis annonce', this.regionSelectionner);
+      console.log('je suis region', this.regionSelectionner);
       console.log('je suis data', data);
 });
    
        
-       const data = {
-      nom: this.nom_region,
+ const data = {
+   nom: this.nom_region,
       
-  
     };
   } 
 

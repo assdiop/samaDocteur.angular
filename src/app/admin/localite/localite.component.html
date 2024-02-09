@@ -1,0 +1,176 @@
+<div class="buttonAjouter mt-2 mb-3">
+    <!-- Button modal Ajouter-->
+    <button type="button" class="btn text-white" data-bs-toggle="modal" data-bs-target="#ajouterlocalite"
+        style="background-color: green">
+        Ajouter
+    </button>
+
+</div>
+
+<!-- Modal ajouter -->
+<div class="modal fade modal-lg" id="ajouterlocalite" tabindex="-1" aria-labelledby="modifierMentor" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-4 fw-semibold text-center w-100" id="detailMentorLabel">
+                    Ajouter une localite
+
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+
+                <form action="">
+                    <div class="col-12 d-flex justify-content-between">
+                        <div class="mb-3 col-6">
+                            <label for="nom" class="form-label">Nom:</label>
+                            <input type="text" name="nom_localite" class="form-control" id="nom" [(ngModel)]="nom_localite" />
+
+                        </div>
+                        <p>{{nom_localite}}</p>
+                        <div class="mb-3 col-6 ms-3">
+                            <label for="prenom" class="form-label">Code postal : </label>
+                            <input type="text" name="code_postal" class="form-control" id="prenom"
+                                [(ngModel)]="code_postal" />
+                        </div>
+                        <p>{{code_postal}}</p>
+
+                    </div>
+
+                    <div class="mb-3 col-6 ms-3">
+                        <label for="region" class="form-label">Region : </label>
+                        <input type="text" name="region_id" class="form-control" id="region" [(ngModel)]="region_id" />
+                    </div>
+                    <p>{{region_id}}</p>
+                    
+                
+
+
+<!-- 
+                    <div class="col-12 d-flex justify-content-between">
+
+                        <div class="mb-3 col-6 ms-3">
+                            <label for="" class="form-label">Age: </label>
+                            <input type="number" name="age" class="form-control" id="age" [(ngModel)]="ageDocteur" />
+                        </div>
+
+                        <p>{{ageDocteur}}</p>
+
+
+                        <div class="mb-3 col-6 ms-3">
+                            <label for="" class="form-label">Sexe:</label>
+                            <select class="form-select" aria-label="Default select example" name="sexe"
+                                [(ngModel)]="sexeDocteur">
+                                <option selected>Veuillez selectioner votre sexe</option>
+                                <option value="homme">homme</option>
+                                <option value="femme">femme</option>
+                                <p>{{sexeDocteur}}</p>
+
+                            </select>
+                        </div>
+
+                    </div> -->
+
+                    <!-- <div class="col-12 d-flex justify-content-between">
+                        <div class="mb-3 col-6">
+                            <label for="telephone" class="form-label">Telephone:</label>
+                            <input type="tel" name="telephone" class="form-control" id="telephone"
+                                [(ngModel)]="telephoneDocteur" />
+                        </div>
+                        <p>{{telephoneDocteur}}</p>
+                        <div class="mb-3 col-6 ms-3">
+                            <label for="role" class="form-label">role : </label>
+                            <select class="form-select" aria-label="Default select example" name="role_id"
+                                [(ngModel)]="roleDocteur">
+                                <option selected>Veuillez selectionner votre statut</option>
+                                <option value="1">Admin</option>
+                                <option value="2">Clients</option>
+                                <option value="3">Docteurs</option>
+
+                            </select>
+                            <p>{{roleDocteur}}</p>
+                        </div>
+                    </div> -->
+
+                   
+
+                  
+
+                    <!-- <div class="col-12 d-flex justify-content-between">
+                        <div class="mb-3 col-6">
+                            <label for="diplome" class="form-label">diplome:</label>
+                            <input (change)="getFile($event)" class="form-control" type="file" id="diplome"
+                                name="diplomeDocteur" accept="diplome/*">
+                        </div>
+                        <p>{{diplomeDocteur}}</p>
+                        <div class="mb-3 col-6 ms-3">
+                            <label for="role" class="form-label">specialite : </label>
+                            <select class="form-select" aria-label="Default select example" name="role_id"
+                                [(ngModel)]="specialite_id">
+                                <option selected>Veuillez selectionner votre specialite</option>
+                                <option value="Cardiologue">Cardiologue</option>
+                                <option value="Churigien">Churigien</option>
+                                <option value="Généraliste">Généraliste</option>
+                                <option value="Dentiste">Dentiste</option>
+
+
+                            </select>
+                            <p>{{specialite_id}}</p>
+                        </div>
+                    </div> -->
+
+                </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn text-white w-25" data-bs-dismiss="modal"
+                    style="background-color: green" (click)="addLocalite()">
+                    Ajouter
+                </button>
+                <button type="button" class="btn w-25" data-bs-dismiss="modal" style="
+            
+            background-color: blue;
+            border: thin solid;
+          ">
+                    Annuler
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table" *ngIf="Localites.length>0">
+
+    <thead>
+        <tr>
+            <th class="tHead">ID</th>
+            <th class="tHead">Nom_Localite</th>
+            <th class="tHead">Code_postal</th>
+            <th class="tHead">Region</th>
+            <th class="tHead">Action</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let localite of Localites">
+        <tr>
+            <td>{{localite.id}} </td>
+            <td>{{localite.nom_localite}}</td>
+            <td>{{localite.code_postal}}</td>
+            <td>{{localite.region_id}}</td>
+
+
+
+            <td><span id="icon">
+                    <p data-bs-toggle="modal" data-bs-target="#ModifierDocteur"> modifier</p><i
+                        class="fa-solid fa-eye"></i><i class="fa-solid fa-trash"></i>
+                </span></td>
+
+
+        </tr>
+
+
+
+
+    </tbody>
+</table>

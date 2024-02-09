@@ -11,6 +11,8 @@ import { GestionComptesComponent } from './gestion-comptes/gestion-comptes.compo
 import { GestionCommentairesComponent } from './gestion-commentaires/gestion-commentaires.component';
 import { GestionPatientsComponent } from './gestion-patients/gestion-patients.component';
 import { GestionRegionComponent } from './gestion-region/gestion-region.component';
+import { LocaliteComponent } from './localite/localite.component';
+import { GestionSpecialiteComponent } from './gestion-specialite/gestion-specialite.component';
 
 const routes: Routes = [
   {
@@ -21,7 +23,12 @@ const routes: Routes = [
       { path: 'gestionhopitaux', component: GestionHopitauxComponent },
       { path: 'gestioncomptes', component: GestionComptesComponent },
       { path: 'gestioncommentaire', component: GestionCommentairesComponent },
-      { path: 'gestionregion', component: GestionRegionComponent},
+      { path: 'gestionregion', component: GestionRegionComponent },
+      { path: 'localite', component: LocaliteComponent },
+      { path: 'gestionspecialite', component:GestionSpecialiteComponent },
+
+      
+      
 
       { path: '', redirectTo: 'accueilAdmin', pathMatch: 'full' },
     ]

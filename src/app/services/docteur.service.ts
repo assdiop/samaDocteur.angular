@@ -71,6 +71,34 @@ export class DocteurService {
         })
       : of(null);
   }
+
+
+  // Methode pour ajouter specialier 
+
+     addSpecialite(nom_specialite: any): Observable<any[]> {
+    let headers = new HttpHeaders();
+    const token = localStorage.getItem('token');
+    if (token) {
+      headers = headers.set('Authorization', 'Bearer ' + token);
+    }
+    return this.http.post<any[]>(`${url}specialite/create`, nom_specialite, {
+      headers: headers,
+    });
+  }
+
+  // lister Specialite 
+
+  
+
+   listerSpecialiste(): Observable<any> {
+    const  token  = localStorage.getItem('token');
+
+    return  token 
+      ? this.http.get<any>(`${url}specialite`, {
+          headers: new HttpHeaders({ Authorization: `Bearer ${ token }` }),
+        })
+      : of(null);
+  }
   
   //   this.http.post<Docteur>(`${url}/registerDocteur`, docteur).subscribe((response: any) => onSuccess(response));
   // }
