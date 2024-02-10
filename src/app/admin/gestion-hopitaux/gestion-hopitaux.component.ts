@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Hopitaux } from 'src/app/models/hopitaux';
-import Swal from 'sweetalert2';
+import { HopitalService } from 'src/app/services/hopital.service';
+import { MessageService } from 'src/app/services/message.service';
+import Swal from 'sweetalert2'
 
 
 @Component({
@@ -10,102 +12,85 @@ import Swal from 'sweetalert2';
 })
 export class GestionHopitauxComponent {
 
-
-
-
-  titre: string = '';
+  
+  
   image!: File;
-  description: string = '';
-
-
   nom_hopitaux = "";
-  descriptionHopitaux = "";
   lattitudeHopitaux = "";
   longitudeHopitaux = "";
   horaireHopitaux = "";
   imageHopitaux = "";
   localite_idHopitaux = "";
+  descriptionHopitaux = "";
 
 
+  constructor(private hopitalService: HopitalService , private messageService: MessageService) {}
+
+ addHopitaux() {
+    console.log(this.nom_hopitaux);
+    console.log(this.descriptionHopitaux);
+    console.log(this.lattitudeHopitaux);
+    console.log(this.longitudeHopitaux);
+    console.log(this.horaireHopitaux);
+    console.log(this.image);
+    console.log(this.localite_idHopitaux);
   
-  
-  
-  Hopitaux() {
-    // console.log(this.nom_hopitaux);
-    // console.log(this.description);
-    // console.log(this.lattitude);
-    // console.log(this. longitude);
-    // console.log(this. horaire);
-    // console.log(this.image );
-    // console.log(this. localite_id );
-  
-    const newDocteur = new Hopitaux;
+    const newHopitaux = new Hopitaux;
     
 
-    newDocteur.nom_hopitaux = this.nom_hopitaux;
-    newDocteur.longitude = this.longitudeHopitaux;
-    newDocteur.lattitude = this.lattitudeHopitaux;
-    newDocteur.horaire = this.horaireHopitaux;
-    
-    newDocteur.localite_id = this.localite_idHopitaux;
-    newDocteur.description = this.descriptionHopitaux;
+    // newHopitaux.nom_hopitaux = this.nom_hopitaux;
+    // newHopitaux.longitude = this.longitudeHopitaux;
+    // newHopitaux.lattitude = this.lattitudeHopitaux;
+    // newHopitaux.horaire = this.horaireHopitaux;
+    // newHopitaux.localite_id = this.localite_idHopitaux;
+    // newHopitaux.description = this.descriptionHopitaux;
       
-
-
-    
-    // newClient.nombre_annee_experience= this.nombre_annee_experienceDocteur;
-    // newClient.adresse= this.adresseDocteur;
-
-
    
 
-    // if (this.emailDocteur == "" || this.passwordDocteur == "" || this.prenomDocteur == "" || this.nomDocteur == ""
-    //   || this.telephoneDocteur == "" || this.ageDocteur == "" || this.sexeDocteur == "") {
-    //   // this.message.showMessage("error", "Veuillez remplir tout les champs");
-    //   console.log("fdffdfd", newDocteur);
+    if (this.nom_hopitaux == "" || this.longitudeHopitaux == "" || this.lattitudeHopitaux == "" || this.horaireHopitaux == ""
+      || this.localite_idHopitaux == "" || this.descriptionHopitaux == "") {
+      // this.message.showMessage("error", "Veuillez remplir tout les champs");
+      console.log("fdffdfd", newHopitaux);
 
-    // } else {
+    } else {
 
-
-
-    // let formData = new FormData();
-    // formData.append("photo_profil", this.photo_profilDocteur);
-    // formData.append("nom ", this.nomDocteur);
-    // formData.append("email", this.emailDocteur);
-    // formData.append("password", this.passwordDocteur);
-    // formData.append("role_id", this.roleDocteur);
-    // formData.append("telephone", this.telephoneDocteur);
-    // formData.append("age", this.ageDocteur);
-    // formData.append("diplome", this.diplomeDocteur);
-    // formData.append("annee_expereince", this.annnee_experience );
-    // formData.append("specialite", this. specialite );
-    // formData.append("numero_licence", this.numero_licenceDocteur);
-    // formData.append("age", this.ageDocteur);
-   
-
+      let newHopitaux = new FormData();
+      newHopitaux.append("image", this.image);
+      newHopitaux.append("nom_hopital", this.nom_hopitaux);
+      newHopitaux.append("longitude", this.longitudeHopitaux);
+      newHopitaux.append("lattitude", this.lattitudeHopitaux);
+      newHopitaux.append("localite_id", this.localite_idHopitaux);
+      newHopitaux.append("description", this.descriptionHopitaux);
+      newHopitaux.append("horaire", this.horaireHopitaux);
 
       
-
-      
-    //   this.docteurService.Docteur(newDocteur).subscribe((response) => {
-    //   console.log("voir inscription", response);
-    // })
-
-
-      
-    // this.docteurService.registerDocteur(newDocteur).subscribe(
-    //   (repose) => {console.log("voir inscription", repose);
-    // })
-    // this.docteurService.Docteur(newDocteur).subscribe((response: any) => {
-    //   console.log("voir inscription", response:any);
-    // })
     
-    //    this.alertMessage(
-    //             'success',
-    //             'Super',
-    //             'Inscription réussie avec succés.'
-    //           );
-  }
+
+      this.hopitalService.addHopitaux(newHopitaux).subscribe(
+        (response) => {
+          console.log('Docteur ajouté avec succès.', response);
+          this.alertMessage('success', 'Cool', 'Docteur ajouté avec succès');
+        },
+        (error) => {
+          this.alertMessage('error', 'Oops', "Erreur lors de l'ajout du docteur");
+          console.error("Une erreur s'est produite lors de l'ajout du docteur: ", error);
+        }
+      );
+
+    
+      //   this.docteurService.registerDocteur(newDocteur).subscribe(
+      //     (repose) => {console.log("voir inscription", repose);
+      //   })
+      //   this.docteurService.Docteur(newDocteur).subscribe((response: any) => {
+      //     console.log("voir inscription", response:any);
+      //   })
+    
+      //      this.alertMessage(
+      //               'success',
+      //               'Super',
+      //               'Inscription réussie avec succés.'
+      //             );
+      // }
 
       
 
@@ -113,27 +98,46 @@ export class GestionHopitauxComponent {
   
   
 
-  dtOptions: DataTables.Settings = {};
+      // dtOptions: DataTables.Settings = {};
 
-  ngOnInit(): void {
-    this.dtOptions = {
-      searching: true,
-      lengthChange: false,
-      paging: true,
-      info: false,
-      language: {
-        url: 'https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json'
-      }
-    };
+      // ngOnInit(): void {
+      //   this.dtOptions = {
+      //     searching: true,
+      //     lengthChange: false,
+      //     paging: true,
+      //     info: false,
+      //     language: {
+      //       url: 'https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json'
+      //     }
+      //   };
 
     
 
   
-  }
-  getFile(event: any) {
-      const file = event.target.files[0];
-      console.log(file);
+      // }
+      // getFile(event: any) {
+      //     const file = event.target.files[0];
+      //     console.log(file);
+      //   }
+
+
+
+
     }
-
-}
   
+ }
+  
+  
+          alertMessage(icon: any, title: any, text: any) {
+    Swal.fire({
+      icon: icon,
+      title: title,
+      text: text,
+    });
+          }
+  
+   getFile(event: any) {
+    console.warn(event.target.files[0]);
+    this.image = event.target.files[0] as File;
+  }
+}

@@ -17,6 +17,22 @@ export class HopitalService {
   constructor(private http: HttpClient) { }
 
   
+
+  // Ajout Hopitaux 
+
+  addHopitaux(newHopitaux: any): Observable<any[]> {
+    let headers = new HttpHeaders();
+    const token = localStorage.getItem('token');
+    if (token) {
+      headers = headers.set('Authorization', 'Bearer ' + token);
+    }
+
+    // const newRegion = { nom: nomRegion }; // Créer un nouvel objet pour la région avec la propriété nom
+
+    return this.http.post<any[]>(`${url}hopital/create`, newHopitaux, {
+      headers: headers,
+    });
+  }
   // Ajout Region
  
   

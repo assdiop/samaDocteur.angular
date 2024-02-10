@@ -1,11 +1,15 @@
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ajouterHopital">
+   Ajouter
+</button>
 
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!-- Modal -->
+<div class="modal fade" id="ajouterHopital"ad tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -13,24 +17,22 @@
                     <div class="row">
                         <div class="mb-3 col-6">
                             <label for="nom" class="form-label">Nom_hopital</label>
-                            <input type="text" class="form-control" id="nom" name="nom" [(ngModel)]="nom_hopitaux" />
+                            <input type="text" class="form-control" id="nom" name="nom_hopital" [(ngModel)]="nom_hopitaux" />
                         </div>
                         <div class="mb-3 col-6">
                             <label for="prenom" class="form-label">Lattitude</label>
-                            <input type="text" class="form-control" id="prenom" name="prenom"
-                                [(ngModel)]="lattitudeHopitaux" />
+                            <input type="text" class="form-control" id="prenom" name="lattitudeHopitaux" [(ngModel)]="lattitudeHopitaux" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="mb-3 col-6">
                             <label for="email" class="form-label">Longitude</label>
-                            <input type="email" class="form-control" id="email" name="email"
-                                [(ngModel)]="longitudeHopitaux" />
+                            <input type="email" class="form-control" id="email" name="longitudeHopitaux" [(ngModel)]="longitudeHopitaux" />
                         </div>
                         <div class="mb-3 col-6">
                             <label for="photo_profil_Mentor" class="form-label">Image</label>
-                            <!-- <input (change)="getFile($event)" class="form-control" type="file" id="photo_profil"
-                                name="photo_profil" accept="photo_profil/*"> -->
+                            <input (change)="getFile($event)" class="form-control" type="file" id="photo_profil" name="image"
+                                accept="image/*">
                         </div>
                     </div>
                     <div class="mb-3 col-6 ms-3">
@@ -42,8 +44,8 @@
                             <option value="2">Chrigien</option>
                             <option value="3">Généraliste</option>
                             <option value="3">Dentiste</option>
-
-
+                
+                
                         </select>
                         <p>{{localite_idHopitaux}}</p>
                     </div>
@@ -51,126 +53,23 @@
                         <label for="anneeExperience" class="form-label">horaire</label>
                         <input type="text" class="form-control" id="anneeExperience" name="horaireHopitaux"
                             [(ngModel)]="horaireHopitaux" />
-
+                
                     </div>
-
-
+                    <div class="mb-3 col-6 ms-3">
+                        <label for="anneeExperience" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="anneeExperience" name="descriptionHopitaux" [(ngModel)]="descriptionHopitaux" />
+                    
+                    </div>
+                
+                
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ajouter</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="addHopitaux()">Ajouter</button>
                 <button type="button" class="btn btn-primary">Annuler</button>
             </div>
         </div>
     </div>
 </div>
 
-
-
-<!-- Modal ajout blog -->
-<div class="modal fade" id="ajoutBlog" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header shadow">
-                <h1 class="modal-title fs-5">Ajouter un blog</h1>
-                <span type="button" class="btnCloseModal" data-bs-dismiss="modal"><i
-                        class="fa-solid fa-circle-xmark"></i></span>
-            </div>
-            <div class="modal-body">
-                <form action="" > 
-                    <!-- (ngSubmit)="addBlog()" -->
-                    <div class="mb-3">
-                        <label for="titre" class="form-label">Titre du blog</label>
-                        <input type="text" class="form-control" name="titre" id="titre" [(ngModel)]="titre">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="image" class="form-label">Image du blog</label>
-                        <!-- <input type="text" class="form-control" name="image" id="image" [(ngModel)]="image"> -->
-                        <!-- <input (change)="onFileChange($event)" class="form-control" type="file" id="image" name="image"
-                            accept="image/*"> -->
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Description du blog</label>
-                        <input type="text" class="form-control" name="description" id="description"
-                            [(ngModel)]="description">
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-                        <button type="submit" class="btn btnAddBlog">Ajouter</button>
-                        <button type="button" class="btn btnFermer" data-bs-dismiss="modal">Fermer</button>
-                    </div>
-
-                </form>
-            </div>
-
-        </div>
-    </div>
-</div>
-<table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table">
-
-    <thead>
-        <tr>
-            <th class="tHead">ID</th>
-            <th class="tHead">Nom</th>
-            <th class="tHead">Prenom</th>
-            <th class="tHead">Filière</th>
-            <th class="tHead">Notes</th>
-            <th class="tHead">Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1</td>
-            <td>Fall</td>
-            <td>Amadem</td>
-            <td>Informatique</td>
-            <td>12</td>
-            <td><span id="icon"><i class="fa-solid fa-marker"></i><i class="fa-solid fa-eye"></i><i
-                        class="fa-solid fa-trash"></i></span></td>
-
-
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Badji</td>
-            <td>Elhadj</td>
-            <td>Informatique</td>
-            <td>13</td>
-            <td><span id="icon"><i class="fa-solid fa-marker"></i><i class="fa-solid fa-eye"></i><i
-                        class="fa-solid fa-trash"></i></span></td>
-
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Cavany</td>
-            <td>Marchel</td>
-            <td>science Politique</td>
-            <td>14</td>
-            <td><span id="icon"><i class="fa-solid fa-marker"></i><i class="fa-solid fa-eye"></i><i
-                        class="fa-solid fa-trash"></i></span></td>
-
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>Sene</td>
-            <td>Adrien</td>
-            <td>Anglais</td>
-            <td>13</td>
-            <td><span id="icon"><i class="fa-solid fa-marker"></i><i class="fa-solid fa-eye"></i><i
-                        class="fa-solid fa-trash"></i></span></td>
-
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>Sene</td>
-            <td>Balde</td>
-            <td>philosophie</td>
-            <td>13</td>
-            <td><span id="icon"><i class="fa-solid fa-marker"></i><i class="fa-solid fa-eye"></i><i
-                        class="fa-solid fa-trash"></i></span></td>
-        </tr>
-
-    </tbody>
-</table>
+  
