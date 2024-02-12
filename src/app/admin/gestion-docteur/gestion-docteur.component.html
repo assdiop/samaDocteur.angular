@@ -1,12 +1,4 @@
 
-        <div class="buttonAjouter mt-2 mb-3">
-            <!-- Button modal Ajouter-->
-            <button type="button" class="btn text-white" data-bs-toggle="modal" data-bs-target="#ajouterDocteur"
-                style="background-color: green">
-                Ajouter
-            </button>
-            
-        </div>
       
   
 
@@ -25,6 +17,42 @@
               
 
 
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn text-white w-25" data-bs-dismiss="modal"
+                    style="background-color: green" (click)="addDocteur()">
+                    Ajouter
+                </button>
+                <button type="button" class="btn w-25" data-bs-dismiss="modal" style="
+            
+            background-color: blue;
+            border: thin solid;
+          ">
+                    Annuler
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Button trigger modal -->
+<div class="buttonAjouter mt-2 mb-3">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: green">
+Ajouter 
+</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
                 <form action="">
                     <div class="col-12 d-flex justify-content-between">
                         <div class="mb-3 col-6">
@@ -139,13 +167,13 @@
                         <p>{{diplomeDocteur}}</p>
                         <div class="mb-3 col-6 ms-3">
                             <label for="role" class="form-label">specialite : </label>
-                            <select class="form-select" aria-label="Default select example" name="role_id"
+                            <select class="form-select" aria-label="Default select example" name="specialite_id"
                                 [(ngModel)]="specialite_id">
                                 <option selected>Veuillez selectionner votre specialite</option>
-                                <option value="Cardiologue">Cardiologue</option>
-                                <option value="Churigien">Churigien</option>
-                                <option value="Généraliste">Généraliste</option>
-                                <option value="Dentiste">Dentiste</option>
+                                <option value="1">Cardiologue</option>
+                                <option value="2">Churigien</option>
+                                <option value="3">Généraliste</option>
+                                <option value="4">Dentiste</option>
                 
                 
                             </select>
@@ -155,23 +183,22 @@
                    
                 </form>
             </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button type="button" class="btn text-white w-25" data-bs-dismiss="modal"
-                    style="background-color: green" (click)="addDocteur()">
+            <div class="modal-footer">
+                <button type="button" class="btn text-white w-25" data-bs-dismiss="modal" style="background-color: green"
+                    (click)="addDocteur()">
                     Ajouter
                 </button>
                 <button type="button" class="btn w-25" data-bs-dismiss="modal" style="
-            
-            background-color: blue;
-            border: thin solid;
-          ">
+                            
+                            background-color: blue;
+                            border: thin solid;
+                          ">
                     Annuler
                 </button>
             </div>
         </div>
     </div>
 </div>
-
 
 
 

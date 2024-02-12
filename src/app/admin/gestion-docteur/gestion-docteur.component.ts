@@ -35,6 +35,7 @@ export class GestionDocteurComponent {
   specialite_id = "";
   annee_experience = "";
   numero_licence = 0;
+  role="Admin"
  
 
   constructor(private docteurService: DocteurService, private messageService: MessageService) {
@@ -72,7 +73,9 @@ export class GestionDocteurComponent {
     this.docteurService.addDocteur(newDocteur).subscribe(
       (response) => {
         console.log('Docteur ajouté avec succès.', response);
+        this.getAllDocteur() 
         this.alertMessage('success', 'Cool', 'Docteur ajouté avec succès');
+
       },
       (error) => {
         this.alertMessage('error', 'Oops', "Erreur lors de l'ajout du docteur");
