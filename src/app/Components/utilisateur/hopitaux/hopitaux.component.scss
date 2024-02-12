@@ -1,0 +1,32 @@
+
+.banner {
+    background-image: url("/assets/img/bannerservice.png");
+
+    
+            // background: url("./assets/img/bannerservice.png") no-repeat 50% 50%;
+            background-size: cover;
+            position: relative;
+
+}
+#bande {
+    background-color:#223A66;
+    // display: flex;
+    
+}
+#bande ul li {
+   
+    flex-direction: row;
+    justify-content: space-between;
+    color: red;
+    list-style-type: none;
+    display: inline-block;
+    margin: 5px 10px ;
+    padding: 5px 40px;
+    color: #fff;
+    text-align: center;
+
+}
+li{
+    margin: 0 auto ;
+    padding: 0 auto;
+}
