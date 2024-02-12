@@ -64,6 +64,7 @@ export class GestionSpecialiteComponent {
     } else {
       this.docteurService.addSpecialite(data).subscribe((repose) => {
         console.log("voir Specilaiter", repose);
+         this.getAllSpecialites()
       })
     }
  

@@ -38,7 +38,7 @@
 
 <!-- Button trigger modal -->
 <div class="buttonAjouter mt-2 mb-3">
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: green">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #007A64;">
 Ajouter 
 </button>
 </div>
@@ -170,10 +170,10 @@ Ajouter
                             <select class="form-select" aria-label="Default select example" name="specialite_id"
                                 [(ngModel)]="specialite_id">
                                 <option selected>Veuillez selectionner votre specialite</option>
-                                <option value="1">Cardiologue</option>
-                                <option value="2">Churigien</option>
-                                <option value="3">Généraliste</option>
-                                <option value="4">Dentiste</option>
+                                <option value="1">{{specialite_id}}</option>
+                                <option value="2">{{specialite_id}}</option>
+                                <option value="3">{{specialite_id}}</option>
+                                <option value="4">{{ specialite_id}}</option>
                 
                 
                             </select>
@@ -204,9 +204,9 @@ Ajouter
 
 
 
-<table class="table align-middle mb-0 bg-white">
-    <thead class="bg-light">
-        <tr>
+<table class="table align-middle mb-0  ">
+    <thead class="bg-light" >
+        <tr style="background-color: #007A64; color:#fff">
             <th>Id</th>
             <th>numero_licence </th>
             <th>specialite</th>

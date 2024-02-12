@@ -1,7 +1,7 @@
 <div class="buttonAjouter mt-2 mb-3">
     <!-- Button modal Ajouter-->
     <button type="button" class="btn text-white" data-bs-toggle="modal" data-bs-target="#ajouterlocalite"
-        style="background-color: green">
+        style="background-color: #007A64;">
         Ajouter
     </button>
 
@@ -125,7 +125,7 @@
             </div>
             <div class="modal-footer d-flex justify-content-center">
                 <button type="button" class="btn text-white w-25" data-bs-dismiss="modal"
-                    style="background-color: green" (click)="addLocalite()">
+                    style="background-color: #007A64;" (click)="addLocalite()">
                     Ajouter
                 </button>
                 <button type="button" class="btn w-25" data-bs-dismiss="modal" style="
@@ -144,7 +144,7 @@
 <table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table" *ngIf="Localites.length>0">
 
     <thead>
-        <tr>
+        <tr style="background-color: #007A64;color: #fff;">
             <th class="tHead">ID</th>
             <th class="tHead">Nom_Localite</th>
             <th class="tHead">Code_postal</th>

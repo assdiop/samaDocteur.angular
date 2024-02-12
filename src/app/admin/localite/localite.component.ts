@@ -69,6 +69,8 @@ export class LocaliteComponent {
       this.hopitalService.addLocalite(data).subscribe((repose) => {
         console.log("voir Localite", repose);
       })
+      
+    this.getAllLocalite();
     }
  
 

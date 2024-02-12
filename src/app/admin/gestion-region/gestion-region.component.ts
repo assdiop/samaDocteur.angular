@@ -62,6 +62,7 @@ export class GestionRegionComponent {
       this.hopitalService.addRegion(data).subscribe((repose) => {
         console.log("voir Region", repose);
       })
+          this.getAllRegions();
     }
  
 
@@ -76,7 +77,9 @@ export class GestionRegionComponent {
         this.Regions = Regions.Region;
 
         console.log(this.Regions);
-      },
+     },
+     
+     
 
       (error) => {
         // Traiter l'erreur de liste
