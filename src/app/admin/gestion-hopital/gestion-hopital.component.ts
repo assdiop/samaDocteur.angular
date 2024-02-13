@@ -181,7 +181,31 @@ export class GestionHopitalComponent {
   }
 
 
+
   
+   supprimerHopitaux(id: number) {
+    Swal.fire({
+      title: 'Êtes-vous sûr?',
+      text: 'Vous ne pourrez pas revenir en arrière après cette action!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#017D03',
+      cancelButtonColor: '#FF9C00',
+      confirmButtonText: 'Oui, supprimer!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.hopitalService.supprimerHopital(id).subscribe(() => {
+          this.hopitalService.verifierChamp(
+            'Supprimé!',
+            'annonce supprimé avec succès',
+            'success'
+          );
+          // this.loadProduit();
+          this.ngOnInit(); // Actualise la page
+        });
+      }
+    });
+  }
   
   
   alertMessage(icon: any, title: any, text: any) {

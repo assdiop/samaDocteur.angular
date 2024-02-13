@@ -15,6 +15,13 @@ export class HopitalService {
   constructor(private http: HttpClient) { }
 
   
+    verifierChamp(title: any, text: any, icon: any) {
+    Swal.fire({
+      title: title,
+      text: text,
+      icon: icon,
+    });
+  }
 
 
  
