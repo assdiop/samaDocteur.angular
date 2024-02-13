@@ -10,7 +10,6 @@ import { ContactComponent } from './Components/utilisateur/contact/contact.compo
 import { HeaderComponent } from './layouts//header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { AdminRoutingModule } from './admin/admin-routing.module';
-import { FormsModule } from '@angular/forms';
 import { AuthComponent } from './Components/utilisateur/auth/auth.component';
 import { InscriptionComponent } from './utilisateur/inscription/inscription.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +19,7 @@ import { PolitiqueConfidentialitesComponent } from './Components/utilisateur/pol
 import { ConditionsUtlisationsComponent } from './Components/utilisateur/conditions-utlisations/conditions-utlisations.component';
 import { MentionsLegalesComponent } from './Components/utilisateur/mentions-legales/mentions-legales.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -48,10 +48,10 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     AdminRoutingModule,
-    FormsModule,
     BrowserAnimationsModule,
     DataTablesModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
     
     
   ],

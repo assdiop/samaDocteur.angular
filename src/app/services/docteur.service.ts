@@ -61,7 +61,7 @@ export class DocteurService {
       : of(null);
   }
 
-  // methode pour liste des annonces
+  // methode pour liste des docteurs 
   listerDocteurs(): Observable<any> {
     const  token  = localStorage.getItem('token');
 
@@ -86,6 +86,18 @@ export class DocteurService {
     });
   }
 
+
+
+  
+  listerUser(): Observable<any> {
+    const  token  = localStorage.getItem('token');
+
+    return  token 
+      ? this.http.get<any>(`${url}liste/utilisateurs`, {
+          headers: new HttpHeaders({ Authorization: `Bearer ${ token }` }),
+        })
+      : of(null);
+  }
   // lister Specialite 
 
   

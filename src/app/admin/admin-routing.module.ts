@@ -6,7 +6,7 @@ import { AdminMainComponent } from './admin-main/admin-main.component';
 import { AccueilAdminComponent } from './accueil-admin/accueil-admin.component';
 import { GestionDocteurComponent } from './gestion-docteur/gestion-docteur.component';
 // import { GestionPatientsComponent } from './gestion-patients/gestion-patients.component';
-import { GestionHopitauxComponent } from './gestion-hopitaux/gestion-hopitaux.component';
+// import { GestionHopitauxComponent } from './gestion-hopitaux/gestion-hopitaux.component';z
 import { GestionComptesComponent } from './gestion-comptes/gestion-comptes.component';
 import { GestionCommentairesComponent } from './gestion-commentaires/gestion-commentaires.component';
 import { GestionPatientsComponent } from './gestion-patients/gestion-patients.component';
@@ -20,7 +20,7 @@ const routes: Routes = [
       { path: 'accueilAdmin', component: AccueilAdminComponent },
       { path: 'gestiondocteur', component: GestionDocteurComponent },
       { path: 'gestionpatients', component: GestionPatientsComponent  },
-      { path: 'gestionhopitaux', component: GestionHopitauxComponent },
+      // { path: 'gestionhopitaux', component: GestionHopitauxComponent },
       { path: 'gestioncomptes', component: GestionComptesComponent },
       { path: 'gestioncommentaire', component: GestionCommentairesComponent },
       { path: 'gestionregion', component: GestionRegionComponent },

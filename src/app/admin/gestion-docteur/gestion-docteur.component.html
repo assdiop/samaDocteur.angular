@@ -101,7 +101,7 @@ Ajouter
                         <p>{{telephoneDocteur}}</p>
                         <div class="mb-3 col-6 ms-3">
                             <label for="role" class="form-label">role : </label>
-                            <select class="form-select" aria-label="Default select example" name="role_id" [(ngModel)]="roleDocteur">
+                            <select class="form-select" aria-label="Default select example" name="role_id" [(ngModel)]="roleDocteur"> 
                                 <option selected>Veuillez selectionner votre statut</option>
                                 <option value="1">Admin</option>
                                 <option value="2">Clients</option>
@@ -117,13 +117,13 @@ Ajouter
                             <label for="emailInput" class="form-label">Adresse email:</label>
                             <input type="email" name="email" class="form-control" id="email" [(ngModel)]="emailDocteur" />
                         </div>
-                        <p>{{emailDocteur}}</p>
+                        <!-- <p>{{emailDocteur}}</p> -->
                         <div class="mb-3 col-6 ms-3">
                             <label for="password" class="form-label">Mot de passe :
                             </label>
                             <input type="password" name="password" class="form-control" id="password" [(ngModel)]="passwordDocteur" />
                         </div>
-                        <p>{{passwordDocteur}}</p>
+                        <!-- <p>{{passwordDocteur}}</p> -->
                 
                     </div>
                 

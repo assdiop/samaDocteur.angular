@@ -287,7 +287,7 @@
                             <i class="fab fa-skype fa-lg"></i>
                         </button>
                     </div>
-                    <button type="button" class="btn btn-rounded btn-lg" id="myBtn">
+                    <button type="button" class="btn btn-rounded btn-lg" id="myBtn" data-bs-toggle="modal" href="#exampleModalToggle">
                         Voir plus
                     </button>
 
@@ -300,7 +300,56 @@
                 </div>
             </div>
 
+ 
 
+            <!-- pagination  -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination mt-5 me-0">
+                    <li class="page-item">
+                        <a class="page-link" href="" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="">1</a></li>
+                    <li class="page-item"><a class="page-link" href="">2</a></li>
+                    <li class="page-item"><a class="page-link" href="">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<!-- Modal detail  -->
+
+
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+    tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalToggleLabel">Detail Docteur</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card1">
+                    <div class="section_left">
+                        <img src="assets/mentor1.jpg" alt="">
+                    </div>
+                    <div class="section_right">
+                        <p>Nom: <span id="prop">Fall Bah</span></p>
+                        <p>Spécialité: <span id="prop">Data Scientiste</span></p>
+                        <p>Email: <span id="prop">Fall@gmail.com</span></p>
+                        <p>Année Experience: <span id="prop">5 ans</span></p>
+                        <button class="btn btn-secondary" data-bs-toggle="modal" href="#exampleModalToggle">Consulter
+                            Profil</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

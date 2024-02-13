@@ -10,8 +10,10 @@ import Swal from 'sweetalert2';
 })
 export class GestionRegionComponent {
   nom_region!:string;
+    // nom_region = "";
   Regions: any;
-  currentRegion: any;
+  // currentRegion: any;
+  currentRegion: any = {};
  
   regionSelectionner:any
   constructor(private hopitalService:HopitalService) {
@@ -54,10 +56,10 @@ export class GestionRegionComponent {
   // Ajouter REGION
   addRegion() {
     let data = {
-      nom_region: this.nom_region
+      nom_region:this.nom_region
     }
     if (this.nom_region == "") {
-      alert("veuiller remplir le champ")
+      // alert("veuiller remplir le champ")
     } else {
       this.hopitalService.addRegion(data).subscribe((repose) => {
         console.log("voir Region", repose);
@@ -83,6 +85,7 @@ export class GestionRegionComponent {
 
       (error) => {
         // Traiter l'erreur de liste
+
       }
     );
   }
@@ -136,11 +139,11 @@ export class GestionRegionComponent {
           .updateRegion(this.currentRegion,id)
           .subscribe((response) => {
             console.log('je suis response', response);
-            this.hopitalService.verifierChamps(
-              'modifie!',
-              'region modifie avec succès',
-              'success'
-            );
+            // this.hopitalService.verifierChamps(
+            //   'modifie!',
+            //   'region modifie avec succès',
+            //   'success'
+            // );
             window.location.reload();
           });
         this.ngOnInit();

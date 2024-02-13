@@ -60,7 +60,7 @@ export class GestionSpecialiteComponent {
       nom_specialite: this.nom_specialite 
     }
     if (this.nom_specialite == "") {
-      alert("veuiller remplir le champ")
+      // alert("veuiller remplir le champ")
     } else {
       this.docteurService.addSpecialite(data).subscribe((repose) => {
         console.log("voir Specilaiter", repose);
