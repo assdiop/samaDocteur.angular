@@ -21,19 +21,19 @@ export class HopitalService {
 
   // Ajout Hopitaux 
 
-  // addHopitaux(newHopitaux: any): Observable<any[]> {
-  //   let headers = new HttpHeaders();
-  //   const token = localStorage.getItem('token');
-  //   if (token) {
-  //     headers = headers.set('Authorization', 'Bearer ' + token);
-  //   }
+  addHopitaux(newHopitaux: any): Observable<any[]> {
+    let headers = new HttpHeaders();
+    const token = localStorage.getItem('token');
+    if (token) {
+      headers = headers.set('Authorization', 'Bearer ' + token);
+    }
 
-  //   // const newRegion = { nom: nomRegion }; // Créer un nouvel objet pour la région avec la propriété nom
+    // const newRegion = { nom: nomRegion }; // Créer un nouvel objet pour la région avec la propriété nom
 
-  //   return this.http.post<any[]>(`${url}hopital/create`, newHopitaux, {
-  //     headers: headers,
-  //   });
-  // }
+    return this.http.post<any[]>(`${url}hopital/create`, newHopitaux, {
+      headers: headers,
+    });
+  }
   // Ajout Region
  
  
@@ -101,25 +101,25 @@ export class HopitalService {
 
 
 
-  // getAllHospital(): Observable<any> {
-  //   const token = localStorage.getItem('token');
+  getAllHospital(): Observable<any> {
+    const token = localStorage.getItem('token');
 
-  //   return token
-  //     ? this.http.get<any>(`${url}Hopital`, {
-  //       headers: new HttpHeaders({ Authorization: `Bearer ${token}` }),
-  //     })
-  //     : of(null);
-  // }
+    return token
+      ? this.http.get<any>(`${url}Hopital`, {
+        headers: new HttpHeaders({ Authorization: `Bearer ${token}` }),
+      })
+      : of(null);
+  }
 
 
-  // supprimerHopital(id: number): Observable<any> {
-  //   const token = localStorage.getItem('token');
-  //   return token
-  //     ? this.http.delete<any>(`${url}Hopital/` + id, {
-  //       headers: new HttpHeaders({ Authorization: `Bearer ${token}` }),
-  //     })
-  //     : of(null);
-  // }
+  supprimerHopital(id: number): Observable<any> {
+    const token = localStorage.getItem('token');
+    return token
+      ? this.http.delete<any>(`${url}Hopital/` + id, {
+        headers: new HttpHeaders({ Authorization: `Bearer ${token}` }),
+      })
+      : of(null);
+  }
 
 
 

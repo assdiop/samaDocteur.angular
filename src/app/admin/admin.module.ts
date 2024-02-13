@@ -20,6 +20,7 @@ import { GestionRegionComponent } from './gestion-region/gestion-region.componen
 import { LocaliteComponent } from './localite/localite.component';
 import { GestionSpecialiteComponent } from './gestion-specialite/gestion-specialite.component';
 import { FormsModule } from '@angular/forms';
+import { GestionHopitalComponent } from './gestion-hopital/gestion-hopital.component';
 // import { FormsModule } from '@angular/forms';
 
 
@@ -40,7 +41,8 @@ import { FormsModule } from '@angular/forms';
     GestionCommentairesComponent,
     GestionRegionComponent,
     LocaliteComponent,
-    GestionSpecialiteComponent 
+    GestionSpecialiteComponent,
+    GestionHopitalComponent 
   ],
   imports: [
     CommonModule,
