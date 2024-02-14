@@ -108,53 +108,7 @@ export class GestionHopitalComponent {
         }
       );
 
-    
-      //   this.docteurService.registerDocteur(newDocteur).subscribe(
-      //     (repose) => {console.log("voir inscription", repose);
-      //   })
-      //   this.docteurService.Docteur(newDocteur).subscribe((response: any) => {
-      //     console.log("voir inscription", response:any);
-      //   })
-    
-      //      this.alertMessage(
-      //               'success',
-      //               'Super',
-      //               'Inscription réussie avec succés.'
-      //             );
-      // }
-
-      
-
-    
-  
-  
-
-      // dtOptions: DataTables.Settings = {};
-
-      // ngOnInit(): void {
-      //   this.dtOptions = {
-      //     searching: true,
-      //     lengthChange: false,
-      //     paging: true,
-      //     info: false,
-      //     language: {
-      //       url: 'https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json'
-      //     }
-      //   };
-
-    
-
-  
-      // }
-      // getFile(event: any) {
-      //     const file = event.target.files[0];
-      //     console.log(file);
-      //   }
-
-
-
-      
-
+      this.getAllHospitals();
 
     }
   

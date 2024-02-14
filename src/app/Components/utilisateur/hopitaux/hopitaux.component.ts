@@ -7,12 +7,23 @@ import { HopitalService } from 'src/app/services/hopital.service';
   styleUrls: ['./hopitaux.component.scss']
 })
 export class HopitauxComponent {
+
+   hopitaux: any[] = [];
+  localite: any[] = [];
+  localiteSelectionnee: string = '';
   constructor(private hopitalService: HopitalService) { }
   ngOnInit(): void {
     this.getAllHospitals();
+
+     this.hopitalService.getHopitauxParLocalite().subscribe(data => {
+      this.hopitaux = data;
+      this.localite= [...new Set(data.map((h: { localite: any; }) => h.localite))];
+    });
   }
 
-    Hopitaux: any[] = [];
+  Hopitaux: any[] = [];
+  
+
 
    getAllHospitals() {
    this.hopitalService.getAllHospital().subscribe(
@@ -33,5 +44,9 @@ export class HopitauxComponent {
     );
   }
 
+
+  filtrerParLocalite(localite: string): void {
+    this.localiteSelectionnee = localite;
+  }
 
 }

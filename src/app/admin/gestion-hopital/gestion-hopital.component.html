@@ -8,76 +8,74 @@
 </div>
 
 
+<!-- Modal Ajouter  -->
 
-<!-- Modal ajouter -->
-<div class="modal fade modal-lg" id="ajouterDocteur" tabindex="-1" aria-labelledby="modifierMentor" aria-hidden="true">
+
+
+<!-- Modal -->
+<div class="modal fade" id="ajouterDocteur" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-4 fw-semibold text-center w-100" id="detailMentorLabel">
-                    Ajouter un hopital
-
-                </h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
-
-
                 <form action="">
-                    <div class="row">
-                    <div class="col-12 d-flex justify-content-between">
+                     <div class="col-12 d-flex justify-content-between">
                         <div class="mb-3 col-6">
                             <label for="nom" class="form-label">Nom:</label>
-                            <input type="text" name="nom_hopital" class="form-control" id="nom"
-                                [(ngModel)]="nom_hopitaux" />
-
-                        </div>
-             
-
-                    </div>
-
-                    <div class="mb-3 col-6">
-                        <label for="nom" class="form-label">Lattitude:</label>
-                        <input type="text" name="lattitudeHopitaux" class="form-control" id="nom" [(ngModel)]="lattitudeHopitaux" />
-                    
-                    </div>
-                
-                    
-                    </div>
-                    
-                <div class="row">
-                    <div class="col-12 d-flex justify-content-between">
-                        <div class="mb-3 col-6">
-                            <label for="photo_profil_Mentor" class="form-label">Image</label>
-                            <input (change)="getFile($event)" class="form-control" type="file" id="photo_profil" name="image" accept="image/*">
-                
-                        </div>
-                     
-                
-                    </div>
-                
-                    <div class="mb-3 col-6">
-                        <label for="nom" class="form-label">Longitude:</label>
-                        <input type="text" name="ongitudeHopitaux" class="form-control" id="nom" [(ngModel)]="longitudeHopitaux" />
-                
-                    </div>
-                    
-                    
-                </div>
-
-                <div class="row">
-                    <div class="col-12 d-flex justify-content-between">
-                        <div class="mb-3 col-6">
-                            <label for="nom" class="form-label">Description:</label>
-                            <input type="text" name="nom_hopital" class="form-control" id="nom" [(ngModel)]="descriptionHopitaux" />
-                
+                            <input type="text" name="nom_hopital" class="form-control" id="nom" [(ngModel)]="nom_hopitaux" />
                         </div>
                        
-                
+                        <div class="mb-3 col-6 ms-3">
+                            <label for="nom" class="form-label">Description:</label>
+                            <input type="text" name="nom_hopital" class="form-control" id="nom" [(ngModel)]="descriptionHopitaux" />
+                        </div>
+                      
+                    
+                    </div>
+
+
+
+                    <div class="col-12 d-flex justify-content-between">
+                        <div class="mb-3 col-6">
+                            <label for="nom" class="form-label">Lattitude:</label>
+                            <input type="text" name="lattitudeHopitaux" class="form-control" id="nom" [(ngModel)]="lattitudeHopitaux" />
+                        </div>
+                        <!-- <p>{{emailDocteur}}</p> -->
+                        <div class="mb-3 col-6 ms-3">
+                            <label for="nom" class="form-label">Longitude:</label>
+                            <input type="text" name="ongitudeHopitaux" class="form-control" id="nom" [(ngModel)]="longitudeHopitaux" />
+                        </div>
+                        <!-- <p>{{passwordDocteur}}</p> -->
+                    
+                    </div>
+
+
+
+                    <div class="col-12 d-flex justify-content-between">
+                        <div class="mb-3 col-6">
+                           
+                            <label for="photo_profil_Mentor" class="form-label">Image</label>
+                            <input (change)="getFile($event)" class="form-control" type="file" id="photo_profil" name="image" accept="image/*">
+                        </div>
+                        <!-- <p>{{emailDocteur}}</p> -->
+                        <div class="mb-3 col-6 ms-3">
+                        <label for="nom" class="form-label">Horaire:</label>
+                        <input type="text" name="nom_hopital" class="form-control" id="nom" [(ngModel)]="horaireHopitaux" />
+                        </div>
+                        <!-- <p>{{passwordDocteur}}</p> -->
+                    
                     </div>
                 
+                  
+                
+               
+                
                     <div class="mb-3 col-6">
+                        
+
                         <label for="role" class="form-label">localite_id: </label>
                         <select class="form-select" aria-label="Default select example" name="localite_idHopitaux"
                             [(ngModel)]="localite_idHopitaux">
@@ -86,36 +84,26 @@
                             <option value="2">Guédiawaye</option>
                             <option value="3">Plateau</option>
                             <option value="3">Medina</option>
-        
+                        
                         
                         </select>
                 
                     </div>
-                 
-                
-                </div>
-
-
-                <div class="mb-3 col-6">
-                    <label for="nom" class="form-label">Horaire:</label>
-                    <input type="text" name="nom_hopital" class="form-control" id="nom" [(ngModel)]="horaireHopitaux" />
-                
-                </div>
                 </form>
             </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button type="button" class="btn text-white w-25" data-bs-dismiss="modal"
-                    style="background-color: green" (click)="addHopitaux()">
-                    Ajouter
-                </button>
-                <button type="button" class="btn w-25" data-bs-dismiss="modal" style="
-            
-            background-color: blue;
-            border: thin solid;
-          ">
-                    Annuler
-                </button>
-            </div>
+        <div class="modal-footer d-flex justify-content-center">
+            <button type="button" class="btn text-white w-25" data-bs-dismiss="modal" style="background-color: green"
+                (click)="addHopitaux()">
+                Ajouter
+            </button>
+            <button type="button" class="btn w-25" data-bs-dismiss="modal" style="
+                    
+                    background-color: blue;
+                    border: thin solid;
+                  ">
+                Annuler
+            </button>
+        </div>
         </div>
     </div>
 </div>

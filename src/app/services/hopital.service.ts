@@ -117,7 +117,7 @@ export class HopitalService {
       })
       : of(null);
   }
-
+// Methode pour supprimer Hopital
 
   supprimerHopital(id: number): Observable<any> {
     const token = localStorage.getItem('token');
@@ -129,15 +129,25 @@ export class HopitalService {
   }
 
 
-
+  // Mehode pour lister les hopitaux totaux 
   
-  //      verifierChamp(title: any, text: any, icon: any) {
-  //     Swal.fire({
-  //       title: title,
-  //       text: text,
-  //       icon: icon,
-  //     });
-  //   }
-  // }
+  
+  getNombreTotal(): Observable<any> {
+    const token = localStorage.getItem('token');
 
+    return token
+      ? this.http.get<any>(`${url}Hopital/totalHopitaux`, {
+        headers: new HttpHeaders({ Authorization: `Bearer ${token}` }),
+      })
+      : of(null);
+  }
+
+  // methode pour filter 
+
+    getHopitauxParLocalite(): Observable<any> {
+    return this.http.get(`${url}Hopital/localite`);
+  }
 }
+
+
+
