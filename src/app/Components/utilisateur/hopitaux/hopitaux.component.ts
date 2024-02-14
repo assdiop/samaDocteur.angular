@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HopitalService } from 'src/app/services/hopital.service';
 
 @Component({
@@ -6,25 +6,32 @@ import { HopitalService } from 'src/app/services/hopital.service';
   templateUrl: './hopitaux.component.html',
   styleUrls: ['./hopitaux.component.scss']
 })
-export class HopitauxComponent {
+export class HopitauxComponent implements OnInit{
 
    hopitaux: any[] = [];
   localite: any[] = [];
   localiteSelectionnee: string = '';
+  localite_idHopitaux!: string;
   constructor(private hopitalService: HopitalService) { }
   ngOnInit(): void {
-    this.getAllHospitals();
-
-     this.hopitalService.getHopitauxParLocalite().subscribe(data => {
-      this.hopitaux = data;
-      this.localite= [...new Set(data.map((h: { localite: any; }) => h.localite))];
-    });
+    
   }
 
   Hopitaux: any[] = [];
   
+  
 
-
+  filterHopitauxByLocalite(localiteId: number) {
+    this.hopitalService.getHopitauxByLocaliteId(localiteId).subscribe(
+      (Hopitaux) => {
+        console.log(Hopitaux);
+        this.Hopitaux = Hopitaux.hopitaux;
+      },
+      (error) => {
+        console.error("Une erreur s'est produite lors du filtrage des hôpitaux par localité: ", error);
+      }
+    );
+  }
    getAllHospitals() {
    this.hopitalService.getAllHospital().subscribe(
       (Hopitaux) => {

@@ -132,20 +132,32 @@ export class HopitalService {
   // Mehode pour lister les hopitaux totaux 
   
   
-  getNombreTotal(): Observable<any> {
-    const token = localStorage.getItem('token');
+  // getTotalHopitaux(): Observable<number> {
+  //   const token = localStorage.getItem('token');
 
-    return token
-      ? this.http.get<any>(`${url}Hopital/totalHopitaux`, {
-        headers: new HttpHeaders({ Authorization: `Bearer ${token}` }),
-      })
-      : of(null);
+  //   return token
+  //     ? this.http.get<number>(`${url}Hopital/totalHopitaux`, {
+  //       headers: new HttpHeaders({ Authorization: `Bearer ${token}` }),
+  //     })
+  //     : of(null);
+  // }
+
+
+    getTotalHopitaux(): Observable<number> {
+    return this.http.get<number>(`${url}Hopital/totalHopitaux`);
   }
+
+
+
 
   // methode pour filter 
 
-    getHopitauxParLocalite(): Observable<any> {
-    return this.http.get(`${url}Hopital/localite`);
+
+
+
+
+    getHopitauxByLocaliteId(id: number): Observable<any> {
+    return this.http.get<any>(`${url}Hopital/localite/`+id);
   }
 }
 

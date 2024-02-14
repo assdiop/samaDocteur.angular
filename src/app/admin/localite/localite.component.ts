@@ -64,7 +64,7 @@ export class LocaliteComponent {
 
     }
     if (this.nom_localite == "") {
-      alert("veuiller remplir le champ")
+      // alert("veuiller remplir le champ")
     } else {
       this.hopitalService.addLocalite(data).subscribe((repose) => {
         console.log("voir Localite", repose);

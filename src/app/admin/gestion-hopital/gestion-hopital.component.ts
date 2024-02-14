@@ -20,6 +20,7 @@ export class GestionHopitalComponent {
   localite_idHopitaux = "";
   descriptionHopitaux = "";
   Hopitaux: any;
+ 
 
   constructor(private hopitalService:HopitalService) {}
 
@@ -160,8 +161,43 @@ export class GestionHopitalComponent {
       }
     });
   }
+
   
-  
+
+
+  // FilTER HOPITAL 
+//   filterHopitauxByLocalite() {
+//     if (this.localite_idHopitaux === '') {
+//         this.getAllHospitals(); // Si aucune localité sélectionnée, récupérez tous les hôpitaux
+//     } else {
+//         this.hopitalService.getHopitauxByLocaliteId(this.localite_idHopitaux).subscribe(
+//             (Hopitaux) => {
+//                 console.log(Hopitaux);
+//                 this.Hopitaux = Hopitaux.hopitaux;
+//             },
+//             (error) => {
+//                 console.error("Une erreur s'est produite lors du filtrage des hôpitaux par localité: ", error);
+//             }
+//         );
+//     }
+// }
+
+  filterHopitauxByLocalite() {
+    if (this.localite_idHopitaux === '') {
+      this.getAllHospitals();
+    } else {
+      const localiteId: number = parseInt(this.localite_idHopitaux, 10); // Convertir en nombre
+      this.hopitalService.getHopitauxByLocaliteId(localiteId).subscribe(
+        (Hopitaux) => {
+          console.log(Hopitaux);
+          this.Hopitaux = Hopitaux.hopitaux;
+        },
+        (error) => {
+          console.error("Une erreur s'est produite lors du filtrage des hôpitaux par localité: ", error);
+        }
+      );
+    }
+  }
   alertMessage(icon: any, title: any, text: any) {
     Swal.fire({
       icon: icon,

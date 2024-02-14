@@ -110,22 +110,13 @@ export class DocteurService {
           headers: new HttpHeaders({ Authorization: `Bearer ${ token }` }),
         })
       : of(null);
-  }
+   }
   
-  //   this.http.post<Docteur>(`${url}/registerDocteur`, docteur).subscribe((response: any) => onSuccess(response));
-  // }
-
-  // getDocteuryId(id: number): Observable<Docteur> {
-  //   return this.http.get<Docteur>(`${url}/mentor/show/${id}`);
-  // }
-
-  // updateDocteur(mentor: Docteur, id: number): Observable<Docteur> {
-  //   return this.http.put<Docteur>(`${url}/mentor/edit/${id}`, docteur)
-  // }
-
-  // archiverDocteur(id: number, mentor: Docteur):Observable<Docteur>{
-  //   return this.http.put<Docteur>(`${url}/mentor/archive/${id}`, mentor)
-  // }
+  // Méthode pour la liste total des docteurs 
+  
+    getTotalDocteur(): Observable<number> {
+    return this.http.get<number>(`${url}totaldocteur`);
+  }
 }
 
 
