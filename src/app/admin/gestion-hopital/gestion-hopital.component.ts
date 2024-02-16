@@ -144,7 +144,7 @@ export class GestionHopitalComponent {
       text: 'Vous ne pourrez pas revenir en arrière après cette action!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#017D03',
+      confirmButtonColor: '#007A64',
       cancelButtonColor: '#FF9C00',
       confirmButtonText: 'Oui, supprimer!',
     }).then((result) => {
@@ -152,7 +152,7 @@ export class GestionHopitalComponent {
         this.hopitalService.supprimerHopital(id).subscribe(() => {
           this.hopitalService.verifierChamp(
             'Supprimé!',
-            'annonce supprimé avec succès',
+            'hopital supprimé avec succès',
             'success'
           );
           // this.loadProduit();

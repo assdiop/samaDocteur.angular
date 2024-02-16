@@ -163,6 +163,15 @@ export class HopitalService {
 
 
 
+  // Update hopital 
+    // modifier produit
+    updateProduit(id: number, produit:any): Observable<any> {
+    const accessToken = localStorage.getItem('userConnect');
+      return accessToken ?
+        this.http.post<any>(`http://127.0.0.1:8000/api/updateProduit/${id}`, produit, {
+        headers: new HttpHeaders({ 'Authorization': `Bearer ${accessToken}` })
+      }) : of(null);}
+
   // methode pour filter 
 
 

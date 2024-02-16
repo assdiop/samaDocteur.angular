@@ -59,6 +59,17 @@ export class DocteurService {
           headers: new HttpHeaders({ Authorization: `Bearer ${token}` }),
         })
       : of(null);
+    
+  
+  }
+
+   supprimerHopital(id: number): Observable<any> {
+    const token = localStorage.getItem('token');
+    return token
+      ? this.http.delete<any>(`${url}Hopital/` + id, {
+        headers: new HttpHeaders({ Authorization: `Bearer ${token}` }),
+      })
+      : of(null);
   }
 
   // methode pour liste des docteurs 

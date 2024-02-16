@@ -43,9 +43,13 @@ export class GestionDocteurComponent {
 
   ngOnInit(): void {
     // methode listeer docteur 
-    this.getAllDocteur()
+    this.getAllDocteur();
+   
+      
    
   }
+
+  
 
   addDocteur() {
     if (!this.nomDocteur || !this.numero_licenceDocteur || !this.specialite_id) {
@@ -138,31 +142,56 @@ export class GestionDocteurComponent {
 
   // methode pour supprimer 
 
-  supprimerDocteur(id: number) {
+  // supprimerDocteur(id: number) {
+  //   Swal.fire({
+  //     title: 'Êtes-vous sûr?',
+  //     text: 'Vous ne pourrez pas revenir en arrière après cette action!',
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#017D03',
+  //     cancelButtonColor: '#FF9C00',
+  //     confirmButtonText: 'Oui, supprimer!',
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       this.docteurService.supprimerDocteur(id).subscribe(() => {
+  //         this.docteurService.verifierChamp(
+  //           'Supprimé!',
+  //           'annonce supprimé avec succès',
+  //           'success'
+  //         );
+  //         // this.loadProduit();
+  //         this.ngOnInit(); // Actualise la page
+  //       });
+  //     }
+  //   });
+  // }
+
+
+
+     supprimerDocteur(id: number) {
     Swal.fire({
       title: 'Êtes-vous sûr?',
       text: 'Vous ne pourrez pas revenir en arrière après cette action!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#017D03',
+      confirmButtonColor: '#007A64',
       cancelButtonColor: '#FF9C00',
       confirmButtonText: 'Oui, supprimer!',
     }).then((result) => {
       if (result.isConfirmed) {
         this.docteurService.supprimerDocteur(id).subscribe(() => {
+          console.log(id);
           this.docteurService.verifierChamp(
             'Supprimé!',
             'annonce supprimé avec succès',
             'success'
           );
-          // this.loadProduit();
+          
           this.ngOnInit(); // Actualise la page
         });
       }
     });
   }
-
-
 
 
 
