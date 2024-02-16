@@ -1,10 +1,12 @@
 <div class="main-content">
     <div class="row">
-        <div class="col-md-2 m-0 p-0 border" (toggleSidebarEvent)="toggleSidebar()">
-            <app-sidebar-admin></app-sidebar-admin>
+        <div class="col-md-2 m-0 p-0 border" *ngIf="isSidebarVisible">
+            <app-sidebar-admin class="sidebar"></app-sidebar-admin>
         </div>
         <div class="contenu m-0" [ngClass]="{'col-md-10': isSidebarVisible, 'col-md-12': !isSidebarVisible}">
-            <app-navbar-admin class="w-100 border" (toggleSidebarEvent)="toggleSidebar()"></app-navbar-admin>
+            <div class="border">
+                <app-navbar-admin class="w-100" (toggleSidebarEvent)="toggleSidebar()"></app-navbar-admin>
+            </div>
             <div class="contenPage">
                 <router-outlet></router-outlet>
             </div>

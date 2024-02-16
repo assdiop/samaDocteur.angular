@@ -11,6 +11,9 @@ import Swal from 'sweetalert2';
   providedIn: 'root'
 })
 export class HopitalService {
+  verifierChamps(arg0: string, arg1: string, arg2: string) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private http: HttpClient) { }
 
@@ -70,17 +73,27 @@ export class HopitalService {
   }
 
   // Méthode pour modifier les Régions 
-  updateRegion(id: number, nomRegion: any): Observable<any> {
+  // updateRegion(id: number, nomRegion: any): Observable<any> {
+  //   const token = localStorage.getItem('token');
+
+  //   return token
+  //     ?
+  //     this.http.post<any>(`${url}Region/edit/'${id}`, nomRegion, {
+  //       headers: new HttpHeaders({ Authorization: `Bearer ${token}` }),
+  //     })
+  //     : of(null);
+  // }
+
+
+  // Methode pour modifier Region
+
+    updateRegion(id: number, region:any): Observable<any> {
     const token = localStorage.getItem('token');
-
-    return token
-      ?
-      this.http.post<any>(`${url}Region/edit/'${id}`, nomRegion, {
-        headers: new HttpHeaders({ Authorization: `Bearer ${token}` }),
-      })
-      : of(null);
-  }
-
+      return token ?
+        this.http.post<any>(`${url}Region/edit/${id}`, region, {
+        headers: new HttpHeaders({ 'Authorization': `Bearer ${token}` })
+        }) : of(null);
+    }
   addLocalite(nom_localite: any): Observable<any[]> {
     let headers = new HttpHeaders();
     const token = localStorage.getItem('token');
@@ -157,7 +170,7 @@ export class HopitalService {
 
 
     getHopitauxByLocaliteId(id: number): Observable<any> {
-    return this.http.get<any>(`${url}Hopital/localite/`+id);
+    return this.http.get<any>(`${url}localitehopital`+id);
   }
 }
 

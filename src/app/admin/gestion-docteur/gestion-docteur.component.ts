@@ -82,6 +82,8 @@ export class GestionDocteurComponent {
         console.error("Une erreur s'est produite lors de l'ajout du docteur: ", error);
       }
     );
+
+    this.getAllDocteur();
   }
 
   

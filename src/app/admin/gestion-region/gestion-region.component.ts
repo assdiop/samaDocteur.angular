@@ -9,24 +9,24 @@ import Swal from 'sweetalert2';
   styleUrls: ['./gestion-region.component.scss']
 })
 export class GestionRegionComponent {
-  nom_region!:string;
-    // nom_region = "";
+  nom_region!: string;
+  // nom_region = "";
   Regions: any;
   // currentRegion: any;
   currentRegion: any = {};
  
-  regionSelectionner:any
-  constructor(private hopitalService:HopitalService) {
+  regionSelectionner: any
+  constructor(private hopitalService: HopitalService) {
    
   }
   
-   dtOptions: DataTables.Settings = {};
+  dtOptions: DataTables.Settings = {};
 
   ngOnInit(): void {
 
-     this.addRegion() 
-     this.getAllRegions();
-// dtoptions
+    this.addRegion()
+    this.getAllRegions();
+    // dtoptions
     this.dtOptions = {
       searching: true,
       lengthChange: false,
@@ -56,7 +56,7 @@ export class GestionRegionComponent {
   // Ajouter REGION
   addRegion() {
     let data = {
-      nom_region:this.nom_region
+      nom_region: this.nom_region
     }
     if (this.nom_region == "") {
       // alert("veuiller remplir le champ")
@@ -64,22 +64,22 @@ export class GestionRegionComponent {
       this.hopitalService.addRegion(data).subscribe((repose) => {
         console.log("voir Region", repose);
       })
-          this.getAllRegions();
+      this.getAllRegions();
     }
  
 
   }
   // Lister les Regions
   
-   getAllRegions() {
-   this.hopitalService.listerRegions().subscribe(
+  getAllRegions() {
+    this.hopitalService.listerRegions().subscribe(
       (Regions) => {
         // Afficher la liste des regions
         console.log(Regions);
         this.Regions = Regions.Region;
 
         console.log(this.Regions);
-     },
+      },
      
      
 
@@ -91,23 +91,34 @@ export class GestionRegionComponent {
   }
 
 
-// Méthode pour charger les donnés du formulaire 
-    chargerInfosTest(region: any) {
+  // Méthode pour charger les donnés du formulaire 
+  chargerInfosTest(region: any) {
     this.regionSelectionner = region.id;
     console.log('esxrcdftygu', this.regionSelectionner);
     this.nom_region = region.nom_region;
+
+    
    
-    }
+  }
   
   
-    // Methode pour vider les champs 
+  //  chargerInfosContact(paramContact:any){
+  //   this.currentContact = paramContact;
+  //   this.nom = paramContact.nomContact;
+  //   this.prenom = paramContact.prenomContact;
+  //   this.email = paramContact.emailContact;
+  //   this.telephone = paramContact.telephoneContact;
+  //   this.description = paramContact.descriptionContact;
+  //   this.imageUrl = paramContact.imageContact;
+  // }
+  // Methode pour vider les champs 
   // viderChapmsRegion(){
   //   this.nom_region = ""
    
   // }
   // Methode pour veirfier champs 
 
-    verifierChamps(title:any, text:any, icon:any) {
+  verifierChamps(title: any, text: any, icon: any) {
     Swal.fire({
       title: title,
       text: text,
@@ -121,49 +132,87 @@ export class GestionRegionComponent {
 
     
 
-     modifierRegion(id:number){
-    this.currentRegion.nomRegion = this.nom_region;
+  //      modifierRegion(id:number){
+  //     this.currentRegion.nomRegion = this.nom_region;
     
     
-    Swal.fire({
-     title: 'Êtes-vous sûr?',
-    text: 'Vous ne pourrez pas revenir en arrière après cette action!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#017D03',
-      cancelButtonColor: '#FF9C00',
-      confirmButtonText: 'Oui, modifie!',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.hopitalService
-          .updateRegion(this.currentRegion,id)
-          .subscribe((response) => {
-            console.log('je suis response', response);
-            // this.hopitalService.verifierChamps(
-            //   'modifie!',
-            //   'region modifie avec succès',
-            //   'success'
-            // );
-            window.location.reload();
-          });
-        this.ngOnInit();
-      }
-      console.log('je suis region', this.regionSelectionner);
-      console.log('je suis data', data);
-});
+  //     Swal.fire({
+  //      title: 'Êtes-vous sûr?',
+  //     text: 'Vous ne pourrez pas revenir en arrière après cette action!',
+  //       icon: 'warning',
+  //       showCancelButton: true,
+  //       confirmButtonColor: '#017D03',
+  //       cancelButtonColor: '#FF9C00',
+  //       confirmButtonText: 'Oui, modifie!',
+  //     }).then((result) => {
+  //       if (result.isConfirmed) {
+  //         this.hopitalService
+  //           .updateRegion(this.currentRegion,id)
+  //           .subscribe((response) => {
+  //             console.log('je suis response', response);
+  //             this.hopitalService.verifierChamps(
+  //               'modifie!',
+  //               'region modifie avec succès',
+  //               'success'
+  //             );
+  //             window.location.reload();
+  //           });
+  //         this.ngOnInit();
+  //       }
+  //       console.log('je suis region', this.regionSelectionner);
+  //       console.log('je suis data', data);
+  // });
    
        
- const data = {
-   nom: this.nom_region,
+  //  const data = {
+  //    nom: this.nom_region,
       
-    };
-  } 
+  //     };
+  //   } 
 
+  
+  
+  
+  //récupère les données
+  // declare id
+  id!: any ;
+  chargerInfosRegion(Region: any) {
+    console.log(Region);
+    this.id = Region.id;
+    console.warn('voir l id recuperer ', this.id);
+    this.nom_region = Region.nom_region;
+    console.log('changer', this.chargerInfosRegion);
+    this.getAllRegions();
 
   }
+
+  
+  updateRegion() {
+    let data = {
+      nom_region:this.nom_region
+      
+    }
+  //  this.currentRegion.nomRegion = this.nom_region;
+    this.hopitalService.updateRegion(this.regionSelectionner, data)
+      .subscribe(response => {
+        console.log('Region mise à jour avec succès:', response);
+        // Rafraîchissez la liste des régions ou effectuez d'autres actions nécessaires après la mise à jour
+      }, error => {
+        console.error('Erreur lors de la mise à jour de la région:', error);
+      });
+    this.getAllRegions();
+  }
+
+
+
+  // this.hopitalService.updateProduit(this.id, formData).subscribe((response) => {
+  //   console.log('modifProduit', response);
+  //   this.listerDesProduits();
+  // }
 
 
   
 
     
 
+}

@@ -75,7 +75,7 @@ export class GestionSpecialiteComponent {
    getAllSpecialites() {
    this.docteurService.listerSpecialiste().subscribe(
       (Specialites) => {
-        // Afficher la liste des regions
+        // Afficher la liste des specilaites
         console.log(Specialites);
         this.Specialites = Specialites.specialite;
 
@@ -88,6 +88,8 @@ export class GestionSpecialiteComponent {
     );
   }
 
+
+  
 
 // Méthode pour charger les donnés du formulaire 
     // chargerInfosTest(region: any) {
@@ -110,6 +112,32 @@ export class GestionSpecialiteComponent {
       title: title,
       text: text,
       icon: icon
+    });
+    }
+  
+  
+  
+  supprimerDocteur(id: number) {
+    Swal.fire({
+      title: 'Êtes-vous sûr?',
+      text: 'Vous ne pourrez pas revenir en arrière après cette action!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#017D03',
+      cancelButtonColor: '#FF9C00',
+      confirmButtonText: 'Oui, supprimer!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.docteurService.supprimerDocteur(id).subscribe(() => {
+          this.docteurService.verifierChamp(
+            'Supprimé!',
+            'annonce supprimé avec succès',
+            'success'
+          );
+          // this.loadProduit();
+          this.ngOnInit(); // Actualise la page
+        });
+      }
     });
   }
 }

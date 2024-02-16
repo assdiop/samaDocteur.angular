@@ -170,10 +170,10 @@ Ajouter
                             <select class="form-select" aria-label="Default select example" name="specialite_id"
                                 [(ngModel)]="specialite_id">
                                 <option selected>Veuillez selectionner votre specialite</option>
-                                <option value="1">{{specialite_id}}</option>
-                                <option value="2">{{specialite_id}}</option>
-                                <option value="3">{{specialite_id}}</option>
-                                <option value="4">{{ specialite_id}}</option>
+                                <option value="1">Cardiologue</option>
+                                <option value="2">Dermatologue</option>
+                                <option value="3">Urologue</option>
+                                <option value="4"></option>
                 
                 
                             </select>
@@ -236,9 +236,8 @@ Ajouter
             </td>
             <td>{{docteur.diplome}}</td>
             <td>
-                <button type="button" class="btn btn-link btn-sm btn-rounded" (click)="supprimerDocteur(docteur.id)">
-                    Supprimer
-                </button>
+        <i class="fa-solid fa-trash" style="color: #007A64;" (click)="supprimerDocteur(docteur.id)"></i>
+ 
                 
             </td>
         </tr>

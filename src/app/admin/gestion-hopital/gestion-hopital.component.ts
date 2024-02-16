@@ -100,7 +100,7 @@ export class GestionHopitalComponent {
 
       this.hopitalService.addHopitaux(newHopitaux).subscribe(
         (response) => {
-          console.log('Docteur ajouté avec succès.', response);
+          console.log('Hopital ajouté avec succès.', response);
           this.alertMessage('success', 'Cool', 'Docteur ajouté avec succès');
         },
         (error) => {
