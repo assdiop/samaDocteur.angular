@@ -168,14 +168,15 @@ export class GestionRegionComponent {
   //    nom: this.nom_region,
       
   //     };
-  //   } 
+  //   }
 
   
   
   
   //récupère les données
   // declare id
-  id!: any ;
+  id: number = 0;
+ 
   chargerInfosRegion(Region: any) {
     console.log(Region);
     this.id = Region.id;
@@ -186,7 +187,7 @@ export class GestionRegionComponent {
 
   }
 
-  
+   
   updateRegion() {
     let data = {
       nom_region:this.nom_region

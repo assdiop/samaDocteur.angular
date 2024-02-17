@@ -13,7 +13,7 @@ declare function jwt_decode<T extends JwtPayload = JwtPayload>( token: string ):
 })
 export class AuthentificationService {
 
-  constructor(private http: HttpClient, private route: Router) { }
+  constructor(private http: HttpClient, private router: Router) { }
   
 
   // connexion
@@ -73,41 +73,55 @@ export class AuthentificationService {
   return this.http.post<User>(`${url}registerdocteur`, user);
   }
 
-
+   logout() {
+    // On vide les infos du token et on met à je la val de isAuth$
+   localStorage.removeItem('currentUser')
+    //  this.router.navigate(['auth']);
+     this.router.navigate(['/auth']);
+    // this.router.[routerLink]="['/auth']"
+    
+  }
 
 
   // Déconnexion
 
   
-  logout(): Observable<any> {
-    // Récupérer le token du stockage local
-    var token = localStorage.getItem('token');
-    console.log(token); // Utilisez la variable token ici
+  // logout(): Observable<any> {
+  //   // Récupérer le token du stockage local
+  //   var token = localStorage.getItem('token');
+  //   console.log(token); // Utilisez la variable token ici
 
-    // Assurez-vous que token n'est pas null ou undefined avant de l'utiliser
-    if (!token) {
-      console.error('Token non trouvé dans le stockage local');
-      return throwError('Token non trouvé');
-    }
+  //   // Assurez-vous que token n'est pas null ou undefined avant de l'utiliser
+  //   if (!token) {
+  //     console.error('Token non trouvé dans le stockage local');
+  //     return throwError('Token non trouvé');
+  //   }
 
-    // Assurez-vous que l'URL est correcte
+  //   // Assurez-vous que l'URL est correcte
    
 
-    // Effectuez la requête HTTP POST pour se déconnecter
-    return this.http.post<any>('http://localhost:8000/api/logoutAdmin' ,  {}).pipe(
-      tap(() => {
-        // Supprimer le token du stockage local
-        localStorage.removeItem('token');
+  //   // Effectuez la requête HTTP POST pour se déconnecter
+  //   return this.http.post<any>('http://localhost:8000/api/logoutAdmin' ,  {}).pipe(
+  //     tap(() => {
+  //       // Supprimer le token du stockage local
+  //       localStorage.removeItem('token');
 
-        // Vider complètement le localStorage
-        localStorage.clear();
-      }),
+  //       // Vider complètement le localStorage
+  //       localStorage.clear();
+  //     }),
 
-      catchError((error) => {
-        throw error;
-      })
-    );
-  }
+  //     catchError((error) => {
+  //       throw error;
+  //     })
+  //   );
+  // }
+
+
+  //  logout() {
+  //   // On vide les infos du token et on met à je la val de isAuth$
+  //  localStorage.removeItem('currentUser')
+  //   this.route.navigate(['auth']);
+  // }
 
 
 
@@ -162,11 +176,4 @@ export class AuthentificationService {
   // }
 
   
-
-
-  //  logout() {
-  //   // On vide les infos du token et on met à je la val de isAuth$
-  //  localStorage.removeItem('userOnline')
-  //   this.route.navigate(['login']);
-  // }
 

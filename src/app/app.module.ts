@@ -20,6 +20,7 @@ import { ConditionsUtlisationsComponent } from './Components/utilisateur/conditi
 import { MentionsLegalesComponent } from './Components/utilisateur/mentions-legales/mentions-legales.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { Page404Component } from './Components/admin/page404/page404.component';
 
 
 
@@ -40,7 +41,8 @@ import { FormsModule } from '@angular/forms';
     InscriptionComponent,
     PolitiqueConfidentialitesComponent,
     ConditionsUtlisationsComponent,
-    MentionsLegalesComponent
+    MentionsLegalesComponent,
+    Page404Component
     
     
   ],

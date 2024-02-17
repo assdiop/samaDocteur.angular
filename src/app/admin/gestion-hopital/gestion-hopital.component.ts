@@ -11,7 +11,8 @@ import { Hopitaux } from 'src/app/models/hopitaux';
 export class GestionHopitalComponent {
 
   
-    image!: File;
+  id!: number;
+  image!: File;
   nom_hopitaux = "";
   lattitudeHopitaux = "";
   longitudeHopitaux = "";
@@ -20,6 +21,7 @@ export class GestionHopitalComponent {
   localite_idHopitaux = "";
   descriptionHopitaux = "";
   Hopitaux: any;
+ 
  
 
   constructor(private hopitalService:HopitalService) {}
@@ -162,8 +164,57 @@ export class GestionHopitalComponent {
     });
   }
 
+
+  // declare id
+  // id!: number = "";
+  chargerInfosHopital(hopital: any) {
+    console.log(hopital);
+    // this.id = hopital.id;
+    console.warn('lid de l hopital ', this.id);
+    this.nom_hopitaux = hopital.nom_hopital;
+    this.descriptionHopitaux = hopital.description;
+    this.lattitudeHopitaux = hopital.lattitude;
+    this.longitudeHopitaux = hopital.longitude;
+    this.horaireHopitaux = hopital.horaire;
+    this.image = hopital.imageHopitaux;
+    this.localite_idHopitaux = hopital.localite_id;
+    
+    
+
+    
+    // this.image = hopital.image;
+    console.log('changer', this.chargerInfosHopital);
+    // this.listerDesProduits();
+
+  }
   
 
+
+    updateHopital() {
+    let formData = new FormData();
+      formData.append('nom_hopital', this.nom_hopitaux);
+      formData.append('description', this.descriptionHopitaux);
+      formData.append('longitude', this.longitudeHopitaux);
+      formData.append('lattidude', this.lattitudeHopitaux);
+      formData.append('horaire', this.horaireHopitaux);
+      formData.append('image', this.image);
+      formData.append('localite_id', this.localite_idHopitaux);
+
+
+  
+    this.hopitalService.updateHopital(this.id, formData).subscribe((response) => {
+        console.log('modifHopital', response);
+      // this.listerDesProduits();
+      
+
+      
+
+    });
+      
+      
+  }
+
+  
 
   // FilTER HOPITAL 
 //   filterHopitauxByLocalite() {
@@ -213,3 +264,11 @@ export class GestionHopitalComponent {
 }
 
 
+
+
+
+// Modifier Hopital 
+
+
+//récupère les données
+  // declare id

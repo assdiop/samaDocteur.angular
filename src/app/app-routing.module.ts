@@ -10,7 +10,9 @@ import { InscriptionComponent } from './utilisateur/inscription/inscription.comp
 import { MentionsLegalesComponent } from './Components/utilisateur/mentions-legales/mentions-legales.component';
 import { PolitiqueConfidentialitesComponent } from './Components/utilisateur/politique-confidentialites/politique-confidentialites.component';
 import { ConditionsUtlisationsComponent } from './Components/utilisateur/conditions-utlisations/conditions-utlisations.component';
-import { securityGuard } from './guards/security.guard';
+import { authGuard } from './auth.guard';
+import { Page404Component } from './Components/admin/page404/page404.component';
+// import { securityGuard } from './guards/security.guard';
 
 
 
@@ -30,11 +32,13 @@ const routes: Routes = [
   { path: 'acceuil', component: AcceuilComponent },
   { path: 'apropos', component: AproposComponent },
   { path: 'Docteur', component: DocteurComponent },
-  { path: 'hopitaux', component: HopitauxComponent  , canActivate:[securityGuard]},
+  { path: 'hopitaux', component: HopitauxComponent },
   { path: 'Contact', component: ContactComponent },
   { path: 'Mention', component: MentionsLegalesComponent },
   { path: 'Politique', component: PolitiqueConfidentialitesComponent },
   { path: 'Conditions', component: ConditionsUtlisationsComponent },
+  { path: 'page404', component: Page404Component },
+
 
 
 

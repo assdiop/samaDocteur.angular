@@ -164,12 +164,12 @@ export class HopitalService {
 
 
   // Update hopital 
-    // modifier produit
-    updateProduit(id: number, produit:any): Observable<any> {
-    const accessToken = localStorage.getItem('userConnect');
-      return accessToken ?
-        this.http.post<any>(`http://127.0.0.1:8000/api/updateProduit/${id}`, produit, {
-        headers: new HttpHeaders({ 'Authorization': `Bearer ${accessToken}` })
+    
+    updateHopital(id: number, hopital:any): Observable<any> {
+    const token = localStorage.getItem('token');
+      return token ?
+        this.http.post<any>(`${url}Hopital/edit/${id}`, hopital, {
+        headers: new HttpHeaders({ 'Authorization': `Bearer ${token}` })
       }) : of(null);}
 
   // methode pour filter 
