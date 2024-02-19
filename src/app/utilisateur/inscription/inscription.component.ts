@@ -127,13 +127,17 @@ export class InscriptionComponent {
 
   
 
-  alertMessage(icon: any, title: any, text: any) {
+alertMessage(icon: any, title: any, text: any) {
     Swal.fire({
-      icon: icon,
-      title: title,
-      text: text,
+        icon: icon,
+        title: title,
+        text: text,
+        timer: 3000, // Durée en millisecondes avant la disparition
+        timerProgressBar: true, // Barre de progression de la temporisation
+        showConfirmButton: false // Cacher le bouton de confirmation
     });
-  }
+}
+  
 
 
   

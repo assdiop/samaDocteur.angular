@@ -12,48 +12,54 @@
         </div>
     </div>
 </section>
-
 <!-- 
-<section class="page-title ">
-    <div class=""></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="block text-center">
-                   
-                   
 
-                    
+<div class="row">
+    <div class="col-md-12">
+        <input type="text" class="form-control" placeholder="Rechercher un hôpital..." [(ngModel)]="searchTerm"
+            (input)="searchHospital()">
+    </div>
+</div>
 
-                    <ul class="list-inline breadcumb-nav">
-            <li class="list-inline-item"><a href="index.html" class="text-white">Home</a></li>
-            <li class="list-inline-item"><span class="text-white">/</span></li>
-            <li class="list-inline-item"><a href="#" class="text-white-50">Our services</a></li>
-          </ul> -->
-                <!-- </div>
-            </div>
-        </div>
-    </div> -->
+<!--  
+<div class="row border">
+    <div class="justify-content-between align center w-100 mt-5" id="bande">
+        <ul class="mt-3">
+            <li>Pikine</li>
+            <li>Guédiawaye</li>
+            <li>Parcelle Assainie</li>
+            <li>Grand Yoff</li>
+            <li >Ouakam</li>
+            <li>Plateau</li> 
+        </ul>
+    </div>
+</div>  -->
 
-<!-- 
-</section> --> 
 <!-- <div class="row border">
     <div class="justify-content-between align center w-100 mt-5" id="bande">
         <ul class="mt-3">
-            <li (click)="filterHopitauxByLocalite(1)">Pikine</li>
-            <li (click)="filterHopitauxByLocalite(2)">Guédiawaye</li>
-            <li (click)="filterHopitauxByLocalite(3)">Parcelle Assainie</li>
-            <li (click)="filterHopitauxByLocalite(4)">Grand Yoff</li>
-            <li (click)="filterHopitauxByLocalite(5)">Ouakam</li>
-            <li (click)="filterHopitauxByLocalite(6)">Plateau</li>
+            <li (click)="filterHospitalsByLocality('Pikine')">Pikine</li>
+            <li (click)="filterHospitalsByLocality('Guédiawaye')">Guédiawaye</li>
+            <li (click)="filterHospitalsByLocality('Parcelle Assainie')">Parcelle Assainie</li>
+            <li (click)="filterHospitalsByLocality('Grand Yoff')">Grand Yoff</li>
+            <li (click)="filterHospitalsByLocality('Ouakam')">Ouakam</li>
+            <li (click)="filterHospitalsByLocality('Plateau')">Plateau</li>
         </ul>
     </div>
-</div> -->
+</div> --> -->
 
 
 
 
-
+<div class="row border">
+    <div class="justify-content-between align center w-100 mt-5" id="bande">
+        <ul class="mt-3">
+            <li (click)="getHopitauxByLocaliteId()">Pikine</li>
+            <li (click)="getHopitauxByLocaliteId()">Guédiawaye</li>
+            <!-- Ajoutez les autres localités avec les ID correspondants -->
+        </ul>
+    </div>
+</div>
 
 <h1 class="text-capitalize mb-5 text-lg" class="text-center mt-5"> Trouver un Hopital  </h1>
 <section class="section service-2">

@@ -59,6 +59,8 @@ export class GestionHopitalComponent {
     };
   }
  
+
+
   
  addHopitaux() {
     console.log(this.nom_hopitaux);
@@ -70,14 +72,7 @@ export class GestionHopitalComponent {
     console.log(this.localite_idHopitaux);
   
     const newHopitaux = new Hopitaux;
-    
 
-    // newHopitaux.nom_hopitaux = this.nom_hopitaux;
-    // newHopitaux.longitude = this.longitudeHopitaux;
-    // newHopitaux.lattitude = this.lattitudeHopitaux;
-    // newHopitaux.horaire = this.horaireHopitaux;
-    // newHopitaux.localite_id = this.localite_idHopitaux;
-    // newHopitaux.description = this.descriptionHopitaux;
       
    
 

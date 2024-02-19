@@ -11,7 +11,9 @@ export class MessageService {
     showMessage(icon: any, message: any) {
     Swal.fire({
       icon: icon,
-      title: message
+      title: message,
+      timer: 3000, // Durée en millisecondes avant la disparition
+        timerProgressBar: true,
     });
   }
 }

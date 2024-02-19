@@ -181,7 +181,7 @@ export class HopitalService {
 
 
     getHopitauxByLocaliteId(id: number): Observable<any> {
-    return this.http.get<any>(`${url}localitehopital`+id);
+    return this.http.get<any>(`${url}localitehopital/${id}`);
   }
 }
 

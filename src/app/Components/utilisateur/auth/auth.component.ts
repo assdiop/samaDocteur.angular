@@ -41,15 +41,15 @@ export class AuthComponent {
   }
 
   register() {
-    console.log(this.nomRegister);
-    console.log(this.prenomRegister);
-    console.log(this.emailRegister);
-    console.log(this.passwordRegister);
-    console.log(this.photo_profilRegister);
-    console.log(this.telephoneRegister);
-    console.log(this.ageRegister);
-    console.log(this.sexeRegister);
-    console.log(this.adresseRegister)
+    // console.log(this.nomRegister);
+    // console.log(this.prenomRegister);
+    // console.log(this.emailRegister);
+    // console.log(this.passwordRegister);
+    // console.log(this.photo_profilRegister);
+    // console.log(this.telephoneRegister);
+    // console.log(this.ageRegister);
+    // console.log(this.sexeRegister);
+    // console.log(this.adresseRegister)
 
 
     const newClient = new User;
@@ -112,6 +112,8 @@ export class AuthComponent {
   }
 
 
+
+
   login(): void {
     console.log(this.email);
     console.log(this.password);
@@ -154,15 +156,15 @@ export class AuthComponent {
                 'Connexion réussie avec succés.'
               );
               break;
-            case 'proprietaire':
-              this.route.navigate(['/docteur']);
+            case 'docteur':
+              this.route.navigate(['/Docteur']);
               this.alertMessage(
                 'success',
                 'Super',
                 'Connexion réussie avec succés.'
               );
               break;
-            case 'acheteur':
+            case 'clients':
               this.route.navigate(['/accueil']);
               this.alertMessage(
                 'success',
