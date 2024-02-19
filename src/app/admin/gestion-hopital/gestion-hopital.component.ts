@@ -11,7 +11,6 @@ import { Hopitaux } from 'src/app/models/hopitaux';
 export class GestionHopitalComponent {
 
   
-  id!: number;
   image!: File;
   nom_hopitaux = "";
   lattitudeHopitaux = "";
@@ -31,7 +30,8 @@ export class GestionHopitalComponent {
 
   ngOnInit(): void {
 
-     this.getAllHospitals() 
+    this.getAllHospitals();
+    this.updateHopitals();
     //  this.addRegion() 
     //  this.getAllRegions();
 // dtoptions
@@ -167,6 +167,9 @@ export class GestionHopitalComponent {
 
   // declare id
   // id!: number = "";
+
+  id: number = 1;
+ 
   chargerInfosHopital(hopital: any) {
     console.log(hopital);
     // this.id = hopital.id;
@@ -190,31 +193,37 @@ export class GestionHopitalComponent {
   
 
 
-    updateHopital() {
+  updateHopitals() {
     let formData = new FormData();
-      formData.append('nom_hopital', this.nom_hopitaux);
-      formData.append('description', this.descriptionHopitaux);
-      formData.append('longitude', this.longitudeHopitaux);
-      formData.append('lattidude', this.lattitudeHopitaux);
-      formData.append('horaire', this.horaireHopitaux);
-      formData.append('image', this.image);
-      formData.append('localite_id', this.localite_idHopitaux);
+    formData.append('nom_hopital', this.nom_hopitaux);
+    formData.append('description', this.descriptionHopitaux);
+    formData.append('longitude', this.longitudeHopitaux);
+    formData.append('lattitude', this.lattitudeHopitaux);
+    formData.append('horaire', this.horaireHopitaux);
+    formData.append('image', this.image);
+    formData.append('localite_id', this.localite_idHopitaux);
 
 
   
-    this.hopitalService.updateHopital(this.id, formData).subscribe((response) => {
-        console.log('modifHopital', response);
+    this.hopitalService.updateHopital(this.id, formData).subscribe(response => {
+      console.log('modifHopital', response);
+  
       // this.listerDesProduits();
+    }, error => {
+        console.error('Erreur lors de la mise à jour de l hopital:', error);
+      });
       
-
-      
-
-    });
-      
-      
-  }
-
+    this.getAllHospitals();
+    //  this.currentRegion.nomRegion = this.nom_region;
+    
   
+  
+
+  }   
+
+   
+      
+      
 
   // FilTER HOPITAL 
 //   filterHopitauxByLocalite() {

@@ -208,7 +208,7 @@
             </div>
             <div class="modal-footer d-flex justify-content-center">
                 <button type="button" class="btn text-white w-25" data-bs-dismiss="modal"
-                    style="background-color: green" (click)="updateHopital()">
+                    style="background-color: green" (click)="updateHopitals()">
                     Modifier 
                 </button>
                 <button type="button" class="btn w-25" data-bs-dismiss="modal" style="
@@ -228,7 +228,13 @@
     <thead>
         <tr style="background-color: #007A64;color: #fff;">
             <th class="tHead">ID</th>
-            <th class="tHead">Nom_Region</th>
+            <th class="tHead">Nom_Hopital</th>
+            <th class="tHead">Description</th>
+            <th class="tHead">Lattitude</th>
+
+            <th class="tHead">Longitude</th>
+
+
             <th class="tHead">Action</th>
         </tr>
     </thead>
@@ -236,6 +242,12 @@
         <tr *ngFor="let hopital of Hopitaux">
             <td>{{hopital.id}} </td>
             <td>{{hopital.nom_hopital}}</td>
+            <td>{{hopital.description}}</td>
+            <td>{{hopital.lattitude}}</td>
+            <td>{{hopital.longitude}}</td>
+
+
+
 
             <td><span id="icon">
 
