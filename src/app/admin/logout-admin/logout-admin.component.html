@@ -1,4 +1,12 @@
-<button>
+<!-- <button>
 <a class="dropdown-item" class="btn btn-primary  mybtn" style="background-color: #007A64; color:#fff" (click)="logout()">Déconnexion</a>
-</button>
-
+</button> -->
+<div class="dropdown">
+    <button class="btn btn-primary mybtn" style="background-color: #007A64; color:#fff" type="button"
+        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Déconnexion
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#" (click)="logout()">Déconnexion</a>
+    </div>
+</div>

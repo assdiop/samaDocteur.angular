@@ -208,9 +208,11 @@ Ajouter
     <thead class="bg-light" >
         <tr style="background-color: #007A64; color:#fff">
             <th>Id</th>
-            <th>numero_licence </th>
-            <th>specialite</th>
-             <th>Diplome</th>
+            <th>nom </th>
+            <th>prenom</th>
+             <th>Année Expérience</th>
+            <th>specialités</th>
+
             <th>Actions</th>
         </tr>
     </thead>
@@ -226,20 +228,26 @@ Ajouter
             </td>
             <td>
             
-                <p class="text-muted mb-0">{{docteur.numero_licence}}</p>
+                <p class="text-muted mb-0">{{docteur.nom}}</p>
             </td>
             <td>
                 <div class="ms-3">
-                    <p class="fw-bold mb-1">{{docteur.specialite_id }} </p>
+                    <p class="fw-bold mb-1">{{docteur.prenom }} </p>
                 
                 </div>
             </td>
-            <td>{{docteur.diplome}}</td>
-            <td>
+
+            <td>{{docteur.annee_experience}}</td>
+            
+            
+            <td>{{docteur.specialite}}</td>
+
+        
+
         <i class="fa-solid fa-trash" style="color: #007A64;" (click)="supprimerDocteur(docteur.id)"></i>
  
                 
-            </td>
+        
         </tr>
       
     </tbody>

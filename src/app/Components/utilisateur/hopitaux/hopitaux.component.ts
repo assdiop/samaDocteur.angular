@@ -10,6 +10,8 @@ import { HopitalService } from '../../../services/hopital.service';
 })
 export class HopitauxComponent implements OnInit{
 
+
+  
    hopitaux: any[] = [];
   localite: any[] = [];
   localiteSelectionnee: string = '';
