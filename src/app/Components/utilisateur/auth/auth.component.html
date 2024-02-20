@@ -10,13 +10,26 @@
                             <div class="mb-3">
                                 <label for="emailInput" class="form-label">Adresse email:</label>
                                 <input type="email" name="email" class="form-control" id="emailInput"
-                                    [(ngModel)]="email" />
+                                    [(ngModel)]="email"  placeholder="Votre email" />
+                                    <!-- (input)="validateEmail()" -->
+                                                                <!-- <span *ngIf="emailTouched && emailEmpty && !validationMessages['email']" class="text-danger">
+                                                                    L' email  est obligatoire
+                                                                </span>
+
+
+                                                                <span *ngIf="validationMessages['email']" class="text-danger">{{ validationMessages['email'] }}</span>
+                                                                <span *ngIf="!validationMessages['email'] && email" class="text-success">Correct</span> -->
                             </div>
                             <div class="mb-3">
                                 <label for="passwordInput" class="form-label">Mot de passe :
                                 </label>
                                 <input type="password" name="password" class="form-control" id="passwordInput"
-                                    [(ngModel)]="password" />
+                                     [(ngModel)]="password"  placeholder="votre mot de passe"/>  
+                                    <!-- <span *ngIf="passwordTouched && passwordEmpty && !validationMessages['password']" class="text-danger">
+                                        Le prénom est requis
+                                    </span>
+                                    <span *ngIf="validationMessages['password']" class="text-danger">{{ validationMessages['password'] }}</span>
+                                    <span *ngIf="!validationMessages['password'] && password" class="text-success">Correct</span> -->
                             </div>
                             <div class="btn-auth text-center">
 

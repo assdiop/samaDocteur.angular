@@ -1,0 +1,95 @@
+<app-header></app-header>
+
+<body id="top">
+
+
+
+
+    <section class="page-title bg-1">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block text-center">
+                        <span class="text-white">Prendre un Rendez-vous</span>
+                        <h1 class="text-capitalize mb-5 text-lg">Rendez-vous</h1>
+
+                        <!-- <ul class="list-inline breadcumb-nav">
+            <li class="list-inline-item"><a href="index.html" class="text-white">Home</a></li>
+            <li class="list-inline-item"><span class="text-white">/</span></li>
+            <li class="list-inline-item"><a href="#" class="text-white-50">Book your Seat</a></li>
+          </ul> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="appoinment section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="mt-3">
+                        <div class="feature-icon mb-3">
+                            <i class="icofont-support text-lg"></i>
+                        </div>
+                        <span class="h3">En cas d'urgence apppelez!</span>
+                        <h2 class="text-color mt-3">33 834 26 32 </h2>
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+                    <div class="appoinment-wrap mt-5 mt-lg-0 pl-lg-5">
+                        <h2 class="mb-2 title-color">Prendre rendez-vous</h2>
+                        <p class="mb-4">Prener un rendez pour faire une consultation efficace et avec un suivi immédiat.</p>
+                        <form id="#" class="appoinment-form" method="post" action="#">
+                            <div class="row">
+                         
+                              
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input name="date" id="date" type="text" class="form-control"
+                                            placeholder="dd/mm/yyyy" [(ngModel)]="newRendezVous.date">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input name="time" id="time" type="text" class="form-control"
+                                            placeholder="Time" input [(ngModel)]="newRendezVous.time" >
+                                    </div>
+                                </div>
+                             
+                            </div>
+                            <div class="form-group-2 mb-4">
+                                <textarea name="message" id="message" class="form-control" rows="6"
+                                    placeholder="Description"  [(ngModel)]="newRendezVous.message" ></textarea>
+                            </div>
+
+                            <a class="btn btn-main btn-round-full" (click)="addRendezVous()">Envoyer <i
+                                    class="icofont-simple-right ml-2"></i></a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <div *ngFor="let rendezVous of rendezVousList">
+            <input [(ngModel)]="rendezVous.date" />
+            <input [(ngModel)]="rendezVous.time" />
+            <input [(ngModel)]="rendezVous.message" />
+            <button (click)="updateRendezVous(rendezVous)">Modifier</button>
+            <button (click)="deleteRendezVous(rendezVous.id)">Supprimer</button>
+        </div>
+
+       
+
+    </section>
+<app-footer></app-footer>
+
+
+   
+
+    

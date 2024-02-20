@@ -17,7 +17,6 @@ export class AuthComponent {
   
   email: string = '';
   password: string = '';
-  emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
   nomRegister = "";
   prenomRegister = "";
@@ -32,6 +31,31 @@ export class AuthComponent {
   photo_profilRegister!: File;
   roleRegister = "";
   ageRegister = "";
+
+
+
+  // Messages de validation
+  validationMessages: { [key: string]: string } = {};
+
+  // Déclaration des propriétés touched
+  emailTouched: boolean = false;
+  passwordTouched: boolean = false;
+  nomTouched: boolean = false;
+  prenomTouched: boolean = false;
+  telephoneTouched: boolean = false;
+  ageToucched: boolean = false;
+  nomToucched: boolean = false;
+
+  // Déclaration des propriétés Empty
+  emailEmpty: boolean = false;
+  passwordEmpty: boolean = false;
+
+  // emailregex pattern
+  emailPattern =
+    /^[A-Za-z]+[A-Za-z0-9._%+-]+@[A-Za-z][A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+  // regex password
+  passwordRegex: RegExp = /^\d{6,}$/;
+
 
   //   userConnected: any;
 
@@ -118,6 +142,10 @@ export class AuthComponent {
     console.log(this.email);
     console.log(this.password);
 
+    //  this.validateFormLogin();
+
+    
+
     if (this.email == '') {
       this.alertMessage(
         'error',
@@ -142,13 +170,16 @@ export class AuthComponent {
 
           const userdata = localStorage.getItem('currentUser');
 
-          const userConnectedRole = userdata ? JSON.parse(userdata).role : null;
-          console.log(userConnectedRole);
+          const userConnectedRole = userdata ? JSON.parse(userdata).role_id
+ : null;
+          console.log("uuuuuuu",userConnectedRole);
 
           // Rediriger l'utilisateur vers une autre page
 
-          switch (response.user.nom) {
-            case 'admin':
+          console.log("voir vobjet recuperer", response.user.nom);
+          switch (response.user.role_id
+) {
+            case 1:
               this.route.navigate(['/admin']);
               this.alertMessage(
                 'success',
@@ -156,16 +187,16 @@ export class AuthComponent {
                 'Connexion réussie avec succés.'
               );
               break;
-            case 'docteur':
-              this.route.navigate(['/Docteur']);
+            case 2:
+              this.route.navigate(['/acceuil']);
               this.alertMessage(
                 'success',
                 'Super',
                 'Connexion réussie avec succés.'
               );
               break;
-            case 'clients':
-              this.route.navigate(['/accueil']);
+            case 3:
+              this.route.navigate(['/accueil_docteur']);
               this.alertMessage(
                 'success',
                 'Super',
@@ -189,7 +220,51 @@ export class AuthComponent {
         }
       );
     }
-  }
+   }
+
+
+
+    // validation form login
+  // validateFormLogin() {
+  //   let isValid = true;
+  //   isValid = this.validateEmail() && isValid;
+  //   isValid = this.validatePassword() && isValid;
+  //   return isValid;
+  // }
+
+  // Validation email
+  // validateEmail(): boolean {
+  //   if (!this.email) {
+  //     this.validationMessages['email'] = "L'email est requis";
+  //     this.emailEmpty = true; // Mettre à jour emailEmpty si le champ est vide
+  //     return false;
+  //   } else if (!this.emailPattern.test(this.email)) {
+  //     this.validationMessages['email'] = 'Email invalide';
+  //     this.emailEmpty = false;
+  //     return false;
+  //   } else {
+  //     this.validationMessages['email'] = '';
+  //     this.emailEmpty = false;
+  //     return true;
+  //   }
+  // }
+  // Méthode de validation pour le mot de passe
+  // validatePassword() {
+  //   if (!this.password) {
+  //     this.validationMessages['password'] = 'Le mot de passe est requis';
+  //     this.passwordEmpty = true;
+  //     return false;
+  //   } else if (!this.passwordRegex.test(this.password)) {
+  //     this.validationMessages['password'] =
+  //       'Le mot de passe doit contenir au moins 6 caractères';
+  //     this.passwordEmpty = false;
+  //     return false;
+  //   } else {
+  //     this.validationMessages['password'] = '';
+  //     this.passwordEmpty = false;
+  //     return true;
+  //   }
+  // }
 
 alertMessage(icon: any, title: any, text: any) {
     Swal.fire({

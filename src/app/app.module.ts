@@ -22,6 +22,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Page404Component } from './Components/admin/page404/page404.component';
 import { FilterByLocalitePipe } from './filter-by-localite.pipe';
+import { RendezVousComponent } from './Components/utilisateur/rendez-vous/rendez-vous.component';
+import { MainDocteurComponent } from './docteur/main-docteur/main-docteur.component';
+import { GestionRendezVousComponent } from './docteur/gestion-rendez-vous/gestion-rendez-vous.component';
+import { GestionCompteComponent } from './docteur/gestion-compte/gestion-compte.component';
+import { AcceuilDocteurComponent } from './docteur/acceuil-docteur/acceuil-docteur.component';
+import { SidebarDocteurComponent } from './docteur/sidebar-docteur/sidebar-docteur.component';
+import { HeaderDocteurComponent } from './docteur/header-docteur/header-docteur.component';
+import { NavbarDocteurComponent } from './docteur/navbar-docteur/navbar-docteur.component';
+
 
 
 
@@ -44,7 +53,16 @@ import { FilterByLocalitePipe } from './filter-by-localite.pipe';
     ConditionsUtlisationsComponent,
     MentionsLegalesComponent,
     Page404Component,
-    FilterByLocalitePipe
+    FilterByLocalitePipe,
+    RendezVousComponent,
+    MainDocteurComponent,
+    GestionRendezVousComponent,
+    GestionCompteComponent,
+    AcceuilDocteurComponent,
+    SidebarDocteurComponent,
+    HeaderDocteurComponent,
+    NavbarDocteurComponent,
+    
     
     
   ],

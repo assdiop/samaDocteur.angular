@@ -11,24 +11,27 @@ import { GestionRegionComponent } from './gestion-region/gestion-region.componen
 import { LocaliteComponent } from './localite/localite.component';
 import { GestionSpecialiteComponent } from './gestion-specialite/gestion-specialite.component';
 import { GestionHopitalComponent } from './gestion-hopital/gestion-hopital.component';
+
 import { authGuard } from '../auth.guard';
 
 const routes: Routes = [
   {
     path: '', component: AdminMainComponent, children: [
-      { path: 'accueilAdmin', component: AccueilAdminComponent  , canActivate: [authGuard]},
+      { path: 'accueilAdmin', component: AccueilAdminComponent },
+      // , canActivate: [authGuard]
       { path: 'gestiondocteur', component: GestionDocteurComponent },
       { path: 'gestionpatients', component: GestionPatientsComponent },
       { path: 'gestionhopital', component: GestionHopitalComponent },
+     
+
+      
       
       // { path: 'gestionhopitaux', component: GestionHopitauxComponent },
       { path: 'gestioncomptes', component: GestionComptesComponent },
       { path: 'gestioncommentaire', component: GestionCommentairesComponent },
       { path: 'gestionregion', component: GestionRegionComponent },
       { path: 'localite', component: LocaliteComponent },
-      { path: 'gestionspecialite', component:GestionSpecialiteComponent },
-
-      
+      { path: 'gestionspecialite', component: GestionSpecialiteComponent },
       
 
       { path: '', redirectTo: 'accueilAdmin', pathMatch: 'full' },

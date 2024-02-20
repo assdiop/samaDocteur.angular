@@ -12,6 +12,8 @@ import { PolitiqueConfidentialitesComponent } from './Components/utilisateur/pol
 import { ConditionsUtlisationsComponent } from './Components/utilisateur/conditions-utlisations/conditions-utlisations.component';
 import { authGuard } from './auth.guard';
 import { Page404Component } from './Components/admin/page404/page404.component';
+import { RendezVousComponent } from './Components/utilisateur/rendez-vous/rendez-vous.component';
+import { DocteurModuleModule } from './docteur/docteur-module/docteur-module.module';
 // import { securityGuard } from './guards/security.guard';
 
 
@@ -38,6 +40,8 @@ const routes: Routes = [
   { path: 'Politique', component: PolitiqueConfidentialitesComponent },
   { path: 'Conditions', component: ConditionsUtlisationsComponent },
   { path: 'page404', component: Page404Component },
+  { path: 'rendezVous', component: RendezVousComponent },
+
 
 
 
@@ -52,6 +56,14 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
+     },
+  
+    
+    
+    {
+    path: 'docteur',
+    loadChildren: () =>
+      import('./docteur/docteur-module/docteur-module.module').then((m) => m.DocteurModuleModule),
      },
   
   // { 

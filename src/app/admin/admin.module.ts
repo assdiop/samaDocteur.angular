@@ -21,6 +21,7 @@ import { LocaliteComponent } from './localite/localite.component';
 import { GestionSpecialiteComponent } from './gestion-specialite/gestion-specialite.component';
 import { FormsModule } from '@angular/forms';
 import { GestionHopitalComponent } from './gestion-hopital/gestion-hopital.component';
+import { GestiondocteurhopitalComponent } from './gestiondocteurhopital/gestiondocteurhopital.component';
 // import { FormsModule } from '@angular/forms';
 
 
@@ -42,7 +43,8 @@ import { GestionHopitalComponent } from './gestion-hopital/gestion-hopital.compo
     GestionRegionComponent,
     LocaliteComponent,
     GestionSpecialiteComponent,
-    GestionHopitalComponent 
+    GestionHopitalComponent,
+    GestiondocteurhopitalComponent 
   ],
   imports: [
     CommonModule,
