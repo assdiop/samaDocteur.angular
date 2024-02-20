@@ -13,14 +13,15 @@ export class HopitauxComponent implements OnInit {
   //  selectedLocality: string = ''; // Variable pour stocker la localité sélectionnée
   // localities: string[] = ['Pikine', 'Guédiawaye', 'Parcelle Assainie', 'Grand Yoff', 'Ouakam', 'Plateau']; // Liste des localités disponibles
   // Hopitaux: any[] = []; // Liste des hôpitaux
-
+ 
     filteredHospitals: any[] = []; // Liste des hôpitaux filtrés par localité
 
   searchTerm: string = '';
 
 
   
-  
+    selectedLocaliteId!: number;
+
   hopitaux: any[] = [];  //liste des hôpitaux
   localite: any[] = [];
   localiteSelectionnee: string = '';
@@ -33,7 +34,11 @@ export class HopitauxComponent implements OnInit {
   }
 
   Hopitaux: any[] = [];
+
   
+    onSelectLocalite(localiteId: number): void {
+    this.selectedLocaliteId = localiteId;
+  }
 
   getHospitalsByLocality(locality: string) {
     this.filteredHospitals = this.Hopitaux.filter(hopital => hopital.locality === locality);

@@ -21,6 +21,7 @@ import { MentionsLegalesComponent } from './Components/utilisateur/mentions-lega
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Page404Component } from './Components/admin/page404/page404.component';
+import { FilterByLocalitePipe } from './filter-by-localite.pipe';
 
 
 
@@ -42,7 +43,8 @@ import { Page404Component } from './Components/admin/page404/page404.component';
     PolitiqueConfidentialitesComponent,
     ConditionsUtlisationsComponent,
     MentionsLegalesComponent,
-    Page404Component
+    Page404Component,
+    FilterByLocalitePipe
     
     
   ],

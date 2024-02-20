@@ -41,13 +41,44 @@ export class GestionDocteurComponent {
   constructor(private docteurService: DocteurService, private messageService: MessageService) {
   }
 
+    dtOptions: DataTables.Settings = {};
+
   ngOnInit(): void {
     // methode listeer docteur 
     this.getAllDocteur();
+
    
+ 
+
+
+     this.dtOptions = {
+      searching: true,
+      lengthChange: false,
+      paging: true,
+      pageLength: 3,
+      pagingType: 'simple_numbers',
+      info: false,
+      language: {
+        url: 'https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json',
+
+        paginate: {
+          first: '<<', // Personnalise le texte de la flèche pour la première page
+          previous: '<', // Personnalise le texte de la flèche pour la page précédente
+          next: '>', // Personnalise le texte de la flèche pour la page suivante
+          last: '>>', // Personnalise le texte de la flèche pour la dernière page
+        },
+      },
+
+      // drawCallback: function () {
+      //   $('.dataTables_wrapper table').addClass('table-bordered'); // Ajoute une classe pour les bordures horizontales
+      // },
+    };
+  
       
    
-  }
+
+    
+}
 
   
 

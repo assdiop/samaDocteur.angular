@@ -41,7 +41,16 @@
 
                     <div class="mb-3 col-6 ms-3">
                         <label for="region" class="form-label">Region : </label>
-                        <input type="text" name="region_id" class="form-control" id="region" [(ngModel)]="region_id" />
+                        <select name="region_id" id="region_id" [(ngModel)]="region_id">
+                            <option selected>Veuillez selectionner votre Region</option>
+                     
+                    <option value="1">Dakar</option>
+                    <option value="2">Thies</option>
+                    <option value="3">Kaolack</option>
+                    <option value="4">Fatick</option>
+                    <option value="5">Diourbel</option>
+
+                    </select>
                     </div>
                     <p>{{region_id}}</p>
                     
