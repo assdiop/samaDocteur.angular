@@ -39,18 +39,65 @@
                     style="background-color: #007A64;" (click)="addSpecialite()">
                     Ajouter
                 </button>
-                <button type="button" class="btn w-25" data-bs-dismiss="modal" style="
+                <!-- <button type="button" class="btn w-25" data-bs-dismiss="modal" style="
             
             background-color: blue;
             border: thin solid;
           ">
+                    Annuler
+                </button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal pour modifier  -->
+
+
+<div class="modal fade modal-lg" id="ModifierDocteur" tabindex="-1" aria-labelledby="modifierRegion" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-4 fw-semibold text-center w-100" id="detailMentorLabel">
+                    Modifier une Région
+
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+
+                <form action="">
+                    <div class="col-12 d-flex justify-content-between">
+                        <div class="mb-3 col-6">
+                            <label for="nom" class="form-label">Nom:</label>
+                            <input type="text" name="nom_region" class="form-control" id="nom"
+                                [(ngModel)]="nom_specialite" />
+
+                        </div>
+                        <!-- <p>{{nom_region}}</p> -->
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn text-white w-25" data-bs-dismiss="modal"
+                    style="background-color: green" (click)=" updateSpecialite()">
+                    Modifier
+                </button>
+                <button type="button" class="btn w-25" data-bs-dismiss="modal" style="
+            
+            background-color: blue;
+            border: thin solid;
+          " >
                     Annuler
                 </button>
             </div>
         </div>
     </div>
 </div>
-
 
 <table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table" *ngIf="Specialites.length>0">
 
@@ -68,7 +115,7 @@
 
             <td><span id="icon" >
                     <i class="fa-solid fa-marker"  style="color: #007A64;" data-bs-toggle="modal" data-bs-target="#ModifierDocteur"></i><i
-                        class="fa-solid fa-eye "  style="color: #007A64;"></i><i class="fa-solid fa-trash" style="color: #007A64;"></i>
+                        class="fa-solid fa-eye "  style="color: #007A64;"></i><i class="fa-solid fa-trash" style="color: #007A64;"  (click)="supprimerSpecialite(specialite.id)"></i>
                 </span></td>
 
 

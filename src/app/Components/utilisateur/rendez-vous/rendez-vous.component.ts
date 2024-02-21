@@ -11,7 +11,7 @@ import { RendezVousService } from 'src/app/services/rendez-vous.service';
 export class RendezVousComponent {
 
    rendezVousList: RendezVous[] = [];
-  newRendezVous: RendezVous = { id: 0, date: '', time: '', message: '' };
+  newRendezVous: RendezVous = {id: 0, date: '', heure: '', descriptiondubesoin: '', docteur_hopitals_id:0 };
 
   constructor(private rendezVousService: RendezVousService) { }
 
@@ -27,22 +27,23 @@ export class RendezVousComponent {
   addRendezVous(): void {
     this.rendezVousService.addRendezVous(this.newRendezVous)
       .subscribe((respons) => {
-        console.log("voirrrrr",respons);
+        console.log("voirrrrr", respons);
+        
         
         // this.loadRendezVous();
-        this.newRendezVous = { id: 0, date: '', time: '', message: '' }; // Réinitialiser le formulaire
+        this.newRendezVous = { id: 0, date: '', heure: '', descriptiondubesoin: '', docteur_hopitals_id:0 }; // Réinitialiser le formulaire
       });
   }
 
-  updateRendezVous(rendezVous: RendezVous): void {
-    this.rendezVousService.updateRendezVous(rendezVous)
-      // .subscribe(() => this.loadRendezVous());
-  }
+  // updateRendezVous(rendezVous: RendezVous): void {
+  //   this.rendezVousService.updateRendezVous(rendezVous)
+  //     // .subscribe(() => this.loadRendezVous());
+  // }
 
-  deleteRendezVous(id: number): void {
-    this.rendezVousService.deleteRendezVous(id)
-      // .subscribe(() => this.loadRendezVous());
-  }
+  // deleteRendezVous(id: number): void {
+  //   this.rendezVousService.deleteRendezVous(id)
+  //     // .subscribe(() => this.loadRendezVous());
+  // }
 
 }
 

@@ -127,52 +127,7 @@ export class GestionRegionComponent {
   }
   // Méthode pour Modifier Région
 
-  // fonction pour modifier
-  
 
-    
-
-  //      modifierRegion(id:number){
-  //     this.currentRegion.nomRegion = this.nom_region;
-    
-    
-  //     Swal.fire({
-  //      title: 'Êtes-vous sûr?',
-  //     text: 'Vous ne pourrez pas revenir en arrière après cette action!',
-  //       icon: 'warning',
-  //       showCancelButton: true,
-  //       confirmButtonColor: '#017D03',
-  //       cancelButtonColor: '#FF9C00',
-  //       confirmButtonText: 'Oui, modifie!',
-  //     }).then((result) => {
-  //       if (result.isConfirmed) {
-  //         this.hopitalService
-  //           .updateRegion(this.currentRegion,id)
-  //           .subscribe((response) => {
-  //             console.log('je suis response', response);
-  //             this.hopitalService.verifierChamps(
-  //               'modifie!',
-  //               'region modifie avec succès',
-  //               'success'
-  //             );
-  //             window.location.reload();
-  //           });
-  //         this.ngOnInit();
-  //       }
-  //       console.log('je suis region', this.regionSelectionner);
-  //       console.log('je suis data', data);
-  // });
-   
-       
-  //  const data = {
-  //    nom: this.nom_region,
-      
-  //     };
-  //   }
-
-  
-  
-  
   //récupère les données
   // declare id
   id: number = 0;

@@ -98,7 +98,33 @@ export class DocteurService {
   }
 
 
+  // modifier specialite 
+      updateSpecialite(id: number,specialite:any): Observable<any> {
+    const token = localStorage.getItem('token');
+      return token ?
+        this.http.post<any>(`${url}specialite/edit/{specialite}${id}`, specialite, {
+        headers: new HttpHeaders({ 'Authorization': `Bearer ${token}` })
+        }) : of(null);
+      }
+  
+  // lister les specialites 
 
+
+
+
+
+  // Supprimer les Specialites
+
+  
+  
+   supprimerSpecialites(id: number): Observable<any> {
+    const token = localStorage.getItem('token');
+    return token
+      ? this.http.delete<any>(`${url}specialite/` + id, {
+        headers: new HttpHeaders({ Authorization: `Bearer ${token}` }),
+      })
+      : of(null);
+  }
   
   listerUser(): Observable<any> {
     const  token  = localStorage.getItem('token');
@@ -127,7 +153,9 @@ export class DocteurService {
   
     getTotalDocteur(): Observable<number> {
     return this.http.get<number>(`${url}totaldocteur`);
-  }
+    }
+  
+  
 }
 
 

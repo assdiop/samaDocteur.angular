@@ -16,8 +16,8 @@ export class RendezVousService {
 
 
 
-  getAllRendezVous(): Observable<RendezVous[]> {
-    return this.http.get<RendezVous[]>(`${url}`);
+  getAllRendezVous(): Observable<any[]> {
+    return this.http.get<any[]>(`${url}rdv`);
   }
 
   // addRendezVous(rendezVous: RendezVous): Observable<RendezVous> {
@@ -36,13 +36,13 @@ export class RendezVousService {
   }
 
 
-  updateRendezVous(rendezVous: RendezVous): Observable<RendezVous> {
-    // const url = `${url}/${rendezVous.id}`;
-    return this.http.put<RendezVous>(`${url}`, rendezVous);
-  }
+  // updateRendezVous(rendezVous: RendezVous): Observable<RendezVous> {
+  //   // const url = `${url}/${rendezVous.id}`;
+  //   return this.http.put<RendezVous>(`${url}`, rendezVous);
+  // }
 
-  deleteRendezVous(id: number): Observable<void> {
-    // const url = `${`${url}`}/${id}`;
-    return this.http.delete<void>(url);
-  }
+  // deleteRendezVous(id: number): Observable<void> {
+  //   // const url = `${`${url}`}/${id}`;
+  //   return this.http.delete<void>(url);
+  // }
 }

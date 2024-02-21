@@ -64,7 +64,7 @@ export class GestionSpecialiteComponent {
     } else {
       this.docteurService.addSpecialite(data).subscribe((repose) => {
         console.log("voir Specilaiter", repose);
-         this.getAllSpecialites()
+        this.getAllSpecialites();
       })
     }
  
@@ -90,21 +90,37 @@ export class GestionSpecialiteComponent {
 
 
   
+   id: number = 0;
+ 
+  chargerInfosRegion(Specialites: any) {
+    console.log(Specialites);
+    this.id = Specialites.id;
+    console.warn('voir l id recuperer ', this.id);
+    this.nom_specialite = Specialites.nom_specialite;
+    console.log('changer', this.chargerInfosRegion);
+    this.getAllSpecialites();
 
-// Méthode pour charger les donnés du formulaire 
-    // chargerInfosTest(region: any) {
-    // this.regionSelectionner = region.id;
-    // console.log('esxrcdftygu', this.regionSelectionner);
-    // this.nom_region = region.nom_region;
+  }
+
    
-    // }
-  
-  
-    // Methode pour vider les champs 
-  // viderChapmsRegion(){
-  //   this.nom_region = ""
-   
-  // }
+  updateSpecialite() {
+    let data = {
+      nom_region:this.nom_specialite
+      
+    }
+  //  this.currentRegion.nomRegion = this.nom_region;
+    this.docteurService.updateSpecialite(this.regionSelectionner, data)
+      .subscribe(response => {
+        console.log('Region mise à jour avec succès:', response);
+        // Rafraîchissez la liste des régions ou effectuez d'autres actions nécessaires après la mise à jour
+      }, error => {
+        console.error('Erreur lors de la mise à jour de la région:', error);
+      });
+    this.getAllSpecialites();
+  }
+
+
+
   // Methode pour veirfier champs 
 
     verifierChamps(title:any, text:any, icon:any) {
@@ -117,7 +133,7 @@ export class GestionSpecialiteComponent {
   
   
   
-  supprimerDocteur(id: number) {
+  supprimerSpecialite(id: number) {
     Swal.fire({
       title: 'Êtes-vous sûr?',
       text: 'Vous ne pourrez pas revenir en arrière après cette action!',
@@ -128,7 +144,7 @@ export class GestionSpecialiteComponent {
       confirmButtonText: 'Oui, supprimer!',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.docteurService.supprimerDocteur(id).subscribe(() => {
+        this.docteurService.supprimerSpecialites(id).subscribe(() => {
           this.docteurService.verifierChamp(
             'Supprimé!',
             'annonce supprimé avec succès',

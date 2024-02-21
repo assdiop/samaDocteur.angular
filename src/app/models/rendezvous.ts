@@ -1,6 +1,7 @@
 export interface RendezVous {
   id: number;
   date: string;
-  time: string;
-  message: string;
+  heure: string;
+  descriptiondubesoin: string;
+  docteur_hopitals_id: number;
 }

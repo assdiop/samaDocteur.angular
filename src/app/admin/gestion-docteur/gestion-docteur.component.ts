@@ -45,13 +45,10 @@ export class GestionDocteurComponent {
 
   ngOnInit(): void {
     // methode listeer docteur 
+    this.addDocteur();
     this.getAllDocteur();
-
-   
- 
-
-
-     this.dtOptions = {
+    // proprietes datatables 
+      this.dtOptions = {
       searching: true,
       lengthChange: false,
       paging: true,
@@ -108,8 +105,9 @@ export class GestionDocteurComponent {
     this.docteurService.addDocteur(newDocteur).subscribe(
       (response) => {
         console.log('Docteur ajouté avec succès.', response);
-        this.getAllDocteur() 
+       
         this.alertMessage('success', 'Cool', 'Docteur ajouté avec succès');
+         this.getAllDocteur();
 
       },
       (error) => {
@@ -141,7 +139,7 @@ export class GestionDocteurComponent {
       (Docteurs) => {
         // Afficher la liste des annonces
         console.log(Docteurs);
-        this.Docteurs = Docteurs.liste_docteur;
+        this.Docteurs = Docteurs.listedocteur;
 
         console.log(this.Docteurs);
       },

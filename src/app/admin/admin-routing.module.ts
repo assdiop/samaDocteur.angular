@@ -13,19 +13,19 @@ import { GestionSpecialiteComponent } from './gestion-specialite/gestion-special
 import { GestionHopitalComponent } from './gestion-hopital/gestion-hopital.component';
 
 import { authGuard } from '../auth.guard';
+import { GestiondocteurhopitalComponent } from './gestiondocteurhopital/gestiondocteurhopital.component';
 
 const routes: Routes = [
   {
     path: '', component: AdminMainComponent, children: [
-      { path: 'accueilAdmin', component: AccueilAdminComponent },
-      // , canActivate: [authGuard]
+      { path: 'accueilAdmin', component: AccueilAdminComponent ,canActivate: [authGuard]},
+      
       { path: 'gestiondocteur', component: GestionDocteurComponent },
       { path: 'gestionpatients', component: GestionPatientsComponent },
       { path: 'gestionhopital', component: GestionHopitalComponent },
-     
+      { path: 'gestiondochopital', component: GestiondocteurhopitalComponent },
 
-      
-      
+   
       // { path: 'gestionhopitaux', component: GestionHopitauxComponent },
       { path: 'gestioncomptes', component: GestionComptesComponent },
       { path: 'gestioncommentaire', component: GestionCommentairesComponent },

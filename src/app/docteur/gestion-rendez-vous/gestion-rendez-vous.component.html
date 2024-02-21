@@ -1,1 +1,33 @@
-<p>gestion-rendez-vous works!</p>
+<table>
+
+    <thead>
+        <tr style="background-color: #007A64;color: #fff;">
+            <th class="tHead">ID</th>
+            <th class="tHead">Nom_Region</th>
+            <th class="tHead">Action</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let rendevous of rdv">
+        <tr>
+            <td>{{rendevous.id}} </td>
+            <td>{{rendezvous.status}}</td>
+            <td>{{rendezvous.date}}</td>
+            <td>{{rendezvous.heure}}</td>
+            <td>{{rendezvous.descriptiondubesoin}}</td>
+
+
+
+
+            <td><span id="icon">
+                    <!-- <p data-bs-toggle="modal" data-bs-target="#ModifierDocteur" (click)="chargerInfosTest(region)">
+                        modifier</p><i class="fa-solid fa-eye"></i><i class="fa-solid fa-trash"></i> -->
+                </span></td>
+
+
+        </tr>
+
+
+
+
+    </tbody>
+</table>

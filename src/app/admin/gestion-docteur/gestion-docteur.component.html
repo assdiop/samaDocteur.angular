@@ -3,7 +3,7 @@
   
 
 <!-- Modal ajouter -->
-<div class="modal fade modal-lg" id="ajouterDocteur" tabindex="-1" aria-labelledby="modifierMentor" aria-hidden="true">
+<div class="modal fade modal-xl" id="ajouterDocteur" tabindex="-1" aria-labelledby="modifierMentor" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -19,17 +19,11 @@
 
             </div>
             <div class="modal-footer d-flex justify-content-center">
-                <button type="button" class="btn text-white w-25" data-bs-dismiss="modal"
+                <button type="button" class="btn text-white w-25 text-center" data-bs-dismiss="modal"
                     style="background-color: green" (click)="addDocteur()">
-                    Ajouter
+                    Ajouter 
                 </button>
-                <button type="button" class="btn w-25" data-bs-dismiss="modal" style="
-            
-            background-color: blue;
-            border: thin solid;
-          ">
-                    Annuler
-                </button>
+                <!--   -->
             </div>
         </div>
     </div>
@@ -38,7 +32,7 @@
 
 <!-- Button trigger modal -->
 <div class="buttonAjouter mt-2 mb-3">
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #007A64;">
+<button type="button" class="btn btn-primary text-center" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #007A64;">
 Ajouter 
 </button>
 </div>
@@ -77,7 +71,7 @@ Ajouter
                             <input type="number" name="age" class="form-control" id="age" [(ngModel)]="ageDocteur" />
                         </div>
                 
-                        <p>{{ageDocteur}}</p>
+                     
                 
                 
                         <div class="mb-3 col-6 ms-3">
@@ -86,7 +80,6 @@ Ajouter
                                 <option selected>Veuillez selectioner votre sexe</option>
                                 <option value="homme">homme</option>
                                 <option value="femme">femme</option>
-                                <p>{{sexeDocteur}}</p>
                 
                             </select>
                         </div>
@@ -99,7 +92,7 @@ Ajouter
                             <input type="tel" name="telephone" class="form-control" id="telephone" [(ngModel)]="telephoneDocteur" />
                         </div>
                         <p>{{telephoneDocteur}}</p>
-                        <div class="mb-3 col-6 ms-3">
+                        <div class="mb-3 col-6 ms-0">
                             <label for="role" class="form-label">role : </label>
                             <select class="form-select" aria-label="Default select example" name="role_id" [(ngModel)]="roleDocteur"> 
                                 <option selected>Veuillez selectionner votre statut</option>
@@ -108,7 +101,7 @@ Ajouter
                                 <option value="3">Docteurs</option>
                 
                             </select>
-                            <p>{{roleDocteur}}</p>
+                          
                         </div>
                     </div>
                 
@@ -117,14 +110,13 @@ Ajouter
                             <label for="emailInput" class="form-label">Adresse email:</label>
                             <input type="email" name="email" class="form-control" id="email" [(ngModel)]="emailDocteur" />
                         </div>
-                        <!-- <p>{{emailDocteur}}</p> -->
+              
                         <div class="mb-3 col-6 ms-3">
                             <label for="password" class="form-label">Mot de passe :
                             </label>
                             <input type="password" name="password" class="form-control" id="password" [(ngModel)]="passwordDocteur" />
                         </div>
-                        <!-- <p>{{passwordDocteur}}</p> -->
-                
+                      
                     </div>
                 
                     <div class="col-12 d-flex justify-content-between">
@@ -134,14 +126,14 @@ Ajouter
                             </label>
                             <input type="text" name="adresse" class="form-control" id="adresse" [(ngModel)]="adresseDocteur" />
                         </div>
-                        <p>{{adresseDocteur}}</p>
+                     
                         <div class="mb-3 col-6 ms-3">
                             <label for="photo_profil" class="form-label" name="photo_profil">Photo_profil:</label>
                 
                             <input (change)="getFile($event)" class="form-control" type="file" id="photo_profil" name="photo_profil"
                                 accept="photo_profil/*">
                         </div>
-                        <p>{{photo_profilDocteur}}</p>
+                        
                     </div>
                     <div class="col-12 d-flex justify-content-between">
                         <div class="mb-3 col-6">
@@ -149,12 +141,12 @@ Ajouter
                             <input type="number" name="nom" class="form-control" id="nom" [(ngModel)]="numero_licenceDocteur" />
                 
                         </div>
-                        <p>{{numero_licenceDocteur}}</p>
+                       
                         <div class="mb-3 col-6 ms-3">
                             <label for="prenom" class="form-label">Année Experience : </label>
                             <input type="text" name="prenom" class="form-control" id="prenom" [(ngModel)]="nombre_annee_experienceDocteur" />
                         </div>
-                        <p>{{nombre_annee_experienceDocteur}}</p>
+                    
                 
                     </div>
                 
@@ -164,8 +156,8 @@ Ajouter
                             <input (change)="getFile($event)" class="form-control" type="file" id="diplome" name="diplomeDocteur"
                                 accept="diplome/*">
                         </div>
-                        <p>{{diplomeDocteur}}</p>
-                        <div class="mb-3 col-6 ms-3">
+                       
+                        <div class="mb-2 col-6 ">
                             <label for="role" class="form-label">specialite : </label>
                             <select class="form-select" aria-label="Default select example" name="specialite_id"
                                 [(ngModel)]="specialite_id">
@@ -177,24 +169,18 @@ Ajouter
                 
                 
                             </select>
-                            <p>{{specialite_id}}</p>
+                           
                         </div>
                     </div>
                    
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn text-white w-25" data-bs-dismiss="modal" style="background-color: green"
+                <button type="button" class="btn text-white w-25 mx-auto" data-bs-dismiss="modal" style="background-color: green"
                     (click)="addDocteur()">
                     Ajouter
                 </button>
-                <button type="button" class="btn w-25" data-bs-dismiss="modal" style="
-                            
-                            background-color: blue;
-                            border: thin solid;
-                          ">
-                    Annuler
-                </button>
+              
             </div>
         </div>
     </div>
@@ -202,33 +188,27 @@ Ajouter
 
 
 
+ 
 
-
-<table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table">
-    <thead class="bg-light" >
+<table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table" *ngIf="Docteurs.length>0">
+    <thead>
         <tr style="background-color: #007A64; color:#fff">
-            <th>Id</th>
-            <th>nom </th>
-            <th>prenom</th>
-             <th>Année Expérience</th>
-            <th>specialités</th>
-
-            <th>Actions</th>
+            <th class="tHead">Id</th>
+            <th class="tHead">nom </th>
+            <th class="tHead">prenom</th>
+             <th class="tHead">Année Expérience</th>
+            <th class="tHead">specialités</th>
+            <th class="tHead">Actions</th>
         </tr>
     </thead>
     <tbody>
-        <tr  *ngFor="let docteur of Docteurs; let index=index">
+        <tr *ngFor="let docteur of Docteurs">
             <td>
-                <!-- <div class="d-flex align-items-center">
-                    <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px"
-                        class="rounded-circle" />
-                  
-                </div> -->
-                {{index+1}}
+              {{docteur.id}}
             </td>
             <td>
             
-                <p class="text-muted mb-0">{{docteur.nom}}</p>
+               {{docteur.nom}}
             </td>
             <td>
                 <div class="ms-3">
@@ -243,8 +223,8 @@ Ajouter
             <td>{{docteur.specialite}}</td>
 
         
-
-        <i class="fa-solid fa-trash" style="color: #007A64;" (click)="supprimerDocteur(docteur.id)"></i>
+ 
+       <td> <i class="fa-solid fa-trash" style="color: #007A64;" (click)="supprimerDocteur(docteur.id)"></i></td>
  
                 
         
