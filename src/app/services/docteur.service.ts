@@ -102,7 +102,7 @@ export class DocteurService {
       updateSpecialite(id: number,specialite:any): Observable<any> {
     const token = localStorage.getItem('token');
       return token ?
-        this.http.post<any>(`${url}specialite/edit/{specialite}${id}`, specialite, {
+        this.http.post<any>(`${url}specialite/edit/${id}`, specialite, {
         headers: new HttpHeaders({ 'Authorization': `Bearer ${token}` })
         }) : of(null);
       }

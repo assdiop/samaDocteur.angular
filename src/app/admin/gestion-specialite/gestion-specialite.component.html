@@ -60,7 +60,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-4 fw-semibold text-center w-100" id="detailMentorLabel">
-                    Modifier une Région
+                    Modifier une Spécialité
 
                 </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -73,7 +73,7 @@
                     <div class="col-12 d-flex justify-content-between">
                         <div class="mb-3 col-6">
                             <label for="nom" class="form-label">Nom:</label>
-                            <input type="text" name="nom_region" class="form-control" id="nom"
+                            <input type="text" name="nom_specialite" class="form-control" id="nom"
                                 [(ngModel)]="nom_specialite" />
 
                         </div>
@@ -114,7 +114,7 @@
             <td>{{specialite.nom_specialite}}</td>
 
             <td><span id="icon" >
-                    <i class="fa-solid fa-marker"  style="color: #007A64;" data-bs-toggle="modal" data-bs-target="#ModifierDocteur"></i><i
+                    <i class="fa-solid fa-marker"  style="color: #007A64;" data-bs-toggle="modal" data-bs-target="#ModifierDocteur" (click)="chargerInfosSpecialite(specialite)"></i><i
                         class="fa-solid fa-eye "  style="color: #007A64;"></i><i class="fa-solid fa-trash" style="color: #007A64;"  (click)="supprimerSpecialite(specialite.id)"></i>
                 </span></td>
 

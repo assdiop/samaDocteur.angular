@@ -12,8 +12,9 @@ export class GestionSpecialiteComponent {
 
   nom_specialite = "";
   Specialites: any;
+   currentSpecialite: any = {};
  
-  regionSelectionner:any
+    specialiteSelectionner:any
   constructor(private docteurService :DocteurService) {
    
   }
@@ -90,26 +91,37 @@ export class GestionSpecialiteComponent {
 
 
   
-   id: number = 0;
  
-  chargerInfosRegion(Specialites: any) {
-    console.log(Specialites);
-    this.id = Specialites.id;
-    console.warn('voir l id recuperer ', this.id);
-    this.nom_specialite = Specialites.nom_specialite;
-    console.log('changer', this.chargerInfosRegion);
-    this.getAllSpecialites();
+  // chargerInfosSpecialite(Specialites: any) {
+  //   console.log(Specialites);
+  //   this.specialiteSelectionner = Specialites.id;
+  //   console.warn('voir l id recuperer ', this.specialiteSelectionner);
+  //   this.nom_specialite = Specialites.nom_specialite;
+  //   console.log('changer', this.chargerInfosSpecialite);
+  //   // this.getAllSpecialites();
 
-  }
+  // }
 
+  
+   id:number = 0;
+
+   // Méthode pour charger les donnés du formulaire 
+  chargerInfosSpecialite(specialite: any) {
+    this.specialiteSelectionner =specialite.id;
+    console.log('esxrcdftygu', this.specialiteSelectionner);
+    this.nom_specialite = specialite.nom_specialite;
+
+    
    
+  }
+  
   updateSpecialite() {
     let data = {
-      nom_region:this.nom_specialite
+    nom_specialite:this.nom_specialite
       
     }
   //  this.currentRegion.nomRegion = this.nom_region;
-    this.docteurService.updateSpecialite(this.regionSelectionner, data)
+    this.docteurService.updateSpecialite(this.specialiteSelectionner, data)
       .subscribe(response => {
         console.log('Region mise à jour avec succès:', response);
         // Rafraîchissez la liste des régions ou effectuez d'autres actions nécessaires après la mise à jour

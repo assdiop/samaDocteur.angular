@@ -132,15 +132,15 @@ export class GestionRegionComponent {
   // declare id
   id: number = 0;
  
-  chargerInfosRegion(Region: any) {
-    console.log(Region);
-    this.id = Region.id;
-    console.warn('voir l id recuperer ', this.id);
-    this.nom_region = Region.nom_region;
-    console.log('changer', this.chargerInfosRegion);
-    this.getAllRegions();
+  // chargerInfosRegion(Region: any) {
+  //   console.log(Region);
+  //   this.id = Region.id;
+  //   console.warn('voir l id recuperer ', this.id);
+  //   this.nom_region = Region.nom_region;
+  //   console.log('changer', this.chargerInfosRegion);
+  //   this.getAllRegions();
 
-  }
+  // }
 
    
   updateRegion() {
