@@ -76,6 +76,45 @@
     <div class="container">
         <div class="row">
 
+            <!-- modal detail hopital -->
+
+          
+            
+            <!-- Modal -->
+            <div class="modal fade" id="detailHopital" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Détail Hopital </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                            <div class="col-4 text-center">
+                                <p > Hopital Principal </p>
+                            </div>
+                            <div class="col-4 text-center">
+                                <p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam ad ducimus ipsam
+                                    blanditiis pariatur quas hic sapiente corrupti beatae, necessitatibus magnam, aliquid aspernatur libero mollitia
+                                    iure molestiae amet repellendus officia.</p>
+                            </div>
+                          
+                          
+                            
+                            <!-- <img src="https://img.freepik.com/photos-gratuite/medecin-afro-americain-analysant-scan
+                            -aux-rayons-x-pour-diagnostic_482257-8992.jpg?size=626&ext=jpg&ga=GA1.1.869340897.1689281166&semt=ais" alt="" class=" col-4 img-fluid">
+                             -->
+                        </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Understood</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
   
             <div class="col-lg-4 col-md-6 col-sm-6" *ngFor="let hopital of Hopitaux | filterByLocalite: selectedLocaliteId">
                 <div class="service-block mb-5 mb-lg-0">
@@ -83,6 +122,7 @@
                     <div class="content">
                         <h4 class="mt-4 mb-2 title-color">{{hopital.nom_hopitaux}}</h4>
                         <p class="mb-4">{{hopital.description}}</p>
+                        <i class="fa-solid fa-eye"  data-bs-toggle="modal" data-bs-target="#detailHopital"></i>
                     </div>
                 </div>
             </div>

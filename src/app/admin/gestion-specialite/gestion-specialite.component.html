@@ -12,7 +12,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-4 fw-semibold text-center w-100" id="detailMentorLabel">
-                    Ajouter une region
+                    Ajouter une Spécialité
 
                 </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -89,7 +89,7 @@
                 </button>
                 <button type="button" class="btn w-25" data-bs-dismiss="modal" style="
             
-            background-color: blue;
+            background-color: blue;color:#fff;
             border: thin solid;
           " >
                     Annuler
@@ -108,8 +108,8 @@
             <th class="tHead">Action</th>
         </tr>
     </thead>
-    <tbody *ngFor="let specialite of Specialites">
-        <tr>
+    <tbody >
+        <tr *ngFor="let specialite of Specialites">
             <td>{{specialite.id}} </td>
             <td>{{specialite.nom_specialite}}</td>
 

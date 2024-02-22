@@ -106,7 +106,7 @@
                 </button>
                 <button type="button" class="btn w-25" data-bs-dismiss="modal" style="
                     
-                    background-color: blue;
+                    background-color: blue;color:#fff;
                     border: thin solid;
                   ">
                     Annuler
@@ -215,7 +215,7 @@
                 </button>
                 <button type="button" class="btn w-25" data-bs-dismiss="modal" style="
                     
-                    background-color: blue;
+                   background-color: blue;color:#fff;
                     border: thin solid;
                   ">
                     Annuler
@@ -254,7 +254,7 @@
             <td><span id="icon">
 
 
-                    <i class="fa-solid fa-marker" style="color: #007A64;" data-bs-toggle="modal" data-bs-target="#modifierHopital"  style="cursor: pointer;" (click)="chargerInfosHopital(hopital)"></i> &acute;<i class="fa-solid fa-trash"
+                    <i class="fa-solid fa-marker" style="color: #007A64;" data-bs-toggle="modal" data-bs-target="#modifierHopital"  style="cursor: pointer;" style="color: #007A64;" (click)="chargerInfosHopital(hopital)"></i> &acute;<i class="fa-solid fa-trash"
                         (click)="supprimerHopitaux(hopital.id)" style="color: #007A64;"></i></span>
             </td>
             <!-- 
@@ -268,77 +268,3 @@
 </table>
 
 
-
-<!-- Modal pour modifier  -->
-
-<!-- <div class="modal fade modal-lg" id="ModifierDocteur" tabindex="-1" aria-labelledby="modifierRegion" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-4 fw-semibold text-center w-100" id="detailMentorLabel">
-                    Modifier une Région
-
-                </h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-
-
-                <form action="">
-                    <div class="col-12 d-flex justify-content-between">
-                        <div class="mb-3 col-6">
-                            <label for="nom" class="form-label">Nom:</label>
-                            <input type="text" name="nom_region" class="form-control" id="nom"
-                                [(ngModel)]="nom_region" />
-
-                        </div>
-                        <p>{{nom_region}}</p>
-
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button type="button" class="btn text-white w-25" data-bs-dismiss="modal"
-                    style="background-color: green" (click)="modifierRegion(1)">
-                    Modifier
-                </button>
-                <button type="button" class="btn w-25" data-bs-dismiss="modal" style="
-            
-            background-color: blue;
-            border: thin solid;
-          ">
-                    Annuler
-                </button>
-            </div>
-        </div>
-    </div>
-</div> -->
-<!-- <table class="table align-middle mb-0 bg-white">
-    <thead class="bg-light">
-        <tr>
-            <th>Id</th>
-            <th>nom_region </th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody *ngFor="let region of Regions; let index=index">
-        <tr >
-            <td>
-                {{index+1}}
-            </td>
-            <td>
-                <p class="text-muted mb-0">{{region.nom_region}}</p>
-            </td>
-
-
-            <td>
-                 <button type="button" class="btn btn-link btn-sm btn-rounded" (click)="supprimerDocteur(docteur.id)">
-                                        Supprimer
-                                    </button> -->
-
-<!-- </td> -->
-<!-- </tr> -->
-
-<!-- </tbody>
-</table> -->

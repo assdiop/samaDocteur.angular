@@ -205,10 +205,10 @@ export class HopitalService {
 
   // Update hopital 
     
-    updateHopital(id: number, hopital:any): Observable<any> {
+    updateHopital(id: number, Hopitaux:any): Observable<any> {
     const token = localStorage.getItem('token');
       return token ?
-        this.http.post<any>(`${url}Hopital/edit/${id}`, hopital, {
+        this.http.post<any>(`${url}Hopital/edit/${id}`, Hopitaux, {
         headers: new HttpHeaders({ 'Authorization': `Bearer ${token}` })
       }) : of(null);}
 

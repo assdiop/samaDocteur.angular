@@ -33,7 +33,7 @@ export class GestionSpecialiteComponent {
       searching: true,
       lengthChange: false,
       paging: true,
-      pageLength: 3,
+      pageLength: 8,
       pagingType: 'simple_numbers',
       info: false,
       language: {
@@ -154,16 +154,21 @@ export class GestionSpecialiteComponent {
       confirmButtonColor: '#017D03',
       cancelButtonColor: '#FF9C00',
       confirmButtonText: 'Oui, supprimer!',
+      // timer: 2000, // Durée en millisecondes avant la disparition
+      // timerProgressBar: true, // Barre de progression de la temporisation
     }).then((result) => {
       if (result.isConfirmed) {
-        this.docteurService.supprimerSpecialites(id).subscribe(() => {
+        this.docteurService.supprimerSpecialites(id).subscribe((response) => {
+          console.log(response);
           this.docteurService.verifierChamp(
             'Supprimé!',
-            'annonce supprimé avec succès',
+            'specialite supprimé avec succès',
             'success'
           );
           // this.loadProduit();
-          this.ngOnInit(); // Actualise la page
+          // this.ngOnInit(); // Actualise la page
+
+           this.getAllSpecialites();
         });
       }
     });

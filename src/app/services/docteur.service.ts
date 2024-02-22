@@ -15,7 +15,7 @@ export class DocteurService {
   constructor(private http: HttpClient) { }
 
 
-  //   getAllMentors(): Observable<Docteur[]> {
+ 
   //     return this.http.get<Docteur[]>(`${url}/registerdocteur`);
   //   console.log(Docteur);
   // }
@@ -40,6 +40,7 @@ export class DocteurService {
       icon: icon,
     });
   }
+  // Méthode pour Ajouter Docteur 
     addDocteur(newDocteur: any): Observable<any[]> {
     let headers = new HttpHeaders();
     const token = localStorage.getItem('token');
@@ -52,7 +53,7 @@ export class DocteurService {
   }
     // Méthode pour Supprimer les docteur 
 
-  supprimerDocteur(id: number): Observable<any> {
+  supprimerDocteur(id:number): Observable<any> {
     const token= localStorage.getItem('token');
     return token
       ? this.http.delete<any>(`${url}docteur/archive/` + id, {
@@ -113,18 +114,7 @@ export class DocteurService {
 
 
 
-  // Supprimer les Specialites
 
-  
-  
-   supprimerSpecialites(id: number): Observable<any> {
-    const token = localStorage.getItem('token');
-    return token
-      ? this.http.delete<any>(`${url}specialite/` + id, {
-        headers: new HttpHeaders({ Authorization: `Bearer ${token}` }),
-      })
-      : of(null);
-  }
   
   listerUser(): Observable<any> {
     const  token  = localStorage.getItem('token');
@@ -155,6 +145,19 @@ export class DocteurService {
     return this.http.get<number>(`${url}totaldocteur`);
     }
   
+  
+    // Supprimer les Specialites
+
+  
+  
+   supprimerSpecialites(id: number): Observable<any> {
+    const token = localStorage.getItem('token');
+    return token
+      ? this.http.delete<any>(`${url}specialite/` + id, {
+        headers: new HttpHeaders({ Authorization: `Bearer ${token}` }),
+      })
+      : of(null);
+  }
   
 }
 

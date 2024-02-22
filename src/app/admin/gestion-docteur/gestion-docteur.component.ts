@@ -12,9 +12,9 @@ import Swal from 'sweetalert2';
 
 })
 export class GestionDocteurComponent {
-  Docteurs: any;
   
-  docteurSelectionner: any = {
+Docteurs: any[] = [];
+docteurSelectionner: any = {
     
   };
   prenomDocteur = ""
@@ -45,14 +45,15 @@ export class GestionDocteurComponent {
 
   ngOnInit(): void {
     // methode listeer docteur 
-    this.addDocteur();
+    // this.addDocteur();
     this.getAllDocteur();
+    // this.supprimerDocteur(id);
     // proprietes datatables 
       this.dtOptions = {
       searching: true,
       lengthChange: false,
       paging: true,
-      pageLength: 3,
+      pageLength: 8,
       pagingType: 'simple_numbers',
       info: false,
       language: {
@@ -81,7 +82,7 @@ export class GestionDocteurComponent {
 
   addDocteur() {
     if (!this.nomDocteur || !this.numero_licenceDocteur || !this.specialite_id) {
-      this.alertMessage('error', 'Oops', 'Veuillez remplir tous les champs obligatoires.');
+      // this.alertMessage('error', 'Oops', 'Veuillez remplir tous les champs obligatoires.');
       return;
     }
 
@@ -106,12 +107,12 @@ export class GestionDocteurComponent {
       (response) => {
         console.log('Docteur ajouté avec succès.', response);
        
-        this.alertMessage('success', 'Cool', 'Docteur ajouté avec succès');
-         this.getAllDocteur();
+        // // this.alertMessage('success', 'Cool', 'Docteur ajouté avec succès');
+        //  this.getAllDocteur();
 
       },
       (error) => {
-        this.alertMessage('error', 'Oops', "Erreur lors de l'ajout du docteur");
+        // this.alertMessage('error', 'Oops', "Erreur lors de l'ajout du docteur");
         console.error("Une erreur s'est produite lors de l'ajout du docteur: ", error);
       }
     );
@@ -120,17 +121,65 @@ export class GestionDocteurComponent {
   }
 
   
-  
+
   //  charger les donnees 
-  // chargerInfosTest(docteur: any) {
-  //   this.docteurSelectionner = docteur.id;
-  //   console.log('esxrcdftygu', this.docteurSelectionner);
-  //   this.specialite_id = docteur.specialite_id;
-  //   this.diplomeDocteur = docteur.diplomeDocteur;
-  //   this.annee_experience = docteur.annee_experience;
-  //   // this.image = docteur.image;
-  // }
+  chargerInfosTest(docteur: any) {
+    this.docteurSelectionner = docteur.id;
+    console.log('esxrcdftygu', this.docteurSelectionner);
   
+    this.nomDocteur = docteur.nom;
+    this.prenomDocteur = docteur.prenom;
+    this.ageDocteur = docteur.age;
+    this.sexeDocteur = docteur.sexe;
+    this.diplomeDocteur = docteur.diplomeDocteur;
+    this.telephoneDocteur = docteur.telephone;
+    this.roleDocteur = docteur.role_id;  // à enlever 
+    this.emailDocteur = docteur.email;
+    this.passwordDocteur = docteur.password;
+    this.adresseDocteur = docteur.adresse;
+    this.photo_profilDocteur = docteur.photoProfil;
+    this.numero_licenceDocteur = docteur.numero_licence;
+    this.nombre_annee_experienceDocteur = docteur.annee_experience;
+    this.diplomeDocteur = docteur.diplome;
+    this.specialite_id = docteur.specialite;
+  
+  
+   
+    
+console.log("verifier si les donnees sont chrages :",this.chargerInfosTest);
+    // this.image = docteur.image;
+  }
+  
+
+  // Méthode pour modifier un Docteur 
+  //  updateDocteur() {
+  //   let formData = new FormData();
+  //   formData.append('nom_hopital', this.nom_hopitaux);
+  //   formData.append('description', this.descriptionHopitaux);
+  //   formData.append('longitude', this.longitudeHopitaux);
+  //   formData.append('lattitude', this.lattitudeHopitaux);
+  //   formData.append('horaire', this.horaireHopitaux);
+  //   formData.append('image', this.image);
+  //   formData.append('localite_id', this.localite_idHopitaux);
+
+
+  
+  //   this.hopitalService.updateHopital(this.id, formData).subscribe(response => {
+  //     console.log('modifHopital', response);
+  
+  //     // this.listerDesProduits();
+  //   }, error => {
+  //       console.error('Erreur lors de la mise à jour de l hopital:', error);
+  //     });
+      
+  //   this.getAllHospitals();
+  //   //  this.currentRegion.nomRegion = this.nom_region;
+    
+  
+  
+
+  // }   
+
 
   // Méthode pour lister les docteurs
   getAllDocteur() {
@@ -141,11 +190,14 @@ export class GestionDocteurComponent {
         console.log(Docteurs);
         this.Docteurs = Docteurs.listedocteur;
 
-        console.log(this.Docteurs);
+        console.log("la liste des docteurs:", this.Docteurs);
+        // const identifiantDocteurs = Docteurs.listedocteur.nom;
+        // console.log("les identifinants du docteur:",identifiantDocteurs);
       },
 
       (error) => {
         // Traiter l'erreur de liste
+        console.log(error);
       }
     );
   }
@@ -172,59 +224,38 @@ alertMessage(icon: any, title: any, text: any) {
 }
 
 
-  // methode pour supprimer 
-
-  // supprimerDocteur(id: number) {
-  //   Swal.fire({
-  //     title: 'Êtes-vous sûr?',
-  //     text: 'Vous ne pourrez pas revenir en arrière après cette action!',
-  //     icon: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonColor: '#017D03',
-  //     cancelButtonColor: '#FF9C00',
-  //     confirmButtonText: 'Oui, supprimer!',
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       this.docteurService.supprimerDocteur(id).subscribe(() => {
-  //         this.docteurService.verifierChamp(
-  //           'Supprimé!',
-  //           'annonce supprimé avec succès',
-  //           'success'
-  //         );
-  //         // this.loadProduit();
-  //         this.ngOnInit(); // Actualise la page
-  //       });
-  //     }
-  //   });
-  // }
 
 
-
-     supprimerDocteur(id: number) {
+   supprimerDocteur(id:number) {
     Swal.fire({
       title: 'Êtes-vous sûr?',
       text: 'Vous ne pourrez pas revenir en arrière après cette action!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#007A64',
+      confirmButtonColor: '#017D03',
       cancelButtonColor: '#FF9C00',
       confirmButtonText: 'Oui, supprimer!',
+      // timer: 2000, // Durée en millisecondes avant la disparition
+      // timerProgressBar: true, // Barre de progression de la temporisation
     }).then((result) => {
       if (result.isConfirmed) {
-        this.docteurService.supprimerDocteur(id).subscribe(() => {
-          console.log(id);
+        this.docteurService.supprimerDocteur(id).subscribe((response) => {
+          console.log(response);
           this.docteurService.verifierChamp(
             'Supprimé!',
-            'annonce supprimé avec succès',
+            'docteur supprimé avec succès',
             'success'
           );
-          
-          this.ngOnInit(); // Actualise la page
+          // this.loadProduit();
+          // this.ngOnInit(); // Actualise la page
+
+          //  this.getAllSpecialites();
+          // this.getAllDocteur();
+          this.getAllDocteur(); 
         });
       }
     });
   }
-
 
 
 }

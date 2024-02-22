@@ -32,8 +32,7 @@ export class GestionHopitalComponent {
 
     this.getAllHospitals();
     this.updateHopitals();
-    //  this.addRegion() 
-    //  this.getAllRegions();
+   
 // dtoptions
     this.dtOptions = {
       searching: true,
@@ -167,7 +166,7 @@ export class GestionHopitalComponent {
  
   chargerInfosHopital(hopital: any) {
     console.log(hopital);
-    // this.id = hopital.id;
+    this.id = hopital.id;
     console.warn('lid de l hopital ', this.id);
     this.nom_hopitaux = hopital.nom_hopital;
     this.descriptionHopitaux = hopital.description;
@@ -271,8 +270,4 @@ export class GestionHopitalComponent {
 
 
 
-// Modifier Hopital 
 
-
-//récupère les données
-  // declare id

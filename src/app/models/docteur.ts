@@ -9,7 +9,7 @@ export class Docteur {
     email!: string;
     password!: string;
     adresse!: string;
-   telephone!: string;
+    telephone!: string;
     annee_experience!: string;
     sexe!: string ;
     photo_profil: any;

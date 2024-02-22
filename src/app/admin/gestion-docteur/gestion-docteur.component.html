@@ -91,7 +91,7 @@ Ajouter
                             <label for="telephone" class="form-label">Telephone:</label>
                             <input type="tel" name="telephone" class="form-control" id="telephone" [(ngModel)]="telephoneDocteur" />
                         </div>
-                        <p>{{telephoneDocteur}}</p>
+                        <!-- <p>{{telephoneDocteur}}</p> -->
                         <div class="mb-3 col-6 ms-0">
                             <label for="role" class="form-label">role : </label>
                             <select class="form-select" aria-label="Default select example" name="role_id" [(ngModel)]="roleDocteur"> 
@@ -162,10 +162,14 @@ Ajouter
                             <select class="form-select" aria-label="Default select example" name="specialite_id"
                                 [(ngModel)]="specialite_id">
                                 <option selected>Veuillez selectionner votre specialite</option>
-                                <option value="1">Cardiologue</option>
-                                <option value="2">Dermatologue</option>
-                                <option value="3">Urologue</option>
-                                <option value="4">Pédiatre </option>
+                                <option value="2">Ophtamologue</option>
+                                <option value="3">Cardiologue</option>
+                                <option value="16">Dermatologue</option>
+                                <option value="17">Urologue </option>
+                                <option value="18">Gynécologue</option>
+                                <option value="22">Neurologue</option>
+
+
                 
                 
                             </select>
@@ -185,12 +189,174 @@ Ajouter
         </div>
     </div>
 </div>
+ <!-- Modal pour modifier Docteur  -->
 
+<div class="modal fade" id="modifierDocteur" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form action="">
+                    <div class="col-12 d-flex justify-content-between">
+                        <div class="mb-3 col-6">
+                            <label for="nom" class="form-label">Nom:</label>
+                            <input type="text" name="nom" class="form-control" id="nom" [(ngModel)]="nomDocteur" />
+
+                        </div>
+                        <p>{{nomDocteur}}</p>
+                        <div class="mb-3 col-6 ms-3">
+                            <label for="prenom" class="form-label">Prenom : </label>
+                            <input type="text" name="prenom" class="form-control" id="prenom"
+                                [(ngModel)]="prenomDocteur" />
+                        </div>
+                        <p>{{prenomDocteur}}</p>
+
+                    </div>
+
+
+                    <div class="col-12 d-flex justify-content-between">
+
+                        <div class="mb-3 col-6 ms-3">
+                            <label for="" class="form-label">Age: </label>
+                            <input type="number" name="age" class="form-control" id="age" [(ngModel)]="ageDocteur" />
+                        </div>
+
+
+
+
+                        <div class="mb-3 col-6 ms-3">
+                            <label for="" class="form-label">Sexe:</label>
+                            <select class="form-select" aria-label="Default select example" name="sexe"
+                                [(ngModel)]="sexeDocteur">
+                                <option selected>Veuillez selectioner votre sexe</option>
+                                <option value="homme">homme</option>
+                                <option value="femme">femme</option>
+
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-between">
+                        <div class="mb-3 col-6">
+                            <label for="telephone" class="form-label">Telephone:</label>
+                            <input type="tel" name="telephone" class="form-control" id="telephone"
+                                [(ngModel)]="telephoneDocteur" />
+                        </div>
+                        <!-- <p>{{telephoneDocteur}}</p> -->
+                        <div class="mb-3 col-6 ms-0">
+                            <label for="role" class="form-label">role : </label>
+                            <select class="form-select" aria-label="Default select example" name="role_id"
+                                [(ngModel)]="roleDocteur">
+                                <option selected>Veuillez selectionner votre statut</option>
+                                <option value="1">Admin</option>
+                                <option value="2">Clients</option>
+                                <option value="3">Docteurs</option>
+
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-between">
+                        <div class="mb-3 col-6">
+                            <label for="emailInput" class="form-label">Adresse email:</label>
+                            <input type="email" name="email" class="form-control" id="email"
+                                [(ngModel)]="emailDocteur" />
+                        </div>
+
+                        <div class="mb-3 col-6 ms-3">
+                            <label for="password" class="form-label">Mot de passe :
+                            </label>
+                            <input type="password" name="password" class="form-control" id="password"
+                                [(ngModel)]="passwordDocteur" />
+                        </div>
+
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-between">
+
+                        <div class="mb-3 col-6 ms-3">
+                            <label for="passwordInput" class="form-label">Adresse :
+                            </label>
+                            <input type="text" name="adresseDocteur" class="form-control" id="adresse"
+                                [(ngModel)]="adresseDocteur" />
+                        </div>
+
+                        <div class="mb-3 col-6 ms-3">
+                            <label for="photo_profil" class="form-label" name="photo_profil">Photo_profil:</label>
+
+                            <input (change)="getFile($event)" class="form-control" type="file" id="photo_profil"
+                                name="photo_profil" accept="photo_profil/*">
+                        </div>
+
+                    </div>
+                    <div class="col-12 d-flex justify-content-between">
+                        <div class="mb-3 col-6">
+                            <label for="nom" class="form-label">N°licence:</label>
+                            <input type="number" name="numero_licenceDocteur" class="form-control" id="nom"
+                                [(ngModel)]="numero_licenceDocteur" />
+
+                        </div>
+
+                        <div class="mb-3 col-6 ms-3">
+                            <label for="prenom" class="form-label">Année Experience : </label>
+                            <input type="text" name="nombre_annee_experienceDocteur" class="form-control" id="prenom"
+                                [(ngModel)]="nombre_annee_experienceDocteur" />
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-between">
+                        <div class="mb-3 col-6">
+                            <label for="diplome" class="form-label">diplome:</label>
+                            <input (change)="getFile($event)" class="form-control" type="file" id="diplome"
+                                name="diplomeDocteur" accept="diplome/*">
+                        </div>
+
+                        <div class="mb-2 col-6 ">
+                            <label for="role" class="form-label">specialite : </label>
+                            <select class="form-select" aria-label="Default select example" name="specialite_id"
+                                [(ngModel)]="specialite_id">
+                                <option selected>Veuillez selectionner votre specialite</option>
+                                <option value="2">Ophtamologue</option>
+                                <option value="3">Cardiologue</option>
+                                <option value="16">Dermatologue</option>
+                                <option value="17">Urologue </option>
+                                <option value="18">Gynécologue</option>
+                                <option value="22">Neurologue</option>
+
+
+
+
+                            </select>
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn text-white w-25 mx-auto" data-bs-dismiss="modal"
+                    style="background-color: green"  >
+                    <!-- (click)="updateDocteurs()" -->
+                    Modifier
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 
  
 
-<table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table" *ngIf="Docteurs.length>0">
+<table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table" *ngIf=" Docteurs.length>0">
     <thead>
         <tr style="background-color: #007A64; color:#fff">
             <th class="tHead">Id</th>
@@ -224,7 +390,15 @@ Ajouter
 
         
  
-       <td> <i class="fa-solid fa-trash" style="color: #007A64;" (click)="supprimerDocteur(docteur.id)"></i></td>
+       <td>
+        <span >
+            <i id ="myspan" class="fa-solid fa-marker" style="color: #007A64;" data-bs-toggle="modal" data-bs-target="#modifierDocteur"
+                style="cursor: pointer;" (click)="chargerInfosTest(docteur)" style="color: #007A64;"> </i>
+            
+            
+            <i class="fa-solid fa-trash" style="color:#007A64;" (click)="supprimerDocteur(docteur.id)"></i>
+        </span>
+        </td>
  
                 
         
