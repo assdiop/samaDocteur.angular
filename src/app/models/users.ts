@@ -10,6 +10,7 @@ export class User {
   adresse!: string;
   photo_profil!: File;
   role_id!: string;
+  specialiste_id!: number;
   specialite!: string;
   numero_licence!: string;
   diplome!: File;

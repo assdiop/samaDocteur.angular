@@ -39,6 +39,9 @@ export class InscriptionComponent {
   numLicenceRegister="";
   anneeExpRgister="" ;
 
+
+
+  
   //   userConnected: any;
 
   constructor(private authentificationservice: AuthentificationService, private message: MessageService, private route: Router) { }

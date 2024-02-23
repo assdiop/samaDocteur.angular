@@ -9,9 +9,6 @@
 
 
 <!-- Modal Ajouter  -->
-
-
-
 <!-- Modal -->
 <div class="modal fade" id="ajouterDocteur" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -268,3 +265,101 @@
 </table>
 
 
+<!-- Avec le localstorage -->
+<!-- Modal pour ajouter un hopital  -->
+<div class="modal fade" id="ajouterDocteur" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un hopital</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                    <div class="col-12 d-flex justify-content-between">
+                        <div class="mb-3 col-6">
+                            <label for="nom" class="form-label">Nom:</label>
+                            <input type="text" name="nom_hopital" class="form-control" id="nom"
+                                [(ngModel)]="hopital_object.nom_hopitaux" />
+                        </div>
+
+                        <div class="mb-3 col-6 ms-3">
+                            <label for="nom" class="form-label">Description:</label>
+                            <input type="text" name="nom_hopital" class="form-control" id="nom"
+                                [(ngModel)]="hopital_object.description" />
+                        </div>
+
+
+                    </div>
+
+                    <select class="form-select" aria-label="Default select example" name="localite_idHopitaux"
+                        [(ngModel)]="localite_idHopitaux">
+                        <option selected>Veuillez selectionner le type</option>
+                        <option value="public">Public</option>
+                        <option value="prive">Privé</option>
+                    </select>
+
+
+
+                    <div class="col-12 d-flex justify-content-between">
+                        <div class="mb-3 col-6">
+                            <label for="nom" class="form-label">Adresse:</label>
+                            <input type="text" name="adresseHopitaux" class="form-control" id="nom"
+                                [(ngModel)]="hopital_object.adresse" />
+                        </div>
+                        <!-- <p>{{emailDocteur}}</p> -->
+                        <div class="mb-3 col-6 ms-3">
+                            <label for="nom" class="form-label">Longitude:</label>
+                            <input type="text" name="ongitudeHopitaux" class="form-control" id="nom"
+                                [(ngModel)]="longitudeHopitaux" />
+                        </div>
+                        <!-- <p>{{passwordDocteur}}</p> -->
+
+                    </div>
+
+
+
+                    <div class="col-12 d-flex justify-content-between">
+                        <div class="mb-3 col-6">
+
+                            <label for="photo_profil_Mentor" class="form-label">Image</label>
+                            <input (change)="getFile($event)" class="form-control" type="file" id="photo_profil"
+                                name="image" accept="image/*">
+                        </div>
+                        <!-- <p>{{emailDocteur}}</p> -->
+                        <div class="mb-3 col-6 ms-3">
+                            <label for="nom" class="form-label">Horaire:</label>
+                            <input type="text" name="nom_hopital" class="form-control" id="nom"
+                                [(ngModel)]="horaireHopitaux" />
+                        </div>
+                        <!-- <p>{{passwordDocteur}}</p> -->
+
+                    </div>
+
+
+
+
+
+                    
+
+                        
+
+                    
+                </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn text-white w-25" data-bs-dismiss="modal"
+                    style="background-color: green">
+                    Ajouter
+                </button>
+                <button type="button" class="btn w-25" data-bs-dismiss="modal" style="
+                    
+                    background-color: blue;color:#fff;
+                    border: thin solid;
+                  ">
+                    Annuler
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

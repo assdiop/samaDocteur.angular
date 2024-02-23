@@ -21,6 +21,10 @@ export class GestionHopitalComponent {
   descriptionHopitaux = "";
   Hopitaux: any;
  
+  // Déclaration des variables pour le localStorage 
+  tabHopitauxInit: Hopitaux[] = [];
+  tabHopitaux: Hopitaux[] = [];
+  hopital_object = new Hopitaux;
  
 
   constructor(private hopitalService:HopitalService) {}
@@ -56,8 +60,37 @@ export class GestionHopitalComponent {
       //   $('.dataTables_wrapper table').addClass('table-bordered'); // Ajoute une classe pour les bordures horizontales
       // },
     };
+
+    // On ajoute le tableau des hopitaux dans le localStorage 
+    if (!localStorage.getItem("hopitaux")) {
+      localStorage.setItem("hopitaux", JSON.stringify(this.tabHopitauxInit) || "")
+    }
+
+    // On récupère les hopitaux du localStorage
+    this.tabHopitaux = JSON.parse(localStorage.getItem("hopitaux") || "");
   }
  
+  // Avec le local storage :
+  // Methode pour ajouter un  hopital
+  addHopitalFunction() {
+    
+  }
+
+  // Méthode pour ajouter les spécialité de l'hopital 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   

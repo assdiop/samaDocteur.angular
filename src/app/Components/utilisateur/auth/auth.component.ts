@@ -53,8 +53,9 @@ export class AuthComponent {
   // emailregex pattern
   emailPattern =
     /^[A-Za-z]+[A-Za-z0-9._%+-]+@[A-Za-z][A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+   
   // regex password
-  passwordRegex: RegExp = /^\d{6,}$/;
+  passwordRegex: RegExp = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=!])(.{8,})$/;
 
 
   //   userConnected: any;
@@ -144,83 +145,159 @@ export class AuthComponent {
 
     //  this.validateFormLogin();
 
+      // Appeler la méthode validateFormLogin
+    if (this.validateFormLogin()) {
+      // Appeler la méthode registerProprietaire seulement si la validation réussit
+      this.registerClient();
+    }
+  }
+
+  // validation form login
+  validateFormLogin() {
+    let isValid = true;
+    isValid = this.validateEmail() && isValid;
+    isValid = this.validatePassword() && isValid;
+    return isValid;
+  }
+
+
+   registerClient() {
+    this.authentificationservice.login(this.email, this.password).subscribe(
+      (response) => {
+        console.log(response);
+
+        // Si la connexion réussit, stocker la réponse dans le local storage, y compris le token
+        localStorage.setItem('token', response.access_token); // Stocker le token
+
+        const userdata = localStorage.getItem('currentUser');
+
+        const userConnectedRole = userdata ? JSON.parse(userdata).role_id : null;
+        console.log(userConnectedRole);
+
+        // Rediriger l'utilisateur vers une autre page
+
+        switch (response.user.role_id) {
+          case 1:
+            this.route.navigate(['/admin']);
+            this.alertMessage(
+              'success',
+              'Connecté',
+              'Connexion réussie avec succés.'
+            );
+            break;
+          case 2:
+            this.route.navigate(['/acceuil']);
+            // Dans votre méthode registerProprietaire(), entourez le code de redirection avec NgZone
+            // this.ngZone.run(() => {
+              
+            // });
+            this.alertMessage(
+              'success',
+              'Super',
+              'Connexion réussie avec succés.'
+            );
+            break;
+          case 3:
+            this.route.navigate(['/accueil_docteur']);
+            this.alertMessage(
+              'success',
+              'Super',
+              'Connexion réussie avec succés.'
+            );
+            break;
+          default:
+            // Redirection par défaut si le rôle n'est pas reconnu
+            this.route.navigate(['/accueil']);
+        }
+      },
+      (error) => {
+        // En cas d'erreur, afficher un message d'erreur
+        this.alertMessage(
+          'error',
+          'Erreur',
+          'Connexion échouée. Veuillez vérifier vos identifiants.'
+        );
+      }
+    );
+  }
+
     
 
-    if (this.email == '') {
-      this.alertMessage(
-        'error',
-        'Attention',
-        'Merci de renseigner votre email'
-      );
-    } else if (!this.email.match(this.emailPattern)) {
-      this.alertMessage(
-        'error',
-        'Attention',
-        'Merci de renseigner un email valide'
-      );
-    } else {
-      this.authentificationservice.login(this.email, this.password).subscribe(
-        (response) => {
-          console.log(response);
-          this.alertMessage("success", "Bravo", "Connexion réussie")
+    // if (this.email == '') {
+    //   this.alertMessage(
+    //     'error',
+    //     'Attention',
+    //     'Merci de renseigner votre email'
+    //   );
+    // } else if (!this.email.match(this.emailPattern)) {
+    //   this.alertMessage(
+    //     'error',
+    //     'Attention',
+    //     'Merci de renseigner un email valide'
+    //   );
+//     } else {
+//       this.authentificationservice.login(this.email, this.password).subscribe(
+//         (response) => {
+//           console.log(response);
+//           this.alertMessage("success", "Bravo", "Connexion réussie")
 
 
-          // Si la connexion réussit, stocker la réponse dans le local storage, y compris le token
-          localStorage.setItem('token', response.authorization.token); // Stocker le token
+//           // Si la connexion réussit, stocker la réponse dans le local storage, y compris le token
+//           localStorage.setItem('token', response.authorization.token); // Stocker le token
 
-          const userdata = localStorage.getItem('currentUser');
+//           const userdata = localStorage.getItem('currentUser');
 
-          const userConnectedRole = userdata ? JSON.parse(userdata).role_id
- : null;
-          console.log("uuuuuuu",userConnectedRole);
+//           const userConnectedRole = userdata ? JSON.parse(userdata).role_id
+//  : null;
+//           console.log("uuuuuuu",userConnectedRole);
 
-          // Rediriger l'utilisateur vers une autre page
+//           // Rediriger l'utilisateur vers une autre page
 
-          console.log("voir vobjet recuperer", response.user.nom);
-          switch (response.user.role_id
-) {
-            case 1:
-              this.route.navigate(['/admin']);
-              this.alertMessage(
-                'success',
-                'Super',
-                'Connexion réussie avec succés.'
-              );
-              break;
-            case 2:
-              this.route.navigate(['/acceuil']);
-              this.alertMessage(
-                'success',
-                'Super',
-                'Connexion réussie avec succés.'
-              );
-              break;
-            case 3:
-              this.route.navigate(['/accueil_docteur']);
-              this.alertMessage(
-                'success',
-                'Super',
-                'Connexion réussie avec succés.'
-              );
-              break;
-            default:
-              // Redirection par défaut si le rôle n'est pas reconnu
-              this.route.navigate(['/accueil']);
+//           console.log("voir vobjet recuperer", response.user.nom);
+//           switch (response.user.role_id
+// ) {
+//             case 1:
+//               this.route.navigate(['/admin']);
+//               this.alertMessage(
+//                 'success',
+//                 'Super',
+//                 'Connexion réussie avec succés.'
+//               );
+//               break;
+//             case 2:
+//               this.route.navigate(['/acceuil']);
+//               this.alertMessage(
+//                 'success',
+//                 'Super',
+//                 'Connexion réussie avec succés.'
+//               );
+//               break;
+//             case 3:
+//               this.route.navigate(['/accueil_docteur']);
+//               this.alertMessage(
+//                 'success',
+//                 'Super',
+//                 'Connexion réussie avec succés.'
+//               );
+//               break;
+//             default:
+//               // Redirection par défaut si le rôle n'est pas reconnu
+//               this.route.navigate(['/accueil']);
                 
-          }
+//           }
 
-        },
-        (error) => {
-          // En cas d'erreur, afficher un message d'erreur
-          this.alertMessage(
-            'error',
-            'Erreur',
-            'Connexion échouée. Veuillez vérifier vos identifiants.'
-          );
-        }
-      );
-    }
-   }
+//         },
+//         (error) => {
+//           // En cas d'erreur, afficher un message d'erreur
+//           this.alertMessage(
+//             'error',
+//             'Erreur',
+//             'Connexion échouée. Veuillez vérifier vos identifiants.'
+//           );
+//         }
+//       );
+//     }
+//    }
 
 
 
@@ -266,6 +343,41 @@ export class AuthComponent {
   //   }
   // }
 
+
+    // Validation email
+  validateEmail(): boolean {
+    if (!this.email) {
+      this.validationMessages['email'] = "L'email est requis";
+      this.emailEmpty = true; // Mettre à jour emailEmpty si le champ est vide
+      return false;
+    } else if (!this.emailPattern.test(this.email)) {
+      this.validationMessages['email'] = 'Email invalide';
+      this.emailEmpty = false;
+      return false;
+    } else {
+      this.validationMessages['email'] = '';
+      this.emailEmpty = false;
+      return true;
+    }
+  }
+
+  // Méthode de validation pour le mot de passe
+  validatePassword() {
+    if (!this.password) {
+      this.validationMessages['password'] = 'Le mot de passe est requis';
+      this.passwordEmpty = true;
+      return false;
+    } else if (!this.passwordRegex.test(this.password)) {
+      this.validationMessages['password'] =
+        'Le mot de passe doit contenir  au moins 8 caractères avec un caractère spécial, une lettre majuscule, une lettre minuscule et un chiffre.';
+      this.passwordEmpty = false;
+      return false;
+    } else {
+      this.validationMessages['password'] = '';
+      this.passwordEmpty = false;
+      return true;
+    }
+  }
 alertMessage(icon: any, title: any, text: any) {
     Swal.fire({
         icon: icon,
