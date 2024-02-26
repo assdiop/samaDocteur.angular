@@ -17,6 +17,8 @@ export class RendezVousComponent {
 
   ngOnInit(): void {
     // this.loadRendezVous();
+    if (!localStorage.getItem("rendez-vous"))
+      localStorage.setItem("rendez-vous",JSON.stringify(this.newRendezVous)||"")
   }
 
   // loadRendezVous(): void {

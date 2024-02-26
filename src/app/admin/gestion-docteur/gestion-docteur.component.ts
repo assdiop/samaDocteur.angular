@@ -48,8 +48,12 @@ docteurSelectionner: any = {
   docteur_object = new Docteur;
   tabInitial: Docteur[] = [];
   tabDocteurs: Docteur[] = [];
+  tabDocteursActifs: Docteur[] = [];
 
-  lastId: number= 0;
+  tabServicesHopital: any[] = [];
+
+  lastId: number = 0;
+  
 
   constructor(private docteurService: DocteurService, private messageService: MessageService) {
   }
@@ -94,12 +98,18 @@ docteurSelectionner: any = {
     this.tabHopitaux = JSON.parse(localStorage.getItem("hopitaux") || "");
     this.tabServices = JSON.parse(localStorage.getItem("services") || "");
     this.tabDocteurs = JSON.parse(localStorage.getItem("docteurs") || "");
-    
+  
+    this.getDocteursActifs();
+
     if(!this.tabDocteurs.length){
       this.showAddDocteur();
     } else {
       this.showDocteurs();
     }
+  }
+
+  getDocteursActifs() {
+    this.tabDocteursActifs = this.tabDocteurs.filter(docteur => docteur.etat == 1);
   }
 
   // Avec le local storage :
@@ -115,6 +125,20 @@ docteurSelectionner: any = {
     this.islisteDocteurs= false;
   }
 
+  // Methode pour récupérer la liste des services de l'hopital sélectionné 
+  getServicesHopital(hopitalId: any) {
+    // console.log(hopital);
+    let hopitalFind = this.tabHopitaux.find(hopital => hopital.id == hopitalId);
+    // console.log(hopitalFind);
+
+    if (hopitalFind) {
+      // console.log(hopitalFind.services);
+      this.tabServicesHopital = hopitalFind.services;  
+      // console.log(this.tabServicesHopital);
+    }
+
+  }
+
   // Validation pas encore complete
   // Methode pour ajouter un docteur 
   addDocteurFunction(){
@@ -126,10 +150,12 @@ docteurSelectionner: any = {
     if (this.docteur_object.nom && this.docteur_object.prenom && this.docteur_object.adresse && this.docteur_object.age && this.docteur_object.telephone
        && this.docteur_object.adresse && this.docteur_object.password) {
       this.docteur_object.id = this.lastId + 1;
+      this.docteur_object.etat = 1;
       this.tabDocteurs.push(this.docteur_object);
       this.viderChamps();
       localStorage.setItem("docteurs", JSON.stringify(this.tabDocteurs));
       this.alertMessage("success", "", "Docteur ajouté avec succes");
+      this.getDocteursActifs();
     }else {
       this.alertMessage("error", "", "Veuillez remplir les donnees");
     }
@@ -341,6 +367,28 @@ currentDocteur:any
       });
   }
 
+  // supprimer docteur via localstorage
+   supprimerDocteur(paramdocteur:any){
+    Swal.fire({
+      title: "Etes-vous sur???",
+      text: "Vous allez supprimer le contact",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Oui, je supprime!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        paramdocteur.etat = 0;
+        // On met à jour le tableau qui est stocké dans le localStorage 
+        localStorage.setItem("docteurs", JSON.stringify(this.tabDocteurs));
+        // this.verifierChamps("Contact supprimer!", "", "success");     
+        
+      }
+    });
+    // alert(paramContact.etatContact);
+    
+  }
 
 
 

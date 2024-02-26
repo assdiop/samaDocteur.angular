@@ -29,3 +29,79 @@ li{
     margin: 0 auto ;
     padding: 0 auto;
 }
+
+.card{
+    border: none;
+    max-height: 70vh;
+    border-radius: 2vh;
+}
+
+.section_hopital .card img{
+    border-top-left-radius: 2vh;
+    border-top-right-radius: 2vh;
+    width: 100%;
+    height: 30vh;
+}
+.card .btn_card, .btn_fermer{
+    border-radius: 1vh;
+    padding: 1.5vh;
+    background-color: #0E918C;;
+    color: white;
+    border: none;
+}
+
+.section_hopital .card .services{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.section_hopital .card .services:hover{
+    color: #0E918C;
+}
+
+.section_medecin .sup{
+    height: 0.8vh;
+    background-color: #0E918C;
+    width: 95%;
+    margin: 0 auto;
+    border-top-left-radius: 2vh;
+    border-top-right-radius: 2vh;
+}
+
+.section_medecin {
+
+}
+
+// Les medecins
+.card .profil img{
+    // border: 8px solid maroon;
+    width: 20vh;
+    height: 20vh;
+    border-radius: 100%;
+    box-shadow: 1px 3px 0px #0E918C;
+}
+
+.iconeReseau{
+    // border: 1px solid magenta;
+    padding: 1vh 1.5vh;
+    border-radius: 100%;
+    color: #0E918C !important;
+    background-color: white;
+    box-shadow: 1px 1px 2px #0E918C;
+    margin-right: 2vh;
+    border: none;
+}
+
+.iconeReseau i{
+    font-size: 3.5vh;
+}
+
+.iconeReseau a{
+    color: #0E918C;
+}
+
+.modal-body.card  {
+    width: 20vh;
+        height: 20vh;
+        border-radius: 100%;
+        box-shadow: 1px 3px 0px #0E918C;
+}

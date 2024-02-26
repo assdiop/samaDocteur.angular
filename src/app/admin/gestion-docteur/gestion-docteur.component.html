@@ -8,13 +8,13 @@
     
         <!-- Button modal Ajouter-->
         <button type="button" class="btn text-white" style="background-color: #007A64;" *ngIf="isAjoutDocteur" (click)="showDocteurs()">
-            Voir la liste des hopitaux
+            Voir la liste des Docteurs 
         </button>    
     </div>
     
-    <!-- La liste des hopitaux  -->
-    <div class="listeHopitaux" *ngIf="islisteDocteurs">
-        <table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table" *ngIf=" tabDocteurs.length>0">
+    <!-- La liste des docteurs actifs  -->
+    <div class="listeDocteurs" *ngIf="islisteDocteurs">
+        <table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table" *ngIf=" tabDocteursActifs.length>0">
             <thead>
                 <tr style="background-color: #007A64; color:#fff">
                     <th class="tHead">Id</th>
@@ -26,7 +26,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let docteur of tabDocteurs">
+                <tr *ngFor="let docteur of tabDocteursActifs">
                     <td>
                     {{docteur.id}}
                     </td>
@@ -44,7 +44,7 @@
                     <td>{{docteur.annee_experience}}</td>
                     
                     
-                    <td>{{getSpecialiteName(docteur.specialite_id)}}</td>
+                    <td>{{docteur.service_docteur}}</td>
 
                 
         
@@ -54,7 +54,7 @@
                         style="cursor: pointer;" style="color: #007A64;"> </i>
                     
                     
-                    <i class="fa-solid fa-trash" style="color:#007A64;"></i>
+                    <i class="fa-solid fa-trash" style="color:#007A64;" (click)=" supprimerDocteur(docteur)" ></i>
                     <!-- <i id ="myspan" class="fa-solid fa-marker" style="color: #007A64;" data-bs-toggle="modal" data-bs-target="#modifierDocteur"
                         style="cursor: pointer;" (click)="chargerInfosTest(docteur)" style="color: #007A64;"> </i>
                     
@@ -144,7 +144,7 @@
                     <!-- Hopital du docteur  -->
                     <div class="col-md-4 mb-3">
                         <label for="inputHopital" class="form-label">Hopital</label>
-                        <select class="form-select form-control" name="hopitaldocteur" id="inputHopital"  [(ngModel)]="docteur_object.hopital_id">
+                        <select class="form-select form-control" name="hopitaldocteur" id="inputHopital"  [(ngModel)]="docteur_object.hopital_id" (change)="getServicesHopital(docteur_object.hopital_id)" >
                           <!-- <option selected disabled value="">Veillez choisir un type...</option> -->
                           <option *ngFor="let hopital of tabHopitaux" [value]="hopital.id">{{hopital.nom_hopitaux}}</option>
                         </select>
@@ -153,9 +153,9 @@
                     <!-- specialité du docteur  -->
                     <div class="col-md-4 mb-3">
                       <label for="inputSpecialite" class="form-label">Spécialité</label>
-                      <select class="form-select form-control" name="specialiteDocteur" id="inputSpecialite"  [(ngModel)]="docteur_object.specialite_id">
+                      <select class="form-select form-control" name="specialiteDocteur" id="inputSpecialite"  [(ngModel)]="docteur_object.service_docteur" [disabled]="!tabServicesHopital.length">
                         <!-- <option selected disabled value="">Veillez choisir un type...</option> -->
-                        <option *ngFor="let service of tabServices" [value]="service.id">{{service.nom}}</option>
+                        <option *ngFor="let service of tabServicesHopital" [value]="service">{{service}}</option>
                       </select>
                     </div>
 

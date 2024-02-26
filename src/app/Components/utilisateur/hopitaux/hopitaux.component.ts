@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HopitalService } from '../../../services/hopital.service';
+import { Hopitaux } from 'src/app/models/hopitaux';
+import { Docteur } from 'src/app/models/docteur';
 
 
 
@@ -20,19 +22,102 @@ export class HopitauxComponent implements OnInit {
 
 
   
-    selectedLocaliteId!: number;
+  selectedLocaliteId!: number;
 
   hopitaux: any[] = [];  //liste des hôpitaux
   localite: any[] = [];
   localiteSelectionnee: string = '';
   localite_idHopitaux!: string;
 
+
+
+
+  // Les variables pour le localstorage 
+  tabHopitauxActifs: Hopitaux[] = []; // liste des hopitaux actifs
+  tabHopitauxFiltered: Hopitaux[] = []; // liste des hopitaux actifs
+  tabTypeHopitaux: Hopitaux[] = []; // liste des hopitaux filtrer selon le type
+  
+  tabDocteursActifs: Docteur[] = [] //liste des docteurs de tout les docteurs
+  tabDocteursHopital: Docteur[] = [] //liste des docteurs de l'hopital
+  hopital_object = new Hopitaux;
+
+  // Voir la liste des hopitaux 
+  isListeHopitaux: boolean = true;
+  isListeMedecin: boolean = false;
+
+  filtervalue: string = ""; //Recupère la saisie lors de la recherche
+  tabMedecinsFiltered: Docteur[] = [];
+
+  filteredType: string = ""; //Récupère le type sélectionné
+
+
   constructor(private hopitalService: HopitalService) { }
 
   ngOnInit(): void {
     this.getAllHospitals();
+
+    // On récurère les hopitaux dans le localStorage 
+    let hopitaux = JSON.parse(localStorage.getItem("hopitaux") || "");
+    if (hopitaux) {
+      this.tabHopitauxActifs = hopitaux.filter((hopital: any) => hopital.etat == 1);
+      this.tabTypeHopitaux = this.tabHopitauxFiltered = this.tabHopitauxActifs;
+    }
+
+    // On récurère les docteurs dans le localStorage 
+    let docteurs = JSON.parse(localStorage.getItem("docteurs") || "");
+    if (docteurs) {
+      this.tabDocteursActifs = docteurs.filter((docteur: any) => docteur.etat == 1);
+    }
   }
 
+  search() {
+    // Recherche pour les hopitaux 
+    this.tabHopitauxFiltered = this.tabTypeHopitaux.filter((hopital:Hopitaux) => hopital.nom_hopitaux.toLowerCase().includes(this.filtervalue.toLowerCase()) || hopital.adresse.toLowerCase().includes(this.filtervalue.toLowerCase()))
+    this.tabMedecinsFiltered = this.tabDocteursHopital.filter((docteur:any)=> docteur.nom.toLowerCase().includes(this.filtervalue.toLowerCase()) || docteur.prenom.toLowerCase().includes(this.filtervalue.toLowerCase())  || docteur.service_docteur.toLowerCase().includes(this.filtervalue.toLowerCase()));
+  }
+  
+  filterTypeFunction() {
+    console.log(this.filteredType);
+    if (this.filteredType && this.filteredType != "tout") {
+      this.tabHopitauxFiltered = this.tabHopitauxActifs.filter((hopital: Hopitaux) => hopital.type == this.filteredType);
+    } else {
+      this.tabHopitauxFiltered = this.tabHopitauxActifs;
+    }
+    this.tabTypeHopitaux = this.tabHopitauxFiltered; // stocke le resultat du filtre
+  }
+
+  // les methodes avec le localstorage
+  // methode pour voir la liste des hoppitaux 
+  showHopitaux() {    
+    this.isListeHopitaux= true;
+    this.isListeMedecin = false;
+    this.filtervalue = "";
+  }
+
+  // Mzthode pour voir le liste des medicins de l'hopital sélectionnée 
+  showMedecin() {    
+    this.isListeHopitaux= false;
+    this.isListeMedecin = true;
+    this.filtervalue = "";
+  }
+
+  // L'hopital selectionée pour voir ses services 
+  getservicesHopital(hopital: any) {
+    this.hopital_object = hopital;
+    console.log(this.hopital_object.services);
+  }
+
+  // On récupère docteurs de l'hopital 
+  getDocteursHopital(hopital: any) {
+    this.showMedecin();
+    this.hopital_object = hopital;
+    this.tabDocteursHopital = this.tabDocteursActifs.filter((docteur: any) => docteur.hopital_id == hopital.id);
+    this.tabMedecinsFiltered = this.tabDocteursHopital;
+  }
+  
+
+
+  // Les methodes avec l'api 
   Hopitaux: any[] = [];
 
   

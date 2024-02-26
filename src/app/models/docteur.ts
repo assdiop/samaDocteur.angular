@@ -2,7 +2,8 @@ export class Docteur {
     id!:number
     diplome!: File;
     numero_licence!: string;
-    specialite_id!: number;
+    service_docteur!: string
+    // specialite_id!: number;
     hopital_id!: number;
     photo_profilDocteur!: File;
     utlisateurs_id!: string;
@@ -17,6 +18,5 @@ export class Docteur {
     photo_profil: any;
     age!: string;
     role_id!: string;
-  
-
+    etat!: number;
 }

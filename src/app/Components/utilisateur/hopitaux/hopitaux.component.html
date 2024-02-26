@@ -1,5 +1,6 @@
 <app-header></app-header>
 
+<!-- La banniere  -->
 <section class="banner">
     <div class="container">
         <div class="row">
@@ -12,110 +13,73 @@
         </div>
     </div>
 </section>
-<!-- 
 
-<div class="row">
-    <div class="col-md-12">
-        <input type="text" class="form-control" placeholder="Rechercher un hôpital..." [(ngModel)]="searchTerm"
-            (input)="searchHospital()">
-    </div>
-</div>
-
-<!--  
-<div class="row border">
-    <div class="justify-content-between align center w-100 mt-5" id="bande">
-        <ul class="mt-3">
-            <li>Pikine</li>
-            <li>Guédiawaye</li>
-            <li>Parcelle Assainie</li>
-            <li>Grand Yoff</li>
-            <li >Ouakam</li>
-            <li>Plateau</li> 
-        </ul>
-    </div>
-</div>  -->
-
-<!-- <div class="row border">
-    <div class="justify-content-between align center w-100 mt-5" id="bande">
-        <ul class="mt-3">
-            <li (click)="filterHospitalsByLocality('Pikine')">Pikine</li>
-            <li (click)="filterHospitalsByLocality('Guédiawaye')">Guédiawaye</li>
-            <li (click)="filterHospitalsByLocality('Parcelle Assainie')">Parcelle Assainie</li>
-            <li (click)="filterHospitalsByLocality('Grand Yoff')">Grand Yoff</li>
-            <li (click)="filterHospitalsByLocality('Ouakam')">Ouakam</li>
-            <li (click)="filterHospitalsByLocality('Plateau')">Plateau</li>
-        </ul>
-    </div>
-</div> --> 
-
-
-
-
-<div class="row border">
-    <div class="justify-content-between align center w-100 mt-5" id="bande">
-        <ul class="mt-3">
-            <!-- <li >Guédiawaye</li>
-            <li >Pikine</li> -->
-
-            <li (click)="onSelectLocalite(1)">Pikine</li>
-            <li (click)="onSelectLocalite(2)">Guédiawaye</li>
-            <li (click)="onSelectLocalite(5)">Grand Dakar</li>
-            <li (click)="onSelectLocalite(6)">Ouakam</li>
-            <li (click)="onSelectLocalite(3)">Fann</li>
-
-            <!-- (click)="getHopitauxByLocaliteId()" -->
-
-            <!-- click)="getHopitauxByLocaliteId()" -->
-            <!-- Ajoutez les autres localités avec les ID correspondants -->
-        </ul>
-    </div>
-</div>
-
-<h1 class="text-capitalize mb-5 text-lg" class="text-center mt-5"> Trouver un Hopital  </h1>
-<section class="section service-2">
+<!-- La liste des hopitaux  -->
+<section class="section section_hopital" *ngIf="isListeHopitaux">
+    <!-- Recherche d'un hopital selon le nom ou l'adresse et puis filtrer selon le type  -->
     <div class="container">
         <div class="row">
+            <div class="col-6">
+                <h1 class="text-capitalize mb-5 text-lg">Trouver un Hopital</h1>
+            </div>
+            <div class="col-3">
+                <select name="select" class="form-control form-select" id="" [(ngModel)]="filteredType" (change)="filterTypeFunction()">
+                    <option value="" selected>Selectionner un type</option>
+                    <option value="tout" >Tout</option>
+                    <option value="public" >Public</option>
+                    <option value="prive">Privé</option>
+                </select>
+            </div>
+            <div class="col-3">
+                <input type="text" class="form-control" placeholder="Rechercher un medecin" [(ngModel)]="filtervalue"
+                    (input)="search()">
+            </div>
+        </div>
+        <!-- avec le localstorage  -->
+        <div class="row" *ngIf="tabHopitauxFiltered.length">
+            <div class="col-lg-4 col-md-6 mb-5 hopital" *ngFor="let hopital of tabHopitauxFiltered">
+                <div class="card shadow">
+                    <img src="{{hopital.image}}" alt="" class="img-fluid" *ngIf="hopital.image">
 
-            <!-- modal detail hopital -->
+                    <div class="card-body">
+                        <div class="d-flex flex-wrap justify-content-between">
+                            <h3>{{hopital.nom_hopitaux}}</h3>
+                            <p>{{hopital.type}}</p>
+                        </div>
+                        <div class="d-flex flex-wrap justify-content-between">
+                            <p> <span>Adresse: </span> {{hopital.adresse}}</p>
+                            <p class="services" data-bs-toggle="modal" data-bs-target="#voirServices"
+                                (click)="getservicesHopital(hopital)"> <span>Nombre services: </span>
+                                {{hopital.services.length}}</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="semaine">
+                                <h4>Horaire semaine</h4>
+                                <p><i class="bi bi-clock"></i> {{hopital.heure_ouverture_semaine}} /
+                                    {{hopital.heure_fermeture_semaine}}</p>
+                            </div>
+                            <div class="semaine">
+                                <h4>Horaire Weekend</h4>
+                                <p><i class="bi bi-clock"></i> {{hopital.heure_ouverture_weekend}} /
+                                    {{hopital.heure_fermeture_weekend}}</p>
+                            </div>
+                        </div>
 
-          
-            
-            <!-- Modal -->
-            <div class="modal fade" id="detailHopital" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Détail Hopital </h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div class="d-flex flex-wrap justify-content-between">
+                            <button class="btn_card"  data-bs-toggle="modal" data-bs-target="#detailhopital">Details</button>
+                            <button class="btn_card" (click)="getDocteursHopital(hopital)" >Voir Medecins</button>
                         </div>
-                        <div class="modal-body">
-                            <div class="row">
-                            <div class="col-4 text-center">
-                                <p > Hopital Principal </p>
-                            </div>
-                            <div class="col-4 text-center">
-                                <p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam ad ducimus ipsam
-                                    blanditiis pariatur quas hic sapiente corrupti beatae, necessitatibus magnam, aliquid aspernatur libero mollitia
-                                    iure molestiae amet repellendus officia.</p>
-                            </div>
-                          
-                          
-                            
-                            <!-- <img src="https://img.freepik.com/photos-gratuite/medecin-afro-americain-analysant-scan
-                            -aux-rayons-x-pour-diagnostic_482257-8992.jpg?size=626&ext=jpg&ga=GA1.1.869340897.1689281166&semt=ais" alt="" class=" col-4 img-fluid">
-                             -->
-                        </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Understood</button>
-                        </div>
+
+
                     </div>
                 </div>
             </div>
+        </div>
 
-  
+        <p *ngIf="!tabHopitauxFiltered.length">Aucun resultat trouvé</p>
+
+        <!-- Avec l'api  -->
+        <!-- <div class="row">          
             <div class="col-lg-4 col-md-6 col-sm-6" *ngFor="let hopital of Hopitaux | filterByLocalite: selectedLocaliteId">
                 <div class="service-block mb-5 mb-lg-0">
                     <img src= "http://127.0.0.1:8000/hopitauxImage/{{hopital.image}}" alt="" class="img-fluid">
@@ -126,12 +90,135 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </section>
+
+
+<!-- Liste des medecins de l'hopital  -->
+<section class="section section_medecin" *ngIf="isListeMedecin">
+    <div class="container">
+        <!-- Retourner liste hopital  -->
+        <i class="bi bi-backspace-fill" (click)="showHopitaux()"></i>
+        <!-- Recherche d'un medecin  -->
+        <div class="row">
+            <div class="col-8">
+                <h1>La liste des medecins de {{hopital_object.nom_hopitaux}}</h1>
+            </div>
+            <div class="col-4">
+                <input type="text" class="form-control" placeholder="Rechercher un medecin" [(ngModel)]="filtervalue" (input)="search()">
+            </div>
+        </div>
+
+        <!-- Liste des medecins  -->
+        <div class="row" *ngIf="tabMedecinsFiltered.length">
+            <div class="col-md-4 mb-3" *ngFor="let medecin of tabMedecinsFiltered">
+                <div class="sup"></div>
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="profil text-center">
+                            <img src="{{medecin.photo_profil}}" alt="">
+                            <!-- <img src="https://img.freepik.com/photos-gratuite/portrait-infirmiere-hopital_23-2150780304.jpg?t=st=1708953683~exp=1708957283~hmac=123227fc484765e28236748f9271f51ad2a59d588db930cf3aaa77dc39501852&w=996"
+                                alt=""> -->
+                        </div>
+                        <div class="infosMedecin text-center">
+                            <h3>{{medecin.prenom}} {{medecin.nom}}</h3>
+                            <p>{{medecin.service_docteur}}</p>
+                            <p>{{medecin.annee_experience}} ans d'expériences</p>
+                            <div class="reseaux mb-4">
+                                <button class="iconeReseau"><a href="whatsapp://send?phone=772963814"><i
+                                            class="fa-brands fa-square-whatsapp"></i></a></button>
+                                <button class="iconeReseau"><a href="mailto:assanedip999@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="btnMedecin d-flex flex-wrap justify-content-around">
+                            <button class="btn_card">Voir plus</button>
+                            <button class="btn_card">Prendre un rendez-vous</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1 *ngIf="!tabDocteursHopital.length">Aucun medecin pour cet hopital</h1>
+    </div>
+
+</section>
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Launch static backdrop modal
+</button> -->
+
 
 
 
 
 
 <app-footer></app-footer>
+
+
+
+
+<!-- Modal detail hopital -->
+<div class="modal fade" id="detailhopital" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" >
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Détail Hopital </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row card">
+                    <div class="col-md-6">
+                        <div>
+                            <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.gettyimages.fr%2Fphotos%2Fhopital&psig=AOvVaw2XpUfa3duK2uMxqmmPu_at&ust=1709050777324000&source
+                    =images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCND-to60yYQDFQAAAAAdAAAAABAE" class="img-fluid"
+                                alt="">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6" *ngFor="let hopital of tabHopitauxFiltered">
+                    <div>
+                        <p>
+                            {{hopital.description}}
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center">
+                    <button type="button" class="btn btn_fermer" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal services de l'hopital  -->
+<div class="modal fade" id="voirServices" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Les service de {{hopital_object.nom_hopitaux}}
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p *ngFor="let service of hopital_object.services"> {{service}}</p>
+                <div class="text-center">
+                    <button type="button" class="btn btn_fermer" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

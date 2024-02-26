@@ -10,7 +10,7 @@ export class Hopitaux {
     image!:File;
     localite_id!: number;
     adresse!: string;
-    etat!: string;
+    etat!: number;
     type!: string;
     heure_ouverture_semaine!: string;
     heure_fermeture_semaine!: string;

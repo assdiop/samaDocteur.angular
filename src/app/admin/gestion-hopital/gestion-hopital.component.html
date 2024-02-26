@@ -15,7 +15,7 @@
     <!-- La liste des hopitaux  -->
     <div class="listeHopitaux" *ngIf="islisteHopitaux">
         <!-- <img src="https://static9.depositphotos.com/1095795/1089/i/450/depositphotos_10896568-stock-photo-hospital-surgery-corridor.jpg" alt=""> -->
-        <table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table" *ngIf="tabHopitaux.length>0">
+        <table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table" *ngIf="tabHopitauxActifs.length>0">
 
             <thead>
                 <tr style="background-color: #007A64;color: #fff;">
@@ -32,7 +32,7 @@
                 </tr>
             </thead>
             <tbody >
-                <tr *ngFor="let hopital of tabHopitaux">
+                <tr *ngFor="let hopital of tabHopitauxActifs">
                     <td> <img [src]="hopital.image" alt="" width="35px" height="35px" class="rounded-2"> </td>
                     <td>{{hopital.nom_hopitaux}}</td>
                     <td>{{hopital.adresse}}</td>
@@ -43,7 +43,7 @@
 
 
                             <i class="fa-solid fa-marker" style="color: #007A64;" data-bs-toggle="modal" data-bs-target="#modifierHopital"  style="cursor: pointer;" style="color: #007A64;"></i> &acute;
-                            <i class="fa-solid fa-trash" style="color: #007A64;"></i></span>
+                            <i class="fa-solid fa-trash" style="color: #007A64;" (click)="supprimerHopital(hopital)" ></i></span>
                             <!-- <i class="fa-solid fa-marker" style="color: #007A64;" data-bs-toggle="modal" data-bs-target="#modifierHopital"  style="cursor: pointer;" style="color: #007A64;" (click)="chargerInfosHopital(hopital)"></i> &acute;<i class="fa-solid fa-trash"
                                 (click)="supprimertabHopitaux(hopital.id)" style="color: #007A64;"></i></span> -->
                             <i class="fa-solid fa-eye" style="color: #007A64;"></i> 

@@ -25,6 +25,8 @@ export class GestionHopitalComponent {
   // Déclaration des variables pour le localStorage 
   tabHopitalInit: Hopitaux[] = [];
   tabHopitaux: Hopitaux[] = [];
+  tabHopitauxActifs: Hopitaux[] = [];
+  tabHopitauxInactifs: Hopitaux[] = [];
   hopital_object = new Hopitaux;
 
   islisteHopitaux: boolean = false;
@@ -70,7 +72,7 @@ export class GestionHopitalComponent {
       searching: true,
       lengthChange: false,
       paging: true,
-      pageLength: 3,
+      pageLength: 6,
       pagingType: 'simple_numbers',
       info: false,
       language: {
@@ -100,6 +102,7 @@ export class GestionHopitalComponent {
 
     // On récupère les hopitaux du localStorage
     this.tabHopitaux = JSON.parse(localStorage.getItem("hopitaux") || "");
+    this.tabHopitauxActifs = this.tabHopitaux.filter(hopital => hopital.etat == 1);
     this.tabServices = JSON.parse(localStorage.getItem("services") || "");
 
     if(!this.tabHopitaux.length){
@@ -150,6 +153,7 @@ export class GestionHopitalComponent {
     if (this.hopital_object.nom_hopitaux && this.hopital_object.description && this.hopital_object.heure_fermeture_semaine
       && this.hopital_object.image && this.hopital_object.heure_ouverture_weekend) {
       this.hopital_object.id = this.lastId + 1;
+      this.hopital_object.etat = 1;
       // On ajoute l'objet dans le tableau 
       this.tabHopitaux.push(this.hopital_object);
       this.viderChamps();
@@ -219,10 +223,33 @@ export class GestionHopitalComponent {
     // console.log(checkboxChecked);
     
   }
-  // Méthode pour ajouter les spécialité de l'hopital 
+  // Méthode pour ajouter les spécialité de l'hopital
 
 
-
+  //Méthode pour supprimer un hopital avec le localStorage
+  
+     supprimerHopital(paramHopital:any){
+    Swal.fire({
+      title: "Etes-vous sur???",
+      text: "Vous allez supprimer le contact",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Oui, je supprime!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        paramHopital.etat = 0;
+        // On met à jour le tableau qui est stocké dans le localStorage 
+        localStorage.setItem("hopitaux", JSON.stringify(this.tabHopitaux));
+        // this.verifierChamps("Contact supprimer!", "", "success");     
+        
+      }
+      this.showHopitaux();
+    });
+    // alert(paramContact.etatContact);
+    
+  }
 
 
 
