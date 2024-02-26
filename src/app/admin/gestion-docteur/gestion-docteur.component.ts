@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Docteur } from 'src/app/models/docteur';
+import { Hopitaux } from 'src/app/models/hopitaux';
 import { DocteurService } from 'src/app/services/docteur.service';
  import { MessageService } from 'src/app/services/message.service';
 import Swal from 'sweetalert2';
@@ -36,7 +37,19 @@ docteurSelectionner: any = {
   annee_experience = "";
   numero_licence = 0;
   role="Admin"
+
+  islisteDocteurs: boolean = false;
+  isAjoutDocteur: boolean = false;
+
+  // Le tableau des hopitaux 
+  tabHopitaux: Hopitaux[] = [];
+  tabServices: any[] = [];
  
+  docteur_object = new Docteur;
+  tabInitial: Docteur[] = [];
+  tabDocteurs: Docteur[] = [];
+
+  lastId: number= 0;
 
   constructor(private docteurService: DocteurService, private messageService: MessageService) {
   }
@@ -46,7 +59,7 @@ docteurSelectionner: any = {
   ngOnInit(): void {
     // methode listeer docteur 
     // this.addDocteur();
-    this.getAllDocteur();
+    // this.getAllDocteur();
     // this.supprimerDocteur(id);
     // proprietes datatables 
       this.dtOptions = {
@@ -71,58 +84,69 @@ docteurSelectionner: any = {
       //   $('.dataTables_wrapper table').addClass('table-bordered'); // Ajoute une classe pour les bordures horizontales
       // },
     };
-  
-      
-   
 
-    
-}
-
-  
-
-  addDocteur() {
-    if (!this.nomDocteur || !this.numero_licenceDocteur || !this.specialite_id) {
-      // this.alertMessage('error', 'Oops', 'Veuillez remplir tous les champs obligatoires.');
-      return;
+    // On initial le tableau des docteurs dans le localStorage 
+    if(!localStorage.getItem("docteurs")){
+      localStorage.setItem("docteurs", JSON.stringify(this.tabInitial));
     }
 
-    let newDocteur = new FormData();
-    newDocteur.append('prenom', this.prenomDocteur);
-    newDocteur.append('nom', this.nomDocteur);
-    newDocteur.append('role_id', this.roleDocteur);
-    newDocteur.append('age', this.ageDocteur);
-    newDocteur.append('specialite_id', this.specialite_id);
-    newDocteur.append('adresse', this.adresseDocteur);
-    newDocteur.append('sexe', this.sexeDocteur);
-    newDocteur.append('numero_licence', this.numero_licenceDocteur);
-    newDocteur.append('annee_experience', this.nombre_annee_experienceDocteur);
-    newDocteur.append('telephoneDocteur', this.telephoneDocteur);
-    newDocteur.append('email', this.emailDocteur);
-    newDocteur.append('password', this.passwordDocteur);
-    newDocteur.append('diplome', this.diplomeDocteur);
+    // On récupère les hopitaux du localStorage
+    this.tabHopitaux = JSON.parse(localStorage.getItem("hopitaux") || "");
+    this.tabServices = JSON.parse(localStorage.getItem("services") || "");
+    this.tabDocteurs = JSON.parse(localStorage.getItem("docteurs") || "");
     
-    newDocteur.append('image', this.photo_profilDocteur as unknown as Blob);
-
-    this.docteurService.addDocteur(newDocteur).subscribe(
-      (response) => {
-        console.log('Docteur ajouté avec succès.', response);
-       
-        // // this.alertMessage('success', 'Cool', 'Docteur ajouté avec succès');
-        //  this.getAllDocteur();
-
-      },
-      (error) => {
-        // this.alertMessage('error', 'Oops', "Erreur lors de l'ajout du docteur");
-        console.error("Une erreur s'est produite lors de l'ajout du docteur: ", error);
-      }
-    );
-
-    this.getAllDocteur();
+    if(!this.tabDocteurs.length){
+      this.showAddDocteur();
+    } else {
+      this.showDocteurs();
+    }
   }
 
-  
+  // Avec le local storage :
+  // Methode pour voir la liste des hopitaux 
+  showDocteurs(){
+    this.islisteDocteurs= true;
+    this.isAjoutDocteur= false;
+  }
 
-  //  charger les donnees 
+  // Methode pour voir l'ajout d'un hopital
+  showAddDocteur(){
+    this.isAjoutDocteur= true;
+    this.islisteDocteurs= false;
+  }
+
+  // Validation pas encore complete
+  // Methode pour ajouter un docteur 
+  addDocteurFunction(){
+    if(this.tabDocteurs.length){
+      this.lastId = this.tabDocteurs[this.tabDocteurs.length - 1].id;      
+    }
+
+    console.log(this.docteur_object);
+    if (this.docteur_object.nom && this.docteur_object.prenom && this.docteur_object.adresse && this.docteur_object.age && this.docteur_object.telephone
+       && this.docteur_object.adresse && this.docteur_object.password) {
+      this.docteur_object.id = this.lastId + 1;
+      this.tabDocteurs.push(this.docteur_object);
+      this.viderChamps();
+      localStorage.setItem("docteurs", JSON.stringify(this.tabDocteurs));
+      this.alertMessage("success", "", "Docteur ajouté avec succes");
+    }else {
+      this.alertMessage("error", "", "Veuillez remplir les donnees");
+    }
+    
+  }
+
+  viderChamps(){
+    this.docteur_object = new Docteur;
+  }
+
+  getSpecialiteName(idSpecialite:any){
+    let specialiteFound = this.tabServices.find((service:any) => service.id == idSpecialite);
+    return specialiteFound.nom;
+  }
+ 
+
+    // charger les donnees 
   chargerInfosTest(docteur: any) {
     this.docteurSelectionner = docteur.id;
     console.log('esxrcdftygu', this.docteurSelectionner);
@@ -131,16 +155,11 @@ docteurSelectionner: any = {
     this.prenomDocteur = docteur.prenom;
     this.ageDocteur = docteur.age;
     this.sexeDocteur = docteur.sexe;
-    this.diplomeDocteur = docteur.diplomeDocteur;
     this.telephoneDocteur = docteur.telephone;
-    this.roleDocteur = docteur.role_id;  // à enlever 
-    this.emailDocteur = docteur.email;
     this.passwordDocteur = docteur.password;
     this.adresseDocteur = docteur.adresse;
     this.photo_profilDocteur = docteur.photoProfil;
-    this.numero_licenceDocteur = docteur.numero_licence;
     this.nombre_annee_experienceDocteur = docteur.annee_experience;
-    this.diplomeDocteur = docteur.diplome;
     this.specialite_id = docteur.specialite;
   
   
@@ -149,6 +168,105 @@ docteurSelectionner: any = {
 console.log("verifier si les donnees sont chrages :",this.chargerInfosTest);
     // this.image = docteur.image;
   }
+currentDocteur:any
+  
+  modifierDocteur(){
+    this.currentDocteur.nom = this.nomDocteur;
+    this.currentDocteur.prenom = this.prenomDocteur;
+    this.currentDocteur.email = this.emailDocteur;
+    this.currentDocteur.telephone = this.telephoneDocteur;
+    // this.currentDocteur.descriptionContact = this.;
+    // this.currentDocteur.image = this.;
+    this.currentDocteur.sexe = this.sexeDocteur;
+    this.currentDocteur.adresse = this.adresseDocteur;
+    this.currentDocteur.age = this.ageDocteur;
+    this.currentDocteur.photo_profil = this.photo_profilDocteur;
+    this.currentDocteur.nombre_annee_experience = this.nombre_annee_experienceDocteur;
+    this.currentDocteur.specialite = this.specialite_id;
+
+
+
+        
+    // La date de derniere modification
+    // this.docteur.updateAt = new Date();
+    // // La personne qui a modifier le contact
+     
+    // this.currentContact.updateBy = this.userConnect.email; 
+    
+    // On met à jour le tableau qui est stocké dans le localStorage 
+    localStorage.setItem("docteurs", JSON.stringify(this.tabDocteurs));
+    // this.verifierChamps("Mofication réussie!", "", "success"); 
+    // this.viderChapms();
+  } 
+  // addDocteur() {
+  //   if (!this.nomDocteur || !this.numero_licenceDocteur || !this.specialite_id) {
+  //     // this.alertMessage('error', 'Oops', 'Veuillez remplir tous les champs obligatoires.');
+  //     return;
+  //   }
+
+  //   let newDocteur = new FormData();
+  //   newDocteur.append('prenom', this.prenomDocteur);
+  //   newDocteur.append('nom', this.nomDocteur);
+  //   newDocteur.append('role_id', this.roleDocteur);
+  //   newDocteur.append('age', this.ageDocteur);
+  //   newDocteur.append('specialite_id', this.specialite_id);
+  //   newDocteur.append('adresse', this.adresseDocteur);
+  //   newDocteur.append('sexe', this.sexeDocteur);
+  //   newDocteur.append('numero_licence', this.numero_licenceDocteur);
+  //   newDocteur.append('annee_experience', this.nombre_annee_experienceDocteur);
+  //   newDocteur.append('telephoneDocteur', this.telephoneDocteur);
+  //   newDocteur.append('email', this.emailDocteur);
+  //   newDocteur.append('password', this.passwordDocteur);
+  //   newDocteur.append('diplome', this.diplomeDocteur);
+    
+  //   newDocteur.append('image', this.photo_profilDocteur as unknown as Blob);
+
+  //   this.docteurService.addDocteur(newDocteur).subscribe(
+  //     (response) => {
+  //       console.log('Docteur ajouté avec succès.', response);
+       
+  //       // // this.alertMessage('success', 'Cool', 'Docteur ajouté avec succès');
+  //       //  this.getAllDocteur();
+
+  //     },
+  //     (error) => {
+  //       // this.alertMessage('error', 'Oops', "Erreur lors de l'ajout du docteur");
+  //       console.error("Une erreur s'est produite lors de l'ajout du docteur: ", error);
+  //     }
+  //   );
+
+  //   this.getAllDocteur();
+  // }
+
+  
+
+  //  charger les donnees 
+//   chargerInfosTest(docteur: any) {
+//     this.docteurSelectionner = docteur.id;
+//     console.log('esxrcdftygu', this.docteurSelectionner);
+  
+//     this.nomDocteur = docteur.nom;
+//     this.prenomDocteur = docteur.prenom;
+//     this.ageDocteur = docteur.age;
+//     this.sexeDocteur = docteur.sexe;
+//     this.diplomeDocteur = docteur.diplomeDocteur;
+//     this.telephoneDocteur = docteur.telephone;
+//     this.roleDocteur = docteur.role_id;  // à enlever 
+//     this.emailDocteur = docteur.email;
+//     this.passwordDocteur = docteur.password;
+//     this.adresseDocteur = docteur.adresse;
+//     this.photo_profilDocteur = docteur.photoProfil;
+//     this.numero_licenceDocteur = docteur.numero_licence;
+//     this.nombre_annee_experienceDocteur = docteur.annee_experience;
+//     this.diplomeDocteur = docteur.diplome;
+//     this.specialite_id = docteur.specialite;
+  
+  
+   
+    
+// console.log("verifier si les donnees sont chrages :",this.chargerInfosTest);
+//     // this.image = docteur.image;
+//   }
   
 
   // Méthode pour modifier un Docteur 
@@ -207,55 +325,55 @@ console.log("verifier si les donnees sont chrages :",this.chargerInfosTest);
   //   console.log(file);
   // }
 
-  getFile(event: any) {
-    console.warn(event.target.files[0]);
-    this.diplomeDocteur = event.target.files[0] as File;
+  // getFile(event: any) {
+  //   console.warn(event.target.files[0]);
+  //   this.diplomeDocteur = event.target.files[0] as File;
+  // }
+
+  alertMessage(icon: any, title: any, text: any) {
+      Swal.fire({
+          icon: icon,
+          title: title,
+          text: text,
+          timer: 3000, // Durée en millisecondes avant la disparition
+          timerProgressBar: true, // Barre de progression de la temporisation
+          showConfirmButton: false // Cacher le bouton de confirmation
+      });
   }
 
-alertMessage(icon: any, title: any, text: any) {
-    Swal.fire({
-        icon: icon,
-        title: title,
-        text: text,
-        timer: 3000, // Durée en millisecondes avant la disparition
-        timerProgressBar: true, // Barre de progression de la temporisation
-        showConfirmButton: false // Cacher le bouton de confirmation
-    });
-}
 
 
 
+  //  supprimerDocteur(id:number) {
+  //   Swal.fire({
+  //     title: 'Êtes-vous sûr?',
+  //     text: 'Vous ne pourrez pas revenir en arrière après cette action!',
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#017D03',
+  //     cancelButtonColor: '#FF9C00',
+  //     confirmButtonText: 'Oui, supprimer!',
+  //     // timer: 2000, // Durée en millisecondes avant la disparition
+  //     // timerProgressBar: true, // Barre de progression de la temporisation
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       this.docteurService.supprimerDocteur(id).subscribe((response) => {
+  //         console.log(response);
+  //         this.docteurService.verifierChamp(
+  //           'Supprimé!',
+  //           'docteur supprimé avec succès',
+  //           'success'
+  //         );
+  //         // this.loadProduit();
+  //         // this.ngOnInit(); // Actualise la page
 
-   supprimerDocteur(id:number) {
-    Swal.fire({
-      title: 'Êtes-vous sûr?',
-      text: 'Vous ne pourrez pas revenir en arrière après cette action!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#017D03',
-      cancelButtonColor: '#FF9C00',
-      confirmButtonText: 'Oui, supprimer!',
-      // timer: 2000, // Durée en millisecondes avant la disparition
-      // timerProgressBar: true, // Barre de progression de la temporisation
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.docteurService.supprimerDocteur(id).subscribe((response) => {
-          console.log(response);
-          this.docteurService.verifierChamp(
-            'Supprimé!',
-            'docteur supprimé avec succès',
-            'success'
-          );
-          // this.loadProduit();
-          // this.ngOnInit(); // Actualise la page
-
-          //  this.getAllSpecialites();
-          // this.getAllDocteur();
-          this.getAllDocteur(); 
-        });
-      }
-    });
-  }
+  //         //  this.getAllSpecialites();
+  //         // this.getAllDocteur();
+  //         this.getAllDocteur(); 
+  //       });
+  //     }
+  //   });
+  // }
 
 
 }

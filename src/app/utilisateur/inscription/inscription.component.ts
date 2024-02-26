@@ -4,6 +4,8 @@ import { User } from 'src/app/models/users';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 import { MessageService } from 'src/app/services/message.service';
 import Swal from 'sweetalert2';
+import { NameValidator } from 'src/app/models/name.validor';
+import { AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-inscription',
@@ -13,7 +15,7 @@ import Swal from 'sweetalert2';
 export class InscriptionComponent {
 
 
-
+ nomError: boolean = false;
   
   changeForm = true;
   
@@ -44,12 +46,46 @@ export class InscriptionComponent {
   
   //   userConnected: any;
 
-  constructor(private authentificationservice: AuthentificationService, private message: MessageService, private route: Router) { }
+  constructor(private authentificationservice: AuthentificationService,
+    private message: MessageService,
+    private route: Router,
+    
+    
+  ) { }
 
   ngOnInit(): void {
   }
 
+    static notOnlyWhitespace(control: FormControl): ValidationErrors | null{
+    // check if string only contains whitespace
+    if((control.value != null) && (control.value.trim().length === 0 || control.value.startsWith(' ') || control.value.endsWith(' '))){
+      //invalid, return error object
+      return {'notOnlyWhitespace': true};
+    }else{
+      // valid, return null
+      return null;
+    }
+  }
+
+  
+  static requiredValidator(controlName: string): ValidatorFn {
+
+    return (name: AbstractControl): ValidationErrors |null=>{
+
+      if(!name.value)
+      {
+        return {  error: true, message: `${controlName} est obligatoire.` }
+      }
+      return null;
+    };
+  }
+
   register() {
+
+    // if (this.static requiredValidator()) {
+    //   // Appeler la méthode registerProprietaire seulement si la validation réussit
+    //   // this.registerClient();
+    // }
     console.log(this.nomRegister);
     console.log(this.prenomRegister);
     console.log(this.emailRegister);
@@ -85,6 +121,7 @@ export class InscriptionComponent {
 
 
    
+  
 
     if (this.emailRegister == "" || this.passwordRegister == "" || this.prenomRegister == "" || this.nomRegister == ""
       || this.telephoneRegister == "" || this.roleRegister == "" || this.ageRegister == "" || this.sexeRegister == "") {
@@ -92,7 +129,7 @@ export class InscriptionComponent {
       console.log("fdffdfd", newClient);
 
     } else {
-
+     
 
 
       let formData = new FormData();
@@ -128,7 +165,16 @@ export class InscriptionComponent {
   }
 
 
-  
+     validateNom() {
+        // Expression régulière pour permettre uniquement les lettres et les espaces
+        const regex = /^[A-Za-z\s]+$/;
+
+        if (!regex.test(this.nomRegister)) {
+            this.nomError = true;
+        } else {
+            this.nomError = false;
+        }
+    }
 
 alertMessage(icon: any, title: any, text: any) {
     Swal.fire({
@@ -141,7 +187,6 @@ alertMessage(icon: any, title: any, text: any) {
     });
 }
   
-
 
   
   switchForm() {

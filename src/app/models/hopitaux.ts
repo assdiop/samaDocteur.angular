@@ -12,7 +12,11 @@ export class Hopitaux {
     adresse!: string;
     etat!: string;
     type!: string;
-    specialites!: Specialite[];
+    heure_ouverture_semaine!: string;
+    heure_fermeture_semaine!: string;
+    heure_ouverture_weekend!: string;
+    heure_fermeture_weekend!: string;
+    services!: Specialite[];
 }
 
 // export class Service {

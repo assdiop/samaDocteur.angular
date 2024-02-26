@@ -1,16 +1,170 @@
-<div class="buttonAjouter mt-2 mb-3">
-    <!-- Button modal Ajouter-->
-    <button type="button" class="btn text-white" data-bs-toggle="modal" data-bs-target="#ajouterDocteur"
-        style="background-color: #007A64;">
-        Ajouter
-    </button>
+<div class="container">
+    <!-- Les boutons  -->
+    <div class="buttonAjouter mt-2 mb-3">
+        <!-- Button modal Ajouter-->
+        <button type="button" class="btn text-white" style="background-color: #007A64;" *ngIf="islisteHopitaux" (click)="showAddHopital()">
+            Ajouter un hopital
+        </button>
+    
+        <!-- Button modal Ajouter-->
+        <button type="button" class="btn text-white" style="background-color: #007A64;" *ngIf="isAjoutHopital" (click)="showHopitaux()">
+            Voir la liste des hopitaux
+        </button>    
+    </div>
+    
+    <!-- La liste des hopitaux  -->
+    <div class="listeHopitaux" *ngIf="islisteHopitaux">
+        <!-- <img src="https://static9.depositphotos.com/1095795/1089/i/450/depositphotos_10896568-stock-photo-hospital-surgery-corridor.jpg" alt=""> -->
+        <table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table" *ngIf="tabHopitaux.length>0">
 
+            <thead>
+                <tr style="background-color: #007A64;color: #fff;">
+                    <th class="tHead">Image</th>
+                    <th class="tHead">Nom_Hopital</th>
+                    <th class="tHead">Adresse</th>
+                    <th class="tHead">Type</th>
+                    <th class="tHead">Nombre de services</th>
+
+                    <!-- <th class="tHead">Longitude</th> -->
+
+
+                    <th class="tHead">Action</th>
+                </tr>
+            </thead>
+            <tbody >
+                <tr *ngFor="let hopital of tabHopitaux">
+                    <td> <img [src]="hopital.image" alt="" width="35px" height="35px" class="rounded-2"> </td>
+                    <td>{{hopital.nom_hopitaux}}</td>
+                    <td>{{hopital.adresse}}</td>
+                    <td>{{hopital.type}}</td>
+                    <td>{{hopital.services.length}}</td>
+
+                    <td><span id="icon">
+
+
+                            <i class="fa-solid fa-marker" style="color: #007A64;" data-bs-toggle="modal" data-bs-target="#modifierHopital"  style="cursor: pointer;" style="color: #007A64;"></i> &acute;
+                            <i class="fa-solid fa-trash" style="color: #007A64;"></i></span>
+                            <!-- <i class="fa-solid fa-marker" style="color: #007A64;" data-bs-toggle="modal" data-bs-target="#modifierHopital"  style="cursor: pointer;" style="color: #007A64;" (click)="chargerInfosHopital(hopital)"></i> &acute;<i class="fa-solid fa-trash"
+                                (click)="supprimertabHopitaux(hopital.id)" style="color: #007A64;"></i></span> -->
+                            <i class="fa-solid fa-eye" style="color: #007A64;"></i> 
+                    </td>
+                </tr>
+
+
+
+
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Ajout d'un hopital  -->
+    <div class="ajoutHopital" *ngIf="isAjoutHopital">
+        <h1 class="fw-bold text-center title1">Ajouter un hopital</h1>
+        <form  action="">
+            <div class="mb-3">
+                <h3 class="title2">Les informations générales</h3>
+                <div class="row g-3">
+                    <!-- Le nom de l'hopital  -->
+                    <div class="col-md-6 mb-3">
+                      <label for="inputNom" class="form-label">Nom</label>
+                      <input type="text" name="nomHopital" class="form-control" id="inputNom"  [(ngModel)]="hopital_object.nom_hopitaux">
+                    </div>
+        
+                    <!-- Adresse  -->
+                    <div class="col-md-6 mb-3">
+                      <label for="inputAdresse" class="form-label">Adresse</label>
+                      <input type="text" name="adresseHopital" class="form-control" id="inputAdresse"  [(ngModel)]="hopital_object.adresse">
+                    </div>
+        
+                    <!-- Image de l'hopital  -->
+                    <div class="col-md-6 mb-3">
+                      <label for="urlImage" class="form-label">Image de l'hopital</label>
+                      <input type="text" name="imageHopital" class="form-control" id="urlImage"  [(ngModel)]="hopital_object.image">
+                    </div>
+        
+                    <!-- Type de l'hopital  -->
+                    <div class="col-md-6 mb-3">
+                      <label for="inputType" class="form-label">Type de l'hopital</label>
+                      <select class="form-select form-control" name="typeHopital" id="inputType"  [(ngModel)]="hopital_object.type">
+                        <option selected disabled value="">Veillez choisir un type...</option>
+                        <option value="public">Public</option>
+                        <option value="prive">Privé</option>
+                      </select>
+                    </div>
+                </div>
+            </div>
+                <!-- horaire des hopitaux -->
+            <div class="mb-3">
+                <h3 for="heureSemaine" class="title2">Horaires de la semaine</h3>
+                <div class="row g-3">
+                    <div class="col-md-6 mb-3">
+                      <label for="inputDebutSemaine" class="form-label">Heure d'ouverture</label>
+                      <input type="time" name="debutsemaineHopital" class="form-control" id="inputDebutSemaine" [(ngModel)]="hopital_object.heure_ouverture_semaine">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="inputFinSemaine" class="form-label">Heure de fermeture</label>
+                      <input type="time" name="finsemaineHopital" class="form-control" id="inputFinSemaine" [(ngModel)]="hopital_object.heure_fermeture_semaine">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <h3 for="horaireWeekend" class="title2">Horaires du weekend</h3>
+                <div class="row g-3">
+                    <div class="col-md-6 mb-3">
+                      <label for="inputDebutWeekend" class="form-label">Heure d'ouverture</label>
+                      <input type="time" name="debutWeekendHopital" class="form-control" id="inputDebutWeekend" [(ngModel)]="hopital_object.heure_ouverture_weekend">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="inputFinWeekend" class="form-label">Heure de fermeture</label>
+                      <input type="time" name="finWeekendHopital" class="form-control" id="inputFinWeekend" [(ngModel)]="hopital_object.heure_fermeture_weekend">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Les services  -->
+            <div class="mb-3">
+                <!-- Liste toutes les services ajoutées par l'administrateur -->
+                <h3 for="horaireWeekend" class="title2">Les services</h3>
+                <div class="checkbox-container row g-3 container">
+                    <div class="checkbox-item form-check col-md-4" *ngFor="let service of tabServices let index = index">
+                        <input type="checkbox" class="me-3" [id]="service.nom" [name]="service.nom" [value]="service.nom" [checked]="service.checkboxChecked" (change)="checkSpecialiste($event, service.nom)"
+                        >
+                        <label class="ms-3" [for]="service.nom">{{service.nom}}</label>
+                    </div>
+                </div>
+            </div>
+
+            
+            <!-- Description  -->
+            <div class="row g-3">
+                <div class="col-12 mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" name="descriptionHopital" id="description" rows="3"  [(ngModel)]="hopital_object.description"></textarea>
+                </div> 
+            </div>
+
+        </form>
+        <!-- button ajout  -->
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn text-white w-25" data-bs-dismiss="modal" style="background-color: green" (click)="addHopitalFunction()">
+                Ajouter
+            </button>
+            <!-- <button type="button" class="btn w-25" data-bs-dismiss="modal" style="
+                
+                background-color: blue;color:#fff;
+                border: thin solid;
+              ">
+                Annuler
+            </button> -->
+        </div>
+    </div>
 </div>
 
 
 <!-- Modal Ajouter  -->
 <!-- Modal -->
-<div class="modal fade" id="ajouterDocteur" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="ajouterDocteur" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -23,7 +177,7 @@
                         <div class="mb-3 col-6">
                             <label for="nom" class="form-label">Nom:</label>
                             <input type="text" name="nom_hopital" class="form-control" id="nom"
-                                [(ngModel)]="nom_hopitaux" />
+                                [(ngModel)]="nom_tabHopitaux" />
                         </div>
 
                         <div class="mb-3 col-6 ms-3">
@@ -43,13 +197,12 @@
                             <input type="text" name="lattitudeHopitaux" class="form-control" id="nom"
                                 [(ngModel)]="lattitudeHopitaux" />
                         </div>
-                        <!-- <p>{{emailDocteur}}</p> -->
+                        
                         <div class="mb-3 col-6 ms-3">
                             <label for="nom" class="form-label">Longitude:</label>
                             <input type="text" name="ongitudeHopitaux" class="form-control" id="nom"
                                 [(ngModel)]="longitudeHopitaux" />
                         </div>
-                        <!-- <p>{{passwordDocteur}}</p> -->
 
                     </div>
 
@@ -62,13 +215,11 @@
                             <input (change)="getFile($event)" class="form-control" type="file" id="photo_profil"
                                 name="image" accept="image/*">
                         </div>
-                        <!-- <p>{{emailDocteur}}</p> -->
                         <div class="mb-3 col-6 ms-3">
                             <label for="nom" class="form-label">Horaire:</label>
                             <input type="text" name="nom_hopital" class="form-control" id="nom"
                                 [(ngModel)]="horaireHopitaux" />
                         </div>
-                        <!-- <p>{{passwordDocteur}}</p> -->
 
                     </div>
 
@@ -111,13 +262,13 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 <!-- Modal  pour modifier  -->
 
 
-<div class="modal fade" id="modifierHopital" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="modifierHopital" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -150,13 +301,12 @@
                             <input type="text" name="lattitudeHopitaux" class="form-control" id="nom"
                                 [(ngModel)]="lattitudeHopitaux" />
                         </div>
-                        <!-- <p>{{emailDocteur}}</p> -->
+                        
                         <div class="mb-3 col-6 ms-3">
                             <label for="nom" class="form-label">Longitude:</label>
                             <input type="text" name="ongitudeHopitaux" class="form-control" id="nom"
                                 [(ngModel)]="longitudeHopitaux" />
                         </div>
-                        <!-- <p>{{passwordDocteur}}</p> -->
 
                     </div>
 
@@ -169,13 +319,11 @@
                             <input (change)="getFile($event)" class="form-control" type="file" id="photo_profil"
                                 name="image" accept="image/*">
                         </div>
-                        <!-- <p>{{emailDocteur}}</p> -->
                         <div class="mb-3 col-6 ms-3">
                             <label for="nom" class="form-label">Horaire:</label>
                             <input type="text" name="horaireHopitaux" class="form-control" id="nom"
                                 [(ngModel)]="horaireHopitaux" />
                         </div>
-                        <!-- <p>{{passwordDocteur}}</p> -->
 
                     </div>
 
@@ -220,9 +368,9 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
-<table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table" *ngIf="Hopitaux.length>0">
+<!-- <table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table" *ngIf="Hopitaux.length>0">
 
     <thead>
         <tr style="background-color: #007A64;color: #fff;">
@@ -254,112 +402,14 @@
                     <i class="fa-solid fa-marker" style="color: #007A64;" data-bs-toggle="modal" data-bs-target="#modifierHopital"  style="cursor: pointer;" style="color: #007A64;" (click)="chargerInfosHopital(hopital)"></i> &acute;<i class="fa-solid fa-trash"
                         (click)="supprimerHopitaux(hopital.id)" style="color: #007A64;"></i></span>
             </td>
-            <!-- 
-<i class="fa-solid fa-eye" style="color: #007A64;"></i> -->
+<i class="fa-solid fa-eye" style="color: #007A64;"></i> 
         </tr>
 
 
 
 
     </tbody>
-</table>
+</table> -->
 
 
 <!-- Avec le localstorage -->
-<!-- Modal pour ajouter un hopital  -->
-<div class="modal fade" id="ajouterDocteur" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un hopital</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="">
-                    <div class="col-12 d-flex justify-content-between">
-                        <div class="mb-3 col-6">
-                            <label for="nom" class="form-label">Nom:</label>
-                            <input type="text" name="nom_hopital" class="form-control" id="nom"
-                                [(ngModel)]="hopital_object.nom_hopitaux" />
-                        </div>
-
-                        <div class="mb-3 col-6 ms-3">
-                            <label for="nom" class="form-label">Description:</label>
-                            <input type="text" name="nom_hopital" class="form-control" id="nom"
-                                [(ngModel)]="hopital_object.description" />
-                        </div>
-
-
-                    </div>
-
-                    <select class="form-select" aria-label="Default select example" name="localite_idHopitaux"
-                        [(ngModel)]="localite_idHopitaux">
-                        <option selected>Veuillez selectionner le type</option>
-                        <option value="public">Public</option>
-                        <option value="prive">Privé</option>
-                    </select>
-
-
-
-                    <div class="col-12 d-flex justify-content-between">
-                        <div class="mb-3 col-6">
-                            <label for="nom" class="form-label">Adresse:</label>
-                            <input type="text" name="adresseHopitaux" class="form-control" id="nom"
-                                [(ngModel)]="hopital_object.adresse" />
-                        </div>
-                        <!-- <p>{{emailDocteur}}</p> -->
-                        <div class="mb-3 col-6 ms-3">
-                            <label for="nom" class="form-label">Longitude:</label>
-                            <input type="text" name="ongitudeHopitaux" class="form-control" id="nom"
-                                [(ngModel)]="longitudeHopitaux" />
-                        </div>
-                        <!-- <p>{{passwordDocteur}}</p> -->
-
-                    </div>
-
-
-
-                    <div class="col-12 d-flex justify-content-between">
-                        <div class="mb-3 col-6">
-
-                            <label for="photo_profil_Mentor" class="form-label">Image</label>
-                            <input (change)="getFile($event)" class="form-control" type="file" id="photo_profil"
-                                name="image" accept="image/*">
-                        </div>
-                        <!-- <p>{{emailDocteur}}</p> -->
-                        <div class="mb-3 col-6 ms-3">
-                            <label for="nom" class="form-label">Horaire:</label>
-                            <input type="text" name="nom_hopital" class="form-control" id="nom"
-                                [(ngModel)]="horaireHopitaux" />
-                        </div>
-                        <!-- <p>{{passwordDocteur}}</p> -->
-
-                    </div>
-
-
-
-
-
-                    
-
-                        
-
-                    
-                </form>
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button type="button" class="btn text-white w-25" data-bs-dismiss="modal"
-                    style="background-color: green">
-                    Ajouter
-                </button>
-                <button type="button" class="btn w-25" data-bs-dismiss="modal" style="
-                    
-                    background-color: blue;color:#fff;
-                    border: thin solid;
-                  ">
-                    Annuler
-                </button>
-            </div>
-        </div>
-    </div>
-</div>

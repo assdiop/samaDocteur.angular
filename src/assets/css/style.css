@@ -63,12 +63,24 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
   border: 1px solid #223a66;
 }
 
-.form-control {
+.form-control{
   box-shadow: none;
   border-radius: 0;
 }
 
-.form-control:focus {
+.form-select{
+  box-shadow: none;
+  border-radius: 0;
+  height: 6.5vh;
+  width: 100%;
+}
+
+/* select{
+  border: 1px solid #223a66 !important;
+
+} */
+
+.form-control:focus{
   box-shadow: none;
   border: 1px solid #223a66;
 }

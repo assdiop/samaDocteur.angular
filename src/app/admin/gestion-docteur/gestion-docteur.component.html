@@ -1,9 +1,189 @@
+<div class="container">
+    <!-- Les boutons  -->
+    <div class="buttonAjouter mt-2 mb-3">
+        <!-- Button modal Ajouter-->
+        <button type="button" class="btn text-white" style="background-color: #007A64;" *ngIf="islisteDocteurs" (click)="showAddDocteur()">
+            Ajouter un docteur
+        </button>
+    
+        <!-- Button modal Ajouter-->
+        <button type="button" class="btn text-white" style="background-color: #007A64;" *ngIf="isAjoutDocteur" (click)="showDocteurs()">
+            Voir la liste des hopitaux
+        </button>    
+    </div>
+    
+    <!-- La liste des hopitaux  -->
+    <div class="listeHopitaux" *ngIf="islisteDocteurs">
+        <table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table" *ngIf=" tabDocteurs.length>0">
+            <thead>
+                <tr style="background-color: #007A64; color:#fff">
+                    <th class="tHead">Id</th>
+                    <th class="tHead">nom </th>
+                    <th class="tHead">prenom</th>
+                    <th class="tHead">Année Expérience</th>
+                    <th class="tHead">specialités</th>
+                    <th class="tHead">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let docteur of tabDocteurs">
+                    <td>
+                    {{docteur.id}}
+                    </td>
+                    <td>
+                    
+                    {{docteur.nom}}
+                    </td>
+                    <td>
+                        <div class="ms-3">
+                            <p class="fw-bold mb-1">{{docteur.prenom }} </p>
+                        
+                        </div>
+                    </td>
 
-      
+                    <td>{{docteur.annee_experience}}</td>
+                    
+                    
+                    <td>{{getSpecialiteName(docteur.specialite_id)}}</td>
+
+                
+        
+            <td>
+                <span >
+                    <i id ="myspan" class="fa-solid fa-marker" style="color: #007A64;" data-bs-toggle="modal" data-bs-target="#modifierDocteur"
+                        style="cursor: pointer;" style="color: #007A64;"> </i>
+                    
+                    
+                    <i class="fa-solid fa-trash" style="color:#007A64;"></i>
+                    <!-- <i id ="myspan" class="fa-solid fa-marker" style="color: #007A64;" data-bs-toggle="modal" data-bs-target="#modifierDocteur"
+                        style="cursor: pointer;" (click)="chargerInfosTest(docteur)" style="color: #007A64;"> </i>
+                    
+                    
+                    <i class="fa-solid fa-trash" style="color:#007A64;" (click)="supprimerDocteur(docteur.id)"></i> -->
+                </span>
+                </td>
+        
+                        
+                
+                </tr>
+            
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Ajout d'un docteur  -->
+    <div class="ajoutdocteur" *ngIf="isAjoutDocteur">
+        <h1 class="fw-bold text-center title1">Ajouter un docteur</h1>
+        <form  action="">
+            <div class="mb-3">
+                <div class="row g-3">
+                    <!-- Le nom de l'docteur  -->
+                    <div class="col-md-4 mb-3">
+                      <label for="inputNom" class="form-label">Nom</label>
+                      <input type="text" name="nomdocteur" class="form-control" id="inputNom"  [(ngModel)]="docteur_object.nom">
+                    </div>
+
+                    <!-- Le prenom de l'docteur  -->
+                    <div class="col-md-4 mb-3">
+                      <label for="inputprenom" class="form-label">Prenom</label>
+                      <input type="text" name="prenomdocteur" class="form-control" id="inputprenom"  [(ngModel)]="docteur_object.prenom">
+                    </div>
+        
+                    <!-- Adresse  -->
+                    <div class="col-md-4 mb-3">
+                      <label for="inputAdresse" class="form-label">Adresse</label>
+                      <input type="text" name="adresse" class="form-control" id="inputAdresse"  [(ngModel)]="docteur_object.adresse">
+                    </div>
+
+                    <!-- Numéro de téléphone  -->
+                    <div class="col-md-4 mb-3">
+                      <label for="numTelephone" class="form-label">Telephone</label>
+                      <input type="tel" name="numeroTelephone" class="form-control" id="numTelephone"  [(ngModel)]="docteur_object.telephone">
+                    </div>
+
+                    <!-- Adresse email  -->
+                    <div class="col-md-4 mb-3">
+                      <label for="inputAdresseEmail" class="form-label">Adresse Email</label>
+                      <input type="email" name="adresseEmail" class="form-control" id="inputAdresseEmail"  [(ngModel)]="docteur_object.email">
+                    </div>
+
+                    <!-- Mot de passe  -->
+                    <div class="col-md-4 mb-3">
+                      <label for="inputPassword" class="form-label">Mot de passe</label>
+                      <input type="password" name="password" class="form-control" id="inputPassword"  [(ngModel)]="docteur_object.password">
+                    </div>
+
+                    <!-- Age -->
+                    <div class="col-md-4 mb-3">
+                      <label for="inputAge" class="form-label">Age</label>
+                      <input type="number" name="Age" class="form-control" id="inputAge"  [(ngModel)]="docteur_object.age">
+                    </div>
+
+                    <!-- Annee d'experice -->
+                    <div class="col-md-4 mb-3">
+                      <label for="inputAnnee" class="form-label">Nombre d'année d''experience</label>
+                      <input type="number" name="Annee" class="form-control" id="inputAnnee"  [(ngModel)]="docteur_object.annee_experience">
+                    </div>
+        
+                    <!-- Image du docteur  -->
+                    <div class="col-md-4 mb-3">
+                      <label for="urlImage" class="form-label">Image du docteur</label>
+                      <input type="text" name="imagedocteur" class="form-control" id="urlImage"  [(ngModel)]="docteur_object.photo_profil">
+                    </div>
+        
+                    <!-- Sexe  -->
+                    <div class="col-md-4 mb-3">
+                      <label for="inputSexe" class="form-label">Sexe</label>
+                      <select class="form-select form-control" name="sexedocteur" id="inputSexe"  [(ngModel)]="docteur_object.sexe">
+                        <!-- <option selected disabled value="">Veillez choisir un sexe...</option> -->
+                        <option  value="homme">Homme</option>
+                        <option  value="femme">Femme</option>
+                      </select>
+                    </div>
+
+                    <!-- Hopital du docteur  -->
+                    <div class="col-md-4 mb-3">
+                        <label for="inputHopital" class="form-label">Hopital</label>
+                        <select class="form-select form-control" name="hopitaldocteur" id="inputHopital"  [(ngModel)]="docteur_object.hopital_id">
+                          <!-- <option selected disabled value="">Veillez choisir un type...</option> -->
+                          <option *ngFor="let hopital of tabHopitaux" [value]="hopital.id">{{hopital.nom_hopitaux}}</option>
+                        </select>
+                    </div>
+
+                    <!-- specialité du docteur  -->
+                    <div class="col-md-4 mb-3">
+                      <label for="inputSpecialite" class="form-label">Spécialité</label>
+                      <select class="form-select form-control" name="specialiteDocteur" id="inputSpecialite"  [(ngModel)]="docteur_object.specialite_id">
+                        <!-- <option selected disabled value="">Veillez choisir un type...</option> -->
+                        <option *ngFor="let service of tabServices" [value]="service.id">{{service.nom}}</option>
+                      </select>
+                    </div>
+
+                    
+                </div>
+            </div>
+
+        </form>
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn text-white w-25" data-bs-dismiss="modal" style="background-color: #007A64;"  (click)="addDocteurFunction()">
+                Ajouter
+            </button>
+            <!-- <button type="button" class="btn w-25" data-bs-dismiss="modal" style="
+                
+                background-color: blue;color:#fff;
+                border: thin solid;
+              ">
+                Annuler
+            </button> -->
+        </div>
+    </div>
+</div>
+
+
   
 
 <!-- Modal ajouter -->
-<div class="modal fade modal-xl" id="ajouterDocteur" tabindex="-1" aria-labelledby="modifierMentor" aria-hidden="true">
+<!-- <div class="modal fade modal-xl" id="ajouterDocteur" tabindex="-1" aria-labelledby="modifierMentor" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -23,22 +203,21 @@
                     style="background-color: green" (click)="addDocteur()">
                     Ajouter 
                 </button>
-                <!--   -->
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 <!-- Button trigger modal -->
-<div class="buttonAjouter mt-2 mb-3">
+<!-- <div class="buttonAjouter mt-2 mb-3">
 <button type="button" class="btn btn-primary text-center" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #007A64;">
 Ajouter 
 </button>
-</div>
+</div> -->
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -91,7 +270,6 @@ Ajouter
                             <label for="telephone" class="form-label">Telephone:</label>
                             <input type="tel" name="telephone" class="form-control" id="telephone" [(ngModel)]="telephoneDocteur" />
                         </div>
-                        <!-- <p>{{telephoneDocteur}}</p> -->
                         <div class="mb-3 col-6 ms-0">
                             <label for="role" class="form-label">role : </label>
                             <select class="form-select" aria-label="Default select example" name="role_id" [(ngModel)]="roleDocteur"> 
@@ -188,10 +366,10 @@ Ajouter
             </div>
         </div>
     </div>
-</div>
+</div> -->
  <!-- Modal pour modifier Docteur  -->
 
-<div class="modal fade" id="modifierDocteur" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="modifierDocteur" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -247,7 +425,6 @@ Ajouter
                             <input type="tel" name="telephone" class="form-control" id="telephone"
                                 [(ngModel)]="telephoneDocteur" />
                         </div>
-                        <!-- <p>{{telephoneDocteur}}</p> -->
                         <div class="mb-3 col-6 ms-0">
                             <label for="role" class="form-label">role : </label>
                             <select class="form-select" aria-label="Default select example" name="role_id"
@@ -344,18 +521,17 @@ Ajouter
             <div class="modal-footer">
                 <button type="button" class="btn text-white w-25 mx-auto" data-bs-dismiss="modal"
                     style="background-color: green"  >
-                    <!-- (click)="updateDocteurs()" -->
                     Modifier
                 </button>
 
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
  
-
+<!-- 
 <table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table" *ngIf=" Docteurs.length>0">
     <thead>
         <tr style="background-color: #007A64; color:#fff">
@@ -405,7 +581,4 @@ Ajouter
         </tr>
       
     </tbody>
-</table>
-
-
-
+</table> -->

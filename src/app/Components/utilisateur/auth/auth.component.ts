@@ -167,7 +167,7 @@ export class AuthComponent {
         console.log(response);
 
         // Si la connexion réussit, stocker la réponse dans le local storage, y compris le token
-        localStorage.setItem('token', response.access_token); // Stocker le token
+        localStorage.setItem('token', response.token); // Stocker le token
 
         const userdata = localStorage.getItem('currentUser');
 
@@ -351,7 +351,7 @@ export class AuthComponent {
       this.emailEmpty = true; // Mettre à jour emailEmpty si le champ est vide
       return false;
     } else if (!this.emailPattern.test(this.email)) {
-      this.validationMessages['email'] = 'Email invalide';
+      this.validationMessages['email'] = 'Veuillez entrer un email valide';
       this.emailEmpty = false;
       return false;
     } else {
