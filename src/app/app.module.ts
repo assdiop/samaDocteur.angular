@@ -30,6 +30,7 @@ import { AcceuilDocteurComponent } from './docteur/acceuil-docteur/acceuil-docte
 import { SidebarDocteurComponent } from './docteur/sidebar-docteur/sidebar-docteur.component';
 import { HeaderDocteurComponent } from './docteur/header-docteur/header-docteur.component';
 import { NavbarDocteurComponent } from './docteur/navbar-docteur/navbar-docteur.component';
+import { CapitalizeFirstPipe } from './capitalize-first.pipe';
 
 
 
@@ -62,6 +63,7 @@ import { NavbarDocteurComponent } from './docteur/navbar-docteur/navbar-docteur.
     SidebarDocteurComponent,
     HeaderDocteurComponent,
     NavbarDocteurComponent,
+    CapitalizeFirstPipe,
     
     
     

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HopitalService } from '../../../services/hopital.service';
 import { Hopitaux } from 'src/app/models/hopitaux';
 import { Docteur } from 'src/app/models/docteur';
+import { RendezVous } from 'src/app/models/rendezvous';
+import Swal from 'sweetalert2';
 
 
 
@@ -20,7 +22,11 @@ export class HopitauxComponent implements OnInit {
 
   searchTerm: string = '';
 
-
+  // variable por la prise de rendez vous
+   newRendezVous: RendezVous = { id: 0, date: '', heure: '', descriptiondubesoin: '',etat:0};
+  // Déclaration des variables pour le localStorage
+  tabRendezVousInit: RendezVous[] = [];
+  tabRendezVous: RendezVous[] = [];
   
   selectedLocaliteId!: number;
 
@@ -28,7 +34,7 @@ export class HopitauxComponent implements OnInit {
   localite: any[] = [];
   localiteSelectionnee: string = '';
   localite_idHopitaux!: string;
-
+  lastId!: number;
 
 
 
@@ -152,6 +158,26 @@ export class HopitauxComponent implements OnInit {
   }
 
 
+  // Méthode pour prendre rendezvous
+  
+    addRendezVousFunction() {
+    if (this.tabRendezVous.length) {
+      this.lastId = this.tabRendezVous[this.tabRendezVous.length - 1].id;
+    }
+
+    if (this.newRendezVous.date && this.newRendezVous.descriptiondubesoin && this.newRendezVous.heure)   {
+      this.newRendezVous.id = this.lastId + 1;
+      this.newRendezVous.etat = 1
+      // On ajoute l objet dans le local Staorage 
+      this.tabRendezVous.push(this.newRendezVous);
+      this.alertMessage("success", "", "Hopital ajouté avec succes");
+      localStorage.setItem("rendezvous", JSON.stringify(this.tabRendezVous) || "")
+    } else {
+        this.alertMessage("error", "", "Veuiller emplir les champs ");
+      }
+
+    
+  }
 
 
   // Méthode pour filtrer les hôpitaux en fonction de la localité sélectionnée
@@ -198,6 +224,16 @@ export class HopitauxComponent implements OnInit {
 
       }
     );
+  }
+
+   alertMessage(icon: any, title: any, text: any) {
+    Swal.fire({
+      icon: icon,
+      title: title,
+      text: text,
+      timer: 3000,
+      timerProgressBar: true
+    });
   }
 
 

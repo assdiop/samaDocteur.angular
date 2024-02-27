@@ -1,4 +1,4 @@
-<table>
+<!-- <table>
 
     <thead>
         <tr style="background-color: #007A64;color: #fff;">
@@ -20,14 +20,36 @@
 
             <td><span id="icon">
                     <!-- <p data-bs-toggle="modal" data-bs-target="#ModifierDocteur" (click)="chargerInfosTest(region)">
-                        modifier</p><i class="fa-solid fa-eye"></i><i class="fa-solid fa-trash"></i> -->
-                </span></td>
+                        <!-- modifier</p><i class="fa-solid fa-eye"></i><i class="fa-solid fa-trash"></i> -->
+                <!-- </span></td>  -->
 
-
+<!-- 
         </tr>
 
 
 
 
     </tbody>
-</table>
+</table> --> 
+
+
+
+
+<div class="row">
+    <div class="col-lg-4 col-md-6 mt-5 hopital" *ngFor="let rendezvous of tabRendezVous">
+        <div class="card shadow">
+            <p>date:{{rendezvous.date}}</p>
+
+            <div class="card-body">
+                <div>
+                    <h3>Heure:{{rendezvous.heure}}</h3>
+                    <p>Motif:{{rendezvous.descriptiondubesoin| capitalizeFirst}}</p>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

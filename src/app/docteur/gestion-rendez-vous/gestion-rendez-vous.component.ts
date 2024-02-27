@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RendezVous } from 'src/app/models/rendezvous';
 import { RendezVousService } from 'src/app/services/rendez-vous.service';
 
 @Component({
@@ -9,7 +10,15 @@ import { RendezVousService } from 'src/app/services/rendez-vous.service';
 export class GestionRendezVousComponent {
 
 
-
+ //  rendezVousList: RendezVous[] = [];
+  newRendezVous: RendezVous = { id: 0, date: '', heure: '', descriptiondubesoin: '',etat:0};
+  // Déclaration des variables pour le localStorage
+  tabRendezVousInit: RendezVous[] = [];
+  tabRendezVous: RendezVous[] = [];
+  tabRendezVousConfirmer: RendezVous[] = [];
+  tabRendezVousAnnuler: RendezVous[] = [];
+  tabRendezVousEnAttente: RendezVous[] = [];
+ 
   
   rdv: any;
   rendezvous: any;
@@ -19,6 +28,8 @@ export class GestionRendezVousComponent {
 
     dtOptions: DataTables.Settings = {};
 
+  
+   
   ngOnInit(): void {
 
     // dtoptions
