@@ -51,7 +51,7 @@
             <td>
                 <span >
                     <i id ="myspan" class="fa-solid fa-marker" style="color: #007A64;" data-bs-toggle="modal" data-bs-target="#modifierDocteur"
-                        style="cursor: pointer;" style="color: #007A64;"> </i>
+                        style="cursor: pointer;" style="color: #007A64;" (click)="modifierDocteur()" > </i>
                     
                     
                     <i class="fa-solid fa-trash" style="color:#007A64;" (click)=" supprimerDocteur(docteur)" ></i>
@@ -251,7 +251,7 @@ Ajouter
                         </div>
                 
                      
-                
+                   
                 
                         <div class="mb-3 col-6 ms-3">
                             <label for="" class="form-label">Sexe:</label>
@@ -373,7 +373,7 @@ Ajouter
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier Docteur </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -473,12 +473,7 @@ Ajouter
 
                     </div>
                     <div class="col-12 d-flex justify-content-between">
-                        <div class="mb-3 col-6">
-                            <label for="nom" class="form-label">N°licence:</label>
-                            <input type="number" name="numero_licenceDocteur" class="form-control" id="nom"
-                                [(ngModel)]="numero_licenceDocteur" />
-
-                        </div>
+                      
 
                         <div class="mb-3 col-6 ms-3">
                             <label for="prenom" class="form-label">Année Experience : </label>
@@ -490,11 +485,7 @@ Ajouter
                     </div>
 
                     <div class="col-12 d-flex justify-content-between">
-                        <div class="mb-3 col-6">
-                            <label for="diplome" class="form-label">diplome:</label>
-                            <input (change)="getFile($event)" class="form-control" type="file" id="diplome"
-                                name="diplomeDocteur" accept="diplome/*">
-                        </div>
+                       
 
                         <div class="mb-2 col-6 ">
                             <label for="role" class="form-label">specialite : </label>

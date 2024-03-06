@@ -133,7 +133,7 @@
                             </div>
                         </div>
                         <div class="btnMedecin d-flex flex-wrap justify-content-around">
-                            <button class="btn_card">Voir plus</button>
+                            <button class="btn_card" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Voir plus</button>
                             <button class="btn_card"  data-bs-toggle="modal" data-bs-target="#ajouterlocalite">Prendre un rendez-vous</button>
                         </div>
                     </div>
@@ -265,10 +265,56 @@
             </div>
             <div class="modal-footer d-flex justify-content-center">
                 <button type="button" class="btn text-white w-25" data-bs-dismiss="modal"
-                    style="background-color: #007A64;" >
+                    style="background-color: #007A64;"  (click)=" addRendezVousFunction()">
                     Envoyer
                 </button>
              
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal  pour  detail docteur  -->
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Détail Docteur </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6">
+                        <img src="https://img.freepik.com/photos-premium/medecin-souriant-vue-laterale-clinique_23-2149726955.jpg?
+                                size=626&ext=jpg&ga=GA1.2.780285893.1697472738&semt=ais" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-6">
+                        <p>
+                            Année Expérience :5
+                        </p>
+                        <p>
+                            Téléphone:778053695
+                        </p>
+
+                        <p>
+                            email:assane@gmail.com
+                        </p>
+                        <p>
+                            Adresse:Yoff /Dakar , Sénégal
+                        </p>
+
+                        <p>
+                            WhatsApp :+221 772963585
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
             </div>
         </div>
     </div>

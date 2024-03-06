@@ -123,6 +123,9 @@ export class AuthComponent {
                 'Inscription réussie avec succés.'
               );
       })
+
+      
+    
     
 
       

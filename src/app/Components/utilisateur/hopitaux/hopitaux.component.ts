@@ -20,7 +20,7 @@ export class HopitauxComponent implements OnInit {
  
     filteredHospitals: any[] = []; // Liste des hôpitaux filtrés par localité
 
-  searchTerm: string = '';
+  searchTerm: string = '';   //variable qui permet de faire la reechche 
 
   // variable por la prise de rendez vous
    newRendezVous: RendezVous = { id: 0, date: '', heure: '', descriptiondubesoin: '',etat:0};
@@ -158,6 +158,8 @@ export class HopitauxComponent implements OnInit {
   }
 
 
+
+  
   // Méthode pour prendre rendezvous
   
     addRendezVousFunction() {
@@ -165,21 +167,40 @@ export class HopitauxComponent implements OnInit {
       this.lastId = this.tabRendezVous[this.tabRendezVous.length - 1].id;
     }
 
+      
+      // Récupérer les données utilisateur depuis le stockage local
+const userdata = localStorage.getItem('currentUser');
+
+// Vérifier si des données utilisateur sont présentes dans le stockage local
+if (userdata) {
+    // Convertir les données JSON en objet JavaScript
+    const currentUser = JSON.parse(userdata);
+    
+    // Accéder à la propriété correspondante (par exemple, l'ID de l'utilisateur)
+    const userId = currentUser.id;
+    
+    // Utiliser l'ID de l'utilisateur comme nécessaire
+    console.log("ID de l'utilisateur connecté :", userId);
+} else {
+    console.log("Aucune donnée utilisateur trouvée dans le stockage local.");
+}
     if (this.newRendezVous.date && this.newRendezVous.descriptiondubesoin && this.newRendezVous.heure)   {
       this.newRendezVous.id = this.lastId + 1;
-      this.newRendezVous.etat = 1
+      this.newRendezVous.etat = 1;
       // On ajoute l objet dans le local Staorage 
       this.tabRendezVous.push(this.newRendezVous);
-      this.alertMessage("success", "", "Hopital ajouté avec succes");
+      this.alertMessage("success", "", "RendezVous prise   avec succés");
       localStorage.setItem("rendezvous", JSON.stringify(this.tabRendezVous) || "")
     } else {
-        this.alertMessage("error", "", "Veuiller emplir les champs ");
+        this.alertMessage("error", "", "Veuiller remplir les champs ");
       }
 
     
   }
 
 
+
+  
   // Méthode pour filtrer les hôpitaux en fonction de la localité sélectionnée
   // filterHospitals() {
   //   // Si aucune localité n'est sélectionnée, afficher tous les hôpitaux

@@ -1,9 +1,10 @@
 .Container_action_Contact {
-    background-image: url("/assets/img/banner2.png");
+    background-image: url("/assets/img/Banniere.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 800px;
+    height:110vh;
+    /* Utilisation de 50% de la hauteur de la vue (viewport height) */
     margin-top: -30px;
 }
 
@@ -131,6 +132,13 @@
     margin: 0px 20px 20px 20px;
 }
 
+
+@media (max-width: 768px) {
+    .Container_action_Contact {
+        height: 40vh;
+        /* Réduire la hauteur sur les écrans plus petits */
+    }
+}
 @media screen and (min-width: 768px) {
     .timeline {
         display: grid;

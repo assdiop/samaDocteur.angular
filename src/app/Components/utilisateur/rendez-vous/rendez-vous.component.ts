@@ -72,10 +72,10 @@ export class RendezVousComponent {
       this.newRendezVous.etat = 1
       // On ajoute l objet dans le local Staorage 
       this.tabRendezVous.push(this.newRendezVous);
-      this.alertMessage("success", "", "Hopital ajouté avec succes");
+      this.alertMessage("success", "", "Rendez-vous prise  avec succés");
       localStorage.setItem("rendezvous", JSON.stringify(this.tabRendezVous) || "")
     } else {
-        this.alertMessage("error", "", "Veuiller emplir les champs ");
+        this.alertMessage("error", "", "Veuiller remplir les champs ");
       }
 
     
