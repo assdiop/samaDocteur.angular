@@ -18,8 +18,8 @@ import { GestiondocteurhopitalComponent } from './gestiondocteurhopital/gestiond
 const routes: Routes = [
   {
     path: '', component: AdminMainComponent, children: [
-      // { path: 'accueilAdmin', component: AccueilAdminComponent ,canActivate: [authGuard]}, // A enelever apres
-      { path: 'accueilAdmin', component: AccueilAdminComponent }, //Pour des raison de test
+      { path: 'accueilAdmin', component: AccueilAdminComponent ,canActivate: [authGuard]}, // A enelever apres
+      // { path: 'accueilAdmin', component: AccueilAdminComponent }, //Pour des raison de test
       
       { path: 'gestiondocteur', component: GestionDocteurComponent },
       { path: 'gestionpatients', component: GestionPatientsComponent },

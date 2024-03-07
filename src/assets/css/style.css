@@ -384,11 +384,16 @@ a:focus {
 #navbarmain .nav-link {
   font-weight: 600;
   padding: 10px 15px;
-  color: #222;
+  color:#222;
   font-family: "Exo", sans-serif;
   text-transform: capitalize;
   font-size: 16px;
   transition: all .25s ease;
+}
+
+#navbarmain .nav-link.active {
+  color: red /* Remplacez #votrecouleur par la couleur de votre choix */
+  
 }
 
 

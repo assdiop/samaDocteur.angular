@@ -34,6 +34,10 @@ export class AuthComponent {
 
 
 
+  // les variables pour les validations 7
+
+  
+
   // Messages de validation
   validationMessages: { [key: string]: string } = {};
 

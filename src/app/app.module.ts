@@ -31,6 +31,8 @@ import { SidebarDocteurComponent } from './docteur/sidebar-docteur/sidebar-docte
 import { HeaderDocteurComponent } from './docteur/header-docteur/header-docteur.component';
 import { NavbarDocteurComponent } from './docteur/navbar-docteur/navbar-docteur.component';
 import { CapitalizeFirstPipe } from './capitalize-first.pipe';
+import { RetourhautComponent } from './retourhaut/retourhaut.component';
+import { ScrollingModule } from '@angular/cdk/scrolling'; // Import ScrollingModule
 
 
 
@@ -64,6 +66,7 @@ import { CapitalizeFirstPipe } from './capitalize-first.pipe';
     HeaderDocteurComponent,
     NavbarDocteurComponent,
     CapitalizeFirstPipe,
+    RetourhautComponent,
     
     
     
@@ -75,7 +78,8 @@ import { CapitalizeFirstPipe } from './capitalize-first.pipe';
     BrowserAnimationsModule,
     DataTablesModule,
     HttpClientModule,
-    FormsModule
+    FormsModule ,
+    ScrollingModule 
     
     
   ],

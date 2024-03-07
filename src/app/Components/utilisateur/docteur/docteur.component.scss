@@ -43,3 +43,22 @@ svg {
 .traitCard{
     border-bottom: 10px solid #26235C;
 }
+
+.iconeReseau {
+    // border: 1px solid magenta;
+    padding: 1vh 1.5vh;
+    border-radius: 100%;
+    color: #0E918C !important;
+    background-color: white;
+    box-shadow: 1px 1px 2px #0E918C;
+    margin-right: 2vh;
+    border: none;
+}
+
+.iconeReseau i {
+    font-size: 3.5vh;
+}
+
+.iconeReseau a {
+    color: #0E918C;
+}
