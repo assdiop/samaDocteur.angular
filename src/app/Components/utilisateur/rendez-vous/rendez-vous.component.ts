@@ -7,8 +7,8 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-rendez-vous',
-  templateUrl: './rendez-vous.component.html',
-  styleUrls: ['./rendez-vous.component.scss']
+  templateUrl: 'rendez-vous.component.html',
+  styleUrls: ['rendez-vous.component.scss']
 })
 export class RendezVousComponent {
 

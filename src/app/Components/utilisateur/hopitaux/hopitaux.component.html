@@ -43,11 +43,11 @@
 
                     <div class="card-body">
                         <div class="d-flex flex-wrap justify-content-between">
-                            <h3>{{hopital.nom_hopitaux | capitalizeFirst}}</h3>
-                            <p>{{hopital.type | capitalizeFirst}}</p>
+                            <h3>{{hopital.nom_hopitaux }}</h3>
+                            <p>{{hopital.type }}</p>
                         </div>
                         <div class="d-flex flex-wrap justify-content-between">
-                            <p> <span>Adresse: </span> {{hopital.adresse | capitalizeFirst}}</p>
+                            <p> <span>Adresse: </span> {{hopital.adresse }}</p>
                             <p class="services" data-bs-toggle="modal" data-bs-target="#voirServices"
                                 (click)="getservicesHopital(hopital)"> <span>Nombre services: </span>
                                 {{hopital.services.length}}</p>
@@ -103,7 +103,7 @@
         <!-- Recherche d'un medecin  -->
         <div class="row">
             <div class="col-8">
-                <h1>La liste des medecins de {{hopital_object.nom_hopitaux | capitalizeFirst}}</h1>
+                <h1>La liste des medecins de {{hopital_object.nom_hopitaux }}</h1>
             </div>
             <div class="col-4">
                 <input type="text" class="form-control" placeholder="Rechercher un medecin" [(ngModel)]="filtervalue" (input)="search()">
@@ -122,7 +122,7 @@
                                 alt=""> -->
                         </div>
                         <div class="infosMedecin text-center">
-                            <h3>{{medecin.prenom | capitalizeFirst}} {{medecin.nom | capitalizeFirst}}</h3>
+                            <h3>{{medecin.prenom }} {{medecin.nom }}</h3>
                             <p>{{medecin.service_docteur}}</p>
                             <p>{{medecin.annee_experience}} ans d'expériences</p>
                             <div class="reseaux mb-4">
@@ -206,7 +206,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Les service de {{hopital_object.nom_hopitaux | capitalizeFirst}}
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Les service de {{hopital_object.nom_hopitaux }}
                 </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -239,29 +239,7 @@
 
 
 
-                <form action="">
-                    
-                       
-                   
-                        <div class="form-group">
-                            <label for=""> date:</label>
-                            <input name="date" id="date" type="date" class="form-control" placeholder="dd/mm/aa"
-                                [(ngModel)]="newRendezVous.date">
-                        
-                    
-                        
-                                <label for=""> heure:</label>
-                                <input id="text" type="time" class="form-control" name="heure" [(ngModel)]="newRendezVous.heure">
-                        </div>
-                        
-                        
-                        <div class="form-group col-12">
-                            <textarea name="descriptiondubesoin" id="message" class="form-control" rows="10" 
-                            placeholder="Veuiller mettre votre motif"
-                                [(ngModel)]="newRendezVous.descriptiondubesoin"></textarea>
-                        </div>
-                    
-                </form>
+                
             </div>
             <div class="modal-footer d-flex justify-content-center">
                 <button type="button" class="btn text-white w-25" data-bs-dismiss="modal"

@@ -4,7 +4,7 @@ import { User } from 'src/app/models/users';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 import { MessageService } from 'src/app/services/message.service';
 import Swal from 'sweetalert2';
-import { NameValidator } from 'src/app/models/name.validor';
+// import { NameValidator } from 'src/app/models/name.validor';
 import { AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
